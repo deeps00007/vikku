@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 /* ─── colour tokens matching the reference ─── */
 const C = {
@@ -49,6 +49,49 @@ const ARTICLES = [
 ];
 
 const BRANDS = ["AQUA PURE", "NOIDA IND.", "NCR WATER", "HI-PURE", "VIKKU CO."];
+
+function AnimatedNumber({ text }) {
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+  const ref = useRef(null);
+
+  const numMatch = text.match(/\d+(?:,\d+)?/);
+  const numText = numMatch ? numMatch[0] : "";
+  const target = numText ? parseInt(numText.replace(/,/g, ""), 10) : 0;
+  
+  useEffect(() => {
+    if (!ref.current) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !started) setStarted(true);
+    }, { threshold: 0.5 });
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [started]);
+
+  useEffect(() => {
+    if (!started || target === 0) return;
+    let start = 0;
+    const duration = 2000;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+    return () => clearInterval(timer);
+  }, [started, target]);
+
+  if (!numMatch) return <span>{text}</span>;
+  return (
+    <span ref={ref}>
+      {text.replace(numText, count.toLocaleString("en-IN"))}
+    </span>
+  );
+}
 
 function NavBar() {
   const [scrolled, setScrolled] = useState(false);
@@ -105,6 +148,20 @@ function NavBar() {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState(0);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif", background: C.white, color: C.text, overflowX: "hidden" }}>
       <style>{`
@@ -117,11 +174,19 @@ export default function App() {
         @keyframes ripple{0%{transform:scale(0.8);opacity:0.5}100%{transform:scale(1.8);opacity:0}}
         @keyframes spin{to{transform:rotate(360deg)}}
         @keyframes waveAnim{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+        @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+        @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+        @keyframes bounceGently{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
         .hero-img{animation:floatUp 4s ease-in-out infinite}
-        .fade-in{animation:fadeIn 0.8s ease both}
-        .pcard{background:white;border-radius:12px;overflow:hidden;border:1.5px solid ${C.border};transition:all 0.3s;cursor:pointer}
-        .pcard:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(26,111,196,0.14);border-color:${C.blue}}
-        .btn-blue{background:${C.blue};color:white;border:none;border-radius:6px;padding:12px 28px;font-weight:600;font-size:14px;cursor:pointer;font-family:'Poppins',sans-serif;transition:all 0.2s;box-shadow:0 4px 14px rgba(26,111,196,0.3)}
+        .pulse-water{position:absolute;width:380px;height:380px;border-radius:50%;background:${C.blue}14;animation:ripple 3s infinite cubic-bezier(0.4, 0, 0.2, 1);z-index:0}
+        .pulse-play{animation:ripple 2s infinite cubic-bezier(0.4, 0, 0.2, 1)}
+        .reveal{opacity:0;transform:translateY(30px);transition:all 0.8s cubic-bezier(0.5,0,0,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .pcard{background:white;border-radius:12px;overflow:hidden;border:1.5px solid ${C.border};transition:all 0.4s cubic-bezier(0.4,0,0.2,1);cursor:pointer}
+        .pcard:hover{transform:translateY(-10px) scale(1.01);box-shadow:0 20px 40px rgba(26,111,196,0.18);border-color:${C.blue}}
+        .text-shimmer{background:linear-gradient(90deg, ${C.blueDark}, ${C.blue}, #00d2ff, ${C.blue}, ${C.blueDark});background-size:200% auto;color:transparent;-webkit-background-clip:text;background-clip:text;animation:shimmer 4s linear infinite}
+        .icon-bounce:hover{animation:bounceGently 1s ease-in-out infinite}
+        .btn-blue{position:relative;overflow:hidden;background:${C.blue};color:white;border:none;border-radius:6px;padding:12px 28px;font-weight:600;font-size:14px;cursor:pointer;font-family:'Poppins',sans-serif;transition:all 0.3s;box-shadow:0 4px 14px rgba(26,111,196,0.3)}
         .btn-blue:hover{background:${C.blueDark};transform:translateY(-1px);box-shadow:0 6px 20px rgba(26,111,196,0.4)}
         .btn-outline{background:transparent;color:${C.blue};border:2px solid ${C.blue};border-radius:6px;padding:11px 28px;font-weight:600;font-size:14px;cursor:pointer;font-family:'Poppins',sans-serif;transition:all 0.2s}
         .btn-outline:hover{background:${C.blue};color:white}
@@ -143,19 +208,18 @@ export default function App() {
       <section style={{ paddingTop: 110, minHeight: "90vh", background: `linear-gradient(135deg, ${C.blueLight} 0%, #dbeeff 50%, #f0f8ff 100%)`, display: "flex", alignItems: "center", position: "relative", overflow: "hidden" }}>
         {/* Decorative dots */}
         {[...Array(12)].map((_, i) => (
-          <div key={i} style={{ position: "absolute", width: 8, height: 8, borderRadius: "50%", background: `${C.blue}30`, top: `${10 + i * 7}%`, left: `${2 + (i % 4) * 2}%` }} />
+          <div key={i} style={{ position: "absolute", width: 8, height: 8, borderRadius: "50%", background: `${C.blue}30`, top: `${10 + i * 7}%`, left: `${2 + (i % 4) * 2}%`, animation: `floatUp ${3 + (i % 3)}s ease-in-out infinite alternate` }} />
         ))}
         {/* Animated wave bg circles */}
         <div style={{ position: "absolute", right: "5%", top: "10%", width: 480, height: 480, borderRadius: "50%", background: `radial-gradient(circle, ${C.blue}18 0%, transparent 70%)` }} />
-        <div style={{ position: "absolute", right: "8%", top: "12%", width: 380, height: 380, borderRadius: "50%", border: `2px solid ${C.blue}20` }} />
-        <div style={{ position: "absolute", right: "11%", top: "15%", width: 280, height: 280, borderRadius: "50%", border: `2px solid ${C.blue}15` }} />
+        <div style={{ position: "absolute", right: "8%", top: "12%", width: 380, height: 380, borderRadius: "50%", border: `2px solid ${C.blue}20`, animation: "spin 30s linear infinite" }} />
+        <div style={{ position: "absolute", right: "11%", top: "15%", width: 280, height: 280, borderRadius: "50%", border: `2px dashed ${C.blue}15`, animation: "spin 20s linear infinite reverse" }} />
 
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "60px 6%", width: "100%", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "center" }}>
-          <div className="fade-in">
+          <div className="reveal">
             <div className="sec-tag">शुद्ध जल · शुद्ध जीवन</div>
             <h1 style={{ fontSize: "clamp(36px,5vw,62px)", fontWeight: 800, lineHeight: 1.1, color: C.text, marginBottom: 20 }}>
-              हर बूंद आपको <span style={{ color: C.blue }}>ताज़ा</span> और<br />
-              <span style={{ color: C.blue }}>शुद्ध</span> रखेगी!
+              हर बूंद आपको <br /><span className="text-shimmer">ताज़ा और शुद्ध</span> रखेगी!
             </h1>
             <p style={{ fontSize: 16, color: C.muted, lineHeight: 1.8, marginBottom: 32, maxWidth: 460 }}>
               Noida और Greater Noida में DM Water, Battery Water, RO Water, Distilled Water की reliable supply। 99% purity guarantee। ₹35 से शुरू।
@@ -168,7 +232,7 @@ export default function App() {
             <div style={{ display: "flex", gap: 28 }}>
               {[["5,000+", "Happy Clients"], ["10+", "Years Experience"], ["99%", "Pure Water"]].map(([n, l]) => (
                 <div key={l}>
-                  <div style={{ fontSize: 22, fontWeight: 700, color: C.blue }}>{n}</div>
+                  <div style={{ fontSize: 22, fontWeight: 700, color: C.blue }}><AnimatedNumber text={n} /></div>
                   <div style={{ fontSize: 12, color: C.muted }}>{l}</div>
                 </div>
               ))}
@@ -176,11 +240,12 @@ export default function App() {
           </div>
           {/* Hero image – big water can/splash illustration */}
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
-            <div style={{ position: "absolute", width: 380, height: 380, borderRadius: "50%", background: `${C.blue}14` }} />
+            <div className="pulse-water" />
+            <div style={{ position: "absolute", width: 380, height: 380, borderRadius: "50%", background: `${C.blue}14`, zIndex: 1 }} />
             <img className="hero-img"
               src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=600&q=85"
               alt="Pure water"
-              style={{ width: 420, height: 420, objectFit: "cover", borderRadius: "50%", position: "relative", zIndex: 1, border: `6px solid white`, boxShadow: `0 20px 60px ${C.blue}30` }}
+              style={{ width: 420, height: 420, objectFit: "cover", borderRadius: "50%", position: "relative", zIndex: 2, border: `6px solid white`, boxShadow: `0 20px 60px ${C.blue}30` }}
             />
             {/* Floating badges */}
             <div style={{ position: "absolute", bottom: 60, left: 0, background: "white", borderRadius: 12, padding: "12px 18px", boxShadow: "0 8px 24px rgba(0,0,0,0.1)", display: "flex", alignItems: "center", gap: 10, zIndex: 2 }}>
@@ -196,20 +261,25 @@ export default function App() {
             </div>
           </div>
         </div>
-        {/* Wave bottom */}
-        <svg style={{ position: "absolute", bottom: -2, left: 0, right: 0 }} viewBox="0 0 1440 70" preserveAspectRatio="none">
-          <path d="M0,35C240,70 480,0 720,35C960,70 1200,0 1440,35L1440,70L0,70Z" fill={C.white} />
-        </svg>
+        {/* Animated Wave bottom */}
+        <div style={{ position: "absolute", bottom: -2, left: 0, width: "100%", height: 75, overflow: "hidden", lineHeight: 0 }}>
+          <svg style={{ width: "200%", height: "100%", animation: "waveAnim 12s linear infinite" }} viewBox="0 0 2880 70" preserveAspectRatio="none">
+            <path d="M0,35 C240,70 480,0 720,35 C960,70 1200,0 1440,35 C1680,70 1920,0 2160,35 C2400,70 2640,0 2880,35 L2880,70 L0,70 Z" fill={`${C.white}b3`} />
+          </svg>
+          <svg style={{ position: "absolute", bottom: 0, left: 0, width: "200%", height: "100%", animation: "waveAnim 20s linear infinite" }} viewBox="0 0 2880 70" preserveAspectRatio="none">
+            <path d="M0,35 C240,0 480,70 720,35 C960,0 1200,70 1440,35 C1680,0 1920,70 2160,35 C2400,0 2640,70 2880,35 L2880,70 L0,70 Z" fill={C.white} />
+          </svg>
+        </div>
       </section>
 
       {/* ─── BRAND LOGOS ─── */}
-      <section style={{ padding: "28px 6%", borderBottom: `1px solid ${C.border}` }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "flex", justifyContent: "space-around", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
-          {BRANDS.map((b, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, opacity: 0.55, cursor: "pointer", transition: "opacity 0.2s" }}
+      <section style={{ padding: "28px 0", borderBottom: `1px solid ${C.border}`, overflow: "hidden", whiteSpace: "nowrap" }}>
+        <div style={{ display: "inline-flex", width: "max-content", animation: "marquee 20s linear infinite" }}>
+          {[...BRANDS, ...BRANDS, ...BRANDS, ...BRANDS].map((b, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, opacity: 0.55, cursor: "pointer", transition: "opacity 0.2s", margin: "0 40px" }}
               onMouseEnter={e => e.currentTarget.style.opacity = 1} onMouseLeave={e => e.currentTarget.style.opacity = 0.55}>
-              <div style={{ width: 32, height: 32, borderRadius: "50%", background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>💧</div>
-              <span style={{ fontSize: 14, fontWeight: 700, color: C.blue, letterSpacing: 1 }}>{b}</span>
+              <div style={{ width: 32, height: 32, borderRadius: "50%", background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, animation: "spin 10s linear infinite" }}>💧</div>
+              <span style={{ fontSize: 15, fontWeight: 700, color: C.blue, letterSpacing: 1 }}>{b}</span>
             </div>
           ))}
         </div>
@@ -229,7 +299,7 @@ export default function App() {
               { img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=500&q=80", title: "Laboratory Grade Quality", desc: "Lab-grade DI और distilled water जो सभी industrial standards को meet करता है। pH tested।" },
               { img: "https://images.unsplash.com/photo-1550159930-40066082a4fc?w=500&q=80", title: "Bulk RO Water Delivery", desc: "10,000 litre तक bulk RO water। समय पर delivery। Competitive industrial pricing।" },
             ].map((c, i) => (
-              <div key={i} className="pcard" style={{ borderRadius: 14 }}>
+              <div key={i} className="pcard reveal" style={{ borderRadius: 14, transitionDelay: `${i * 0.15}s` }}>
                 <div style={{ overflow: "hidden", height: 200 }}>
                   <img src={c.img} alt={c.title} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
                     onMouseEnter={e => e.target.style.transform = "scale(1.07)"} onMouseLeave={e => e.target.style.transform = "scale(1)"} />
@@ -259,7 +329,7 @@ export default function App() {
             <img src="https://images.unsplash.com/photo-1581093458791-9d15482442f5?w=700&q=80" alt="worker"
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", maxHeight: 340, display: "block" }} />
             <div style={{ position: "absolute", bottom: 20, left: 20, background: C.blue, borderRadius: 10, padding: "12px 20px", color: "white" }}>
-              <div style={{ fontSize: 24, fontWeight: 800 }}>5,000+</div>
+              <div style={{ fontSize: 24, fontWeight: 800 }}><AnimatedNumber text="5,000+" /></div>
               <div style={{ fontSize: 12, opacity: 0.9 }}>Satisfied Clients</div>
             </div>
           </div>
@@ -293,7 +363,7 @@ export default function App() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
             {PRODUCTS.map((p, i) => (
-              <div key={i} className="pcard">
+              <div key={i} className="pcard reveal" style={{ transitionDelay: `${i * 0.1}s` }}>
                 <div style={{ background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", height: 200, overflow: "hidden" }}>
                   <img src={p.img} alt={p.name} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
                     onMouseEnter={e => e.target.style.transform = "scale(1.08)"} onMouseLeave={e => e.target.style.transform = "scale(1)"} />
@@ -332,7 +402,8 @@ export default function App() {
               style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.5)" }} />
             <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to right, ${C.blue}88, transparent)` }} />
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <div style={{ width: 70, height: 70, borderRadius: "50%", background: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, cursor: "pointer", boxShadow: "0 0 0 14px rgba(255,255,255,0.2)", transition: "transform 0.2s" }}
+              <div className="pulse-play" style={{ position: "absolute", width: 70, height: 70, borderRadius: "50%", background: "white", zIndex: 0 }} />
+              <div style={{ width: 70, height: 70, borderRadius: "50%", background: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, cursor: "pointer", boxShadow: "0 0 0 14px rgba(255,255,255,0.2)", transition: "transform 0.2s", zIndex: 1 }}
                 onMouseEnter={e => e.currentTarget.style.transform = "scale(1.1)"} onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}>▶</div>
             </div>
           </div>
@@ -343,7 +414,7 @@ export default function App() {
       <section style={{ padding: "60px 6%", background: C.white }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 28 }}>
           {FEATURES.map((f, i) => (
-            <div key={i} style={{ background: C.blueLight, borderRadius: 16, padding: "32px 28px", display: "flex", gap: 18, alignItems: "flex-start", border: `1.5px solid ${C.border}`, transition: "all 0.3s" }}
+            <div key={i} className="icon-bounce" style={{ background: C.blueLight, borderRadius: 16, padding: "32px 28px", display: "flex", gap: 18, alignItems: "flex-start", border: `1.5px solid ${C.border}`, transition: "all 0.3s" }}
               onMouseEnter={e => { e.currentTarget.style.background = "white"; e.currentTarget.style.boxShadow = `0 10px 30px ${C.blue}18`; }}
               onMouseLeave={e => { e.currentTarget.style.background = C.blueLight; e.currentTarget.style.boxShadow = "none"; }}>
               <div style={{ width: 52, height: 52, borderRadius: "50%", background: `${C.blue}18`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, flexShrink: 0 }}>{f.icon}</div>
@@ -366,7 +437,7 @@ export default function App() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 20 }}>
             {STATS.map((s, i) => (
               <div key={i} style={{ textAlign: "center", padding: "30px 16px", borderRight: i < 3 ? "1px solid rgba(255,255,255,0.2)" : "none" }}>
-                <div style={{ fontSize: 42, fontWeight: 800, color: "white", lineHeight: 1 }}>{s.n}</div>
+                <div style={{ fontSize: 42, fontWeight: 800, color: "white", lineHeight: 1 }}><AnimatedNumber text={s.n} /></div>
                 <div style={{ fontSize: 14, color: "rgba(255,255,255,0.75)", marginTop: 8 }}>{s.l}</div>
               </div>
             ))}
