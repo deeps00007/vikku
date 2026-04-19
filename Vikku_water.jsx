@@ -15,12 +15,27 @@ const C = {
 };
 
 const PRODUCTS = [
-  { name: "DM Water (20 L Can)", price: "₹80", old: "₹100", img: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=300&q=80", desc: "Demineralised water, mineral-free. Ideal for boilers, batteries & labs." },
-  { name: "RO Purified Water (20 L)", price: "₹60", old: "₹80", img: "https://images.unsplash.com/photo-1559825481-12a05cc00344?w=300&q=80", desc: "Reverse osmosis filtered water for safe everyday industrial use." },
-  { name: "Distilled Water (5 L)", price: "₹40", old: "₹55", img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=300&q=80", desc: "Distilled, lab-grade purity. Perfect for chemical processes & hospitals." },
-  { name: "Battery Water (5 L)", price: "₹35", old: "₹50", img: "https://images.unsplash.com/photo-1620714223084-8fcacc2dfd4d?w=300&q=80", desc: "Conductivity <1.3 μS/cm. Extends inverter & lead-acid battery life." },
-  { name: "Soft Water (Bulk)", price: "₹500", old: "₹700", img: "https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=300&q=80", desc: "Scale-free soft water protecting your pipes, boilers and machinery." },
-  { name: "Raw Water (Tanker)", price: "₹1,200", old: "₹1,500", img: "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=300&q=80", desc: "Bulk untreated water for construction, cooling towers & civil works." },
+  { name: "RO Water", price: "Get Latest Price", old: "", img: "https://images.unsplash.com/photo-1559825481-12a05cc00344?w=300&q=80", 
+    desc: "Made in India • Reverse Osmosis Purification",
+    details: ["Type: Filtered RO Water", "Purity: 99%"] },
+  { name: "Raw Water", price: "₹0 / Litre", old: "", img: "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=300&q=80", 
+    desc: "Made in India • Liquid State",
+    details: ["pH Value: 6.5-8.5", "Purity: 99%"] },
+  { name: "Inverter Battery Distilled Alkaline Water", price: "₹5 / Litre", old: "", img: "https://images.unsplash.com/photo-1620714223084-8fcacc2dfd4d?w=300&q=80", 
+    desc: "Made in India • Can Packaging",
+    details: ["Capacity: 20 L", "Usage: Industrial"] },
+  { name: "DM Water", price: "₹1 / Litre", old: "", img: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=300&q=80", 
+    desc: "Made in India • Industrial Grade",
+    details: ["Purity: 99%", "Usage: Industrial"] },
+  { name: "Distilled Water", price: "Get Latest Price", old: "", img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=300&q=80", 
+    desc: "Made in India • Source: H2O",
+    details: ["Usage: Laboratory", "Boiling Point: 100°C"] },
+  { name: "Demineralised Water", price: "₹10 / Litre", old: "", img: "https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=300&q=80", 
+    desc: "Made in India • Plastic Can Packaging",
+    details: ["Purity: >99%", "Details: 5 L Bottle"] },
+  { name: "Battery Distilled Water", price: "Get Latest Price", old: "", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&q=80", 
+    desc: "Made in India • Packaging: 200 Litre",
+    details: ["Conductivity: < 1.3", "Bacteria: < 10 cfu/100ml"] }
 ];
 
 const FEATURES = [
@@ -372,20 +387,23 @@ export default function App() {
                     onMouseEnter={e => e.target.style.transform = "scale(1.08)"} onMouseLeave={e => e.target.style.transform = "scale(1)"} />
                 </div>
                 <div style={{ padding: "20px" }}>
-                  <div style={{ display: "flex", gap: 6, marginBottom: 10, flexWrap: "wrap" }}>
-                    {["4 x 5 L", "5 x 20 L"].slice(0, i % 2 + 1).map(t => (
-                      <span key={t} style={{ fontSize: 11, background: C.blueLight, color: C.blue, padding: "2px 8px", borderRadius: 4, fontWeight: 600 }}>{t}</span>
+                  <div style={{ display: "flex", gap: 6, marginBottom: 10, flexWrap: "wrap", minHeight: 24 }}>
+                    {p.details.map(t => (
+                      <span key={t} style={{ fontSize: 11, background: C.blueLight, color: C.blue, padding: "3px 8px", borderRadius: 4, fontWeight: 600 }}>{t}</span>
                     ))}
                   </div>
-                  <h3 style={{ fontSize: 16, fontWeight: 700, color: C.text, marginBottom: 8 }}>{p.name}</h3>
-                  <p style={{ fontSize: 12, color: C.muted, lineHeight: 1.7, marginBottom: 14 }}>{p.desc}</p>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
-                    <div>
-                      <span style={{ fontSize: 18, fontWeight: 700, color: C.blue }}>{p.price}</span>
-                      <span style={{ fontSize: 12, color: C.muted, textDecoration: "line-through", marginLeft: 6 }}>{p.old}</span>
+                  <h3 style={{ fontSize: 16, fontWeight: 700, color: C.text, marginBottom: 6 }}>{p.name}</h3>
+                  <p style={{ fontSize: 12, color: C.muted, lineHeight: 1.6, marginBottom: 14 }}>{p.desc}</p>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+                    <div style={{ display: "flex", alignItems: "flex-end" }}>
+                      <span style={{ fontSize: 16, fontWeight: 700, color: C.blue }}>{p.price}</span>
+                      {p.old && <span style={{ fontSize: 12, color: C.muted, textDecoration: "line-through", marginLeft: 6, marginBottom: 2 }}>{p.old}</span>}
                     </div>
                   </div>
-                  <button className="btn-blue" style={{ width: "100%", borderRadius: 6, padding: "11px", fontSize: 13 }}>Add To Cart</button>
+                  <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
+                    <button className="btn-blue" style={{ flex: 1, borderRadius: 6, padding: "10px 0", fontSize: 12 }}>Get Best Price</button>
+                    <button className="btn-outline" style={{ flex: 1, borderRadius: 6, padding: "8px 0", fontSize: 12, border: `1.5px solid ${C.blue}` }}>Contact</button>
+                  </div>
                 </div>
               </div>
             ))}
