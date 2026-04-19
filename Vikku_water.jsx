@@ -62,8 +62,11 @@ function AnimatedNumber({ text }) {
   useEffect(() => {
     if (!ref.current) return;
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !started) setStarted(true);
-    }, { threshold: 0.5 });
+      if (entry.isIntersecting && !started) {
+        // Small delay to ensure it doesn't trigger immediately on page load
+        setTimeout(() => setStarted(true), 150);
+      }
+    }, { threshold: 0.8, rootMargin: "0px 0px -50px 0px" });
     observer.observe(ref.current);
     return () => observer.disconnect();
   }, [started]);
