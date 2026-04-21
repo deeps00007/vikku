@@ -556,6 +556,10 @@ export default function App() {
                 <div key={l} style={{ fontSize: 13, marginBottom: 10, cursor: "pointer", transition: "color 0.2s" }}
                   onMouseEnter={e => e.target.style.color = "#7ec8f7"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.75)"}>{l}</div>
               ))}
+              <a href="/privacy-policy.html" style={{ display: "block", fontSize: 13, marginBottom: 10, cursor: "pointer", transition: "color 0.2s", color: "rgba(255,255,255,0.75)", textDecoration: "none" }}
+                onMouseEnter={e => e.target.style.color = "#7ec8f7"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.75)"}>
+                Privacy Policy
+              </a>
             </div>
             {/* Subscribe */}
             <div>
