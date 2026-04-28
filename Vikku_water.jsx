@@ -122,7 +122,7 @@ function NavBar() {
     <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, background: scrolled ? C.white : "rgba(255,255,255,0.97)", boxShadow: scrolled ? "0 2px 20px rgba(26,111,196,0.12)" : "none", transition: "all 0.3s", borderBottom: `1px solid ${scrolled ? C.border : "transparent"}` }}>
       {/* Top bar */}
       <div className="top-bar" style={{ background: C.blue, padding: "6px 6%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <div style={{ display: "flex", gap: 24, fontSize: 12, color: "rgba(255,255,255,0.9)" }}>
+        <div style={{ display: "flex", gap: 24, fontSize: 12, color: "rgba(255,255,255,0.9)", cursor: "pointer" }} onClick={() => window.location.hash = ""}>
           <span>📍 Village-Basai, Sector-70, Noida – 201308</span>
           <span>✉ info@vikkuwater.in</span>
         </div>
@@ -134,7 +134,7 @@ function NavBar() {
       </div>
       {/* Main nav */}
       <div className="nav-bar-inner">
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }} onClick={() => window.location.hash = ""}>
           <div style={{ width: 44, height: 44, borderRadius: "50%", background: `linear-gradient(135deg, ${C.blue}, ${C.blueMid})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}>💧</div>
           <div>
             <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: 18, color: C.blue, lineHeight: 1 }}>Vikku</div>
@@ -143,8 +143,8 @@ function NavBar() {
         </div>
         <div className="nav-links">
           {["Home", "About Us", "Services", "Products", "Contact"].map(l => (
-            <a key={l} href={`#${l.toLowerCase().replace(" ", "")}`} style={{ fontSize: 14, fontWeight: 500, color: C.text, textDecoration: "none", transition: "color 0.2s", fontFamily: "'Poppins', sans-serif" }}
-              onMouseEnter={e => e.target.style.color = C.blue} onMouseLeave={e => e.target.style.color = C.text}>{l}</a>
+            <div key={l} onClick={() => window.location.hash = l.toLowerCase().replace(" ", "")} style={{ fontSize: 14, fontWeight: 500, color: C.text, textDecoration: "none", transition: "color 0.2s", fontFamily: "'Poppins', sans-serif", cursor: "pointer" }}
+              onMouseEnter={e => e.target.style.color = C.blue} onMouseLeave={e => e.target.style.color = C.text}>{l}</div>
           ))}
         </div>
         <div className="nav-btn" style={{ display: "flex", gap: 10 }}>
@@ -166,8 +166,15 @@ function NavBar() {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState(0);
+  const [currentPage, setCurrentPage] = useState(window.location.hash || "#home");
 
   useEffect(() => {
+    const handleHash = () => {
+      setCurrentPage(window.location.hash || "#home");
+      window.scrollTo(0,0);
+    };
+    window.addEventListener("hashchange", handleHash);
+    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -177,8 +184,12 @@ export default function App() {
     }, { threshold: 0.1 });
 
     document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+    
+    return () => {
+      window.removeEventListener("hashchange", handleHash);
+      observer.disconnect();
+    };
+  }, [currentPage]);
 
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif", background: C.white, color: C.text, overflowX: "hidden" }}>
@@ -251,7 +262,17 @@ export default function App() {
 
       <NavBar />
 
+      {currentPage !== "#home" && currentPage !== "" && (
+        <section style={{ paddingTop: 160, paddingBottom: 80, background: `linear-gradient(135deg, ${C.blueDark} 0%, ${C.blue} 100%)`, textAlign: "center", color: "white" }}>
+          <h1 style={{ fontSize: "clamp(32px, 5vw, 54px)", fontWeight: 800, marginBottom: 12 }}>
+            {currentPage === "#aboutus" ? "About Us" : currentPage === "#products" ? "Our Products" : currentPage === "#contact" ? "Contact Us" : currentPage === "#services" ? "Our Services" : "Page"}
+          </h1>
+          <p style={{ fontSize: 16, opacity: 0.85, maxWidth: 600, margin: "0 auto" }}>Noida's Premium DM and RO Water Supplier</p>
+        </section>
+      )}
+
       {/* ─── HERO ─── */}
+      {(currentPage === "#home" || currentPage === "") && (
       <section style={{ paddingTop: 110, minHeight: "90vh", background: `linear-gradient(135deg, ${C.blueLight} 0%, #dbeeff 50%, #f0f8ff 100%)`, display: "flex", alignItems: "center", position: "relative", overflow: "hidden" }}>
         {/* Decorative dots */}
         {[...Array(12)].map((_, i) => (
@@ -318,8 +339,10 @@ export default function App() {
           </svg>
         </div>
       </section>
+      )}
 
       {/* ─── BRAND LOGOS ─── */}
+      {(currentPage === "#home" || currentPage === "") && (
       <section style={{ padding: "28px 0", borderBottom: `1px solid ${C.border}`, overflow: "hidden", whiteSpace: "nowrap" }}>
         <div style={{ display: "inline-flex", width: "max-content", animation: "marquee 20s linear infinite" }}>
           {[...BRANDS, ...BRANDS, ...BRANDS, ...BRANDS].map((b, i) => (
@@ -331,8 +354,10 @@ export default function App() {
           ))}
         </div>
       </section>
+      )}
 
       {/* ─── WHY CHOOSE US ─── */}
+      {(currentPage === "#home" || currentPage === "" || currentPage === "#aboutus") && (
       <section id="aboutus" style={{ padding: "90px 6%", background: C.white }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 56 }}>
@@ -368,8 +393,10 @@ export default function App() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ─── EXPERIENCED WORKERS BANNER ─── */}
+      {(currentPage === "#home" || currentPage === "" || currentPage === "#aboutus" || currentPage === "#services") && (
       <section style={{ background: C.blueLight, padding: "0 6%", position: "relative", overflow: "hidden" }}>
         <div className="grid-2-col" style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ position: "relative" }}>
@@ -400,8 +427,10 @@ export default function App() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ─── PRODUCTS ─── */}
+      {(currentPage === "#home" || currentPage === "" || currentPage === "#products" || currentPage === "#services") && (
       <section id="products" style={{ padding: "90px 6%", background: "#f7fbff" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 56 }}>
@@ -431,7 +460,7 @@ export default function App() {
                   </div>
                   <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
                     <button className="btn-blue" style={{ flex: 1, borderRadius: 6, padding: "10px 0", fontSize: 12 }}>Get Best Price</button>
-                    <button className="btn-outline" style={{ flex: 1, borderRadius: 6, padding: "8px 0", fontSize: 12, border: `1.5px solid ${C.blue}` }}>Contact</button>
+                    <button className="btn-outline" style={{ flex: 1, borderRadius: 6, padding: "8px 0", fontSize: 12, border: `1.5px solid ${C.blue}` }} onClick={() => window.location.hash = "contact"}>Contact</button>
                   </div>
                 </div>
               </div>
@@ -439,8 +468,10 @@ export default function App() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ─── VIDEO / TRUST BANNER ─── */}
+      {(currentPage === "#home" || currentPage === "" || currentPage === "#aboutus") && (
       <section style={{ padding: "0 6%", background: C.white }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", padding: "60px 0 30px" }}>
@@ -459,8 +490,10 @@ export default function App() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ─── 3 FEATURE ICONS ─── */}
+      {(currentPage !== "#contact") && (
       <section style={{ padding: "60px 6%", background: C.white }}>
         <div className="grid-3-col" style={{ maxWidth: 1200, margin: "0 auto" }}>
           {FEATURES.map((f, i) => (
@@ -476,8 +509,10 @@ export default function App() {
           ))}
         </div>
       </section>
+      )}
 
       {/* ─── ACHIEVEMENTS ─── */}
+      {(currentPage === "#home" || currentPage === "" || currentPage === "#aboutus") && (
       <section style={{ padding: "70px 6%", background: C.blue }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 50 }}>
@@ -494,8 +529,10 @@ export default function App() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ─── TESTIMONIALS ─── */}
+      {(currentPage === "#home" || currentPage === "" || currentPage === "#aboutus" || currentPage === "#products") && (
       <section style={{ padding: "90px 6%", background: "#f7fbff" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 56 }}>
@@ -519,8 +556,10 @@ export default function App() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ─── ARTICLES ─── */}
+      {(currentPage === "#home" || currentPage === "") && (
       <section style={{ padding: "90px 6%", background: C.white }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="articles-header">
@@ -547,6 +586,61 @@ export default function App() {
           </div>
         </div>
       </section>
+      )}
+
+      {/* ─── DEDICATED CONTACT PAGE FORM ─── */}
+      {(currentPage === "#contact") && (
+      <section style={{ padding: "90px 6%", background: C.bg }}>
+        <div className="grid-2-col" style={{ maxWidth: 1200, margin: "0 auto", gap: 50, alignItems: "start" }}>
+          <div style={{ background: "white", padding: "40px", borderRadius: 16, boxShadow: "0 10px 40px rgba(0,0,0,0.05)" }}>
+            <h3 style={{ fontSize: 24, fontWeight: 700, color: C.text, marginBottom: 20 }}>Send a Message</h3>
+            <form style={{ display: "flex", flexDirection: "column", gap: 20 }} onSubmit={e => e.preventDefault()}>
+              <input type="text" placeholder="Your Name" style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif" }} />
+              <input type="email" placeholder="Email Address" style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif" }} />
+              <input type="tel" placeholder="Phone Number" style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif" }} />
+              <select style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif", color: C.muted }}>
+                <option>Interested in DM Water</option>
+                <option>Interested in RO Water</option>
+                <option>Interested in Battery Water</option>
+                <option>Other Enquiry</option>
+              </select>
+              <textarea placeholder="Write your message here..." rows="5" style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif", resize: "vertical" }} />
+              <button className="btn-blue" style={{ fontSize: 16, padding: "16px", marginTop: 10 }}>Submit Request</button>
+            </form>
+          </div>
+          <div>
+            <div className="sec-tag">Get In Touch</div>
+            <h2 className="sec-h2">हमसे <span>संपर्क</span> करें</h2>
+            <p style={{ fontSize: 16, color: C.muted, lineHeight: 1.8, marginBottom: 30 }}>
+              Water supply queries, bulk orders, या quality testing के लिए नीचे दिए गए तरीकों से हमसे संपर्क कर सकते हैं। हमारी team जल्द ही आपको respond करेगी।
+            </p>
+            <div style={{ display: "flex",flexDirection: "column", gap: 30 }}>
+              <div style={{ display: "flex", gap: 16 }}>
+                <div style={{ width: 50, height: 50, borderRadius: "50%", background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, color: C.blue, flexShrink: 0 }}>📍</div>
+                <div>
+                  <h4 style={{ fontSize: 16, fontWeight: 700, color: C.text, marginBottom: 6 }}>Our Office Address</h4>
+                  <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6 }}>Village-Basai, Barauddin Nagar,<br/>Sector-70 Noida, UP – 201308</p>
+                </div>
+              </div>
+              <div style={{ display: "flex", gap: 16 }}>
+                <div style={{ width: 50, height: 50, borderRadius: "50%", background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, color: C.blue, flexShrink: 0 }}>📞</div>
+                <div>
+                  <h4 style={{ fontSize: 16, fontWeight: 700, color: C.text, marginBottom: 6 }}>Call Us</h4>
+                  <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6 }}>+91 99999 XXXXX<br/>Mon-Sat: 8am - 7pm</p>
+                </div>
+              </div>
+              <div style={{ display: "flex", gap: 16 }}>
+                <div style={{ width: 50, height: 50, borderRadius: "50%", background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, color: C.blue, flexShrink: 0 }}>✉</div>
+                <div>
+                  <h4 style={{ fontSize: 16, fontWeight: 700, color: C.text, marginBottom: 6 }}>Email Us</h4>
+                  <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6 }}>info@vikkuwater.in<br/>sales@vikkuwater.in</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      )}
 
       {/* ─── FOOTER ─── */}
       <footer id="contact" style={{ background: "#0d2137", color: "rgba(255,255,255,0.75)", padding: "70px 6% 0" }}>
