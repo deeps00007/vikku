@@ -228,6 +228,7 @@ export default function App() {
         .grid-4-col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 50px; padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.08); }
         .articles-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px; }
+        .articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
         
         @media (max-width: 900px) {
           .top-bar { display: none !important; }
@@ -238,9 +239,12 @@ export default function App() {
           .hero-grid .reveal > div:nth-child(4) { justify-content: center; }
           .hero-grid .reveal > div:nth-child(5) { justify-content: center; }
           .grid-3-col, .grid-4-col, .grid-2-col { grid-template-columns: 1fr; }
-          .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
-          .footer-grid > div { margin: 0 auto; }
+          .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; text-align: left; }
+          .footer-grid > div { margin: 0; }
+          .footer-brand, .footer-subscribe { grid-column: span 2; }
           .articles-header { flex-direction: column; align-items: center; text-align: center; gap: 20px; }
+          .articles-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 20px; margin: 0 -6%; padding-left: 6%; padding-right: 6%; gap: 16px; }
+          .articles-grid > div { min-width: 85vw; scroll-snap-align: center; flex-shrink: 0; margin-bottom: 0; }
           .hero-img { width: 300px !important; height: 300px !important; }
         }
       `}</style>
@@ -526,7 +530,7 @@ export default function App() {
             </div>
             <button className="btn-outline" style={{ fontSize: 13 }}>View All →</button>
           </div>
-          <div className="grid-3-col" style={{ gap: 24 }}>
+          <div className="articles-grid">
             {ARTICLES.map((a, i) => (
               <div key={i} className="pcard acard" style={{ borderRadius: 14 }}>
                 <div style={{ height: 200, overflow: "hidden", position: "relative" }}>
@@ -549,7 +553,7 @@ export default function App() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="footer-grid">
             {/* Brand */}
-            <div>
+            <div className="footer-brand">
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
                 <div style={{ width: 42, height: 42, borderRadius: "50%", background: `linear-gradient(135deg,${C.blue},${C.blueMid})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>💧</div>
                 <div>
@@ -567,7 +571,7 @@ export default function App() {
               </div>
             </div>
             {/* Services */}
-            <div>
+            <div className="footer-links">
               <h4 style={{ fontSize: 15, fontWeight: 700, color: "white", marginBottom: 20 }}>Services</h4>
               {["DM Water Supply","Battery Water","Distilled Water","RO Water","Soft Water","Raw Water","Boiler Chemicals"].map(s => (
                 <div key={s} style={{ fontSize: 13, marginBottom: 10, cursor: "pointer", transition: "color 0.2s" }}
@@ -575,7 +579,7 @@ export default function App() {
               ))}
             </div>
             {/* Useful Links */}
-            <div>
+            <div className="footer-links">
               <h4 style={{ fontSize: 15, fontWeight: 700, color: "white", marginBottom: 20 }}>Useful Links</h4>
               {["Home","About Us","Products","Quality Specs","Bulk Orders","Contact Us","GST Info"].map(l => (
                 <div key={l} style={{ fontSize: 13, marginBottom: 10, cursor: "pointer", transition: "color 0.2s" }}
@@ -587,7 +591,7 @@ export default function App() {
               </a>
             </div>
             {/* Subscribe */}
-            <div>
+            <div className="footer-subscribe">
               <h4 style={{ fontSize: 15, fontWeight: 700, color: "white", marginBottom: 20 }}>Subscribe</h4>
               <p style={{ fontSize: 13, lineHeight: 1.8, marginBottom: 20 }}>Latest offers और water quality tips के लिए subscribe करें।</p>
               <div style={{ display: "flex", gap: 0, marginBottom: 24 }}>
