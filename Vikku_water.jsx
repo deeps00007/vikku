@@ -243,8 +243,8 @@ export default function App() {
           .footer-grid > div { margin: 0; }
           .footer-brand, .footer-subscribe { grid-column: span 2; }
           .articles-header { flex-direction: column; align-items: center; text-align: center; gap: 20px; }
-          .articles-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 20px; margin: 0 -6%; padding-left: 6%; padding-right: 6%; gap: 16px; }
-          .articles-grid > div { min-width: 85vw; scroll-snap-align: center; flex-shrink: 0; margin-bottom: 0; }
+          .articles-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 20px; margin: 0 -6%; padding-left: 6%; padding-right: 6%; gap: 16px; scroll-padding-left: 6%; }
+          .articles-grid > div { min-width: 75vw; scroll-snap-align: start; flex-shrink: 0; margin-bottom: 0; }
           .hero-img { width: 300px !important; height: 300px !important; }
         }
       `}</style>
