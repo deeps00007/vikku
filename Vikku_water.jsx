@@ -121,7 +121,7 @@ function NavBar() {
   return (
     <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, background: scrolled ? C.white : "rgba(255,255,255,0.97)", boxShadow: scrolled ? "0 2px 20px rgba(26,111,196,0.12)" : "none", transition: "all 0.3s", borderBottom: `1px solid ${scrolled ? C.border : "transparent"}` }}>
       {/* Top bar */}
-      <div style={{ background: C.blue, padding: "6px 6%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div className="top-bar" style={{ background: C.blue, padding: "6px 6%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <div style={{ display: "flex", gap: 24, fontSize: 12, color: "rgba(255,255,255,0.9)" }}>
           <span>📍 Village-Basai, Sector-70, Noida – 201308</span>
           <span>✉ info@vikkuwater.in</span>
@@ -133,7 +133,7 @@ function NavBar() {
         </div>
       </div>
       {/* Main nav */}
-      <div style={{ padding: "0 6%", display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}>
+      <div className="nav-bar-inner">
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <div style={{ width: 44, height: 44, borderRadius: "50%", background: `linear-gradient(135deg, ${C.blue}, ${C.blueMid})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}>💧</div>
           <div>
@@ -141,13 +141,13 @@ function NavBar() {
             <div style={{ fontSize: 10, color: C.muted, letterSpacing: 2, textTransform: "uppercase" }}>Water Supplier</div>
           </div>
         </div>
-        <div style={{ display: "flex", gap: 30, alignItems: "center" }}>
+        <div className="nav-links">
           {["Home", "About Us", "Services", "Products", "Contact"].map(l => (
             <a key={l} href={`#${l.toLowerCase().replace(" ", "")}`} style={{ fontSize: 14, fontWeight: 500, color: C.text, textDecoration: "none", transition: "color 0.2s", fontFamily: "'Poppins', sans-serif" }}
               onMouseEnter={e => e.target.style.color = C.blue} onMouseLeave={e => e.target.style.color = C.text}>{l}</a>
           ))}
         </div>
-        <div style={{ display: "flex", gap: 10 }}>
+        <div className="nav-btn" style={{ display: "flex", gap: 10 }}>
           <button style={{ padding: "10px 22px", borderRadius: 6, border: `2px solid ${C.blue}`, background: "transparent", color: C.blue, fontWeight: 600, fontSize: 13, cursor: "pointer", fontFamily: "'Poppins', sans-serif", transition: "all 0.2s" }}
             onMouseEnter={e => { e.currentTarget.style.background = C.blue; e.currentTarget.style.color = "white"; }}
             onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.blue; }}>
@@ -218,6 +218,31 @@ export default function App() {
         .acard:hover img{transform:scale(1.06)}
         .wave-container{overflow:hidden;position:relative;height:80px;background:${C.blueLight}}
         ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#f0f8ff}::-webkit-scrollbar-thumb{background:${C.blue}55;border-radius:3px}
+        
+        /* ─── RESPONSIVE STYLES ─── */
+        .nav-links { display: flex; gap: 30px; alignItems: center; }
+        .nav-bar-inner { padding: 0 6%; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+        .hero-grid { maxWidth: 1200px; margin: 0 auto; padding: 60px 6%; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .grid-3-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+        .grid-2-col { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; min-height: 320px; }
+        .grid-4-col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 50px; padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .articles-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px; }
+        
+        @media (max-width: 900px) {
+          .top-bar { display: none !important; }
+          .nav-links { display: none; }
+          .nav-btn { display: none; }
+          .hero-grid { grid-template-columns: 1fr; text-align: center; }
+          .hero-grid p { margin: 0 auto 32px auto; }
+          .hero-grid .reveal > div:nth-child(4) { justify-content: center; }
+          .hero-grid .reveal > div:nth-child(5) { justify-content: center; }
+          .grid-3-col, .grid-4-col, .grid-2-col { grid-template-columns: 1fr; }
+          .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+          .footer-grid > div { margin: 0 auto; }
+          .articles-header { flex-direction: column; align-items: center; text-align: center; gap: 20px; }
+          .hero-img { width: 300px !important; height: 300px !important; }
+        }
       `}</style>
 
       <NavBar />
@@ -233,7 +258,7 @@ export default function App() {
         <div style={{ position: "absolute", right: "8%", top: "12%", width: 380, height: 380, borderRadius: "50%", border: `2px solid ${C.blue}20`, animation: "spin 30s linear infinite" }} />
         <div style={{ position: "absolute", right: "11%", top: "15%", width: 280, height: 280, borderRadius: "50%", border: `2px dashed ${C.blue}15`, animation: "spin 20s linear infinite reverse" }} />
 
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "60px 6%", width: "100%", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "center" }}>
+        <div className="hero-grid">
           <div className="reveal">
             <div className="sec-tag">शुद्ध जल · शुद्ध जीवन</div>
             <h1 style={{ fontSize: "clamp(36px,5vw,62px)", fontWeight: 800, lineHeight: 1.1, color: C.text, marginBottom: 20 }}>
@@ -311,7 +336,7 @@ export default function App() {
             <h2 className="sec-h2">Noida का <span>विश्वसनीय</span> Water Supplier</h2>
             <p style={{ fontSize: 15, color: C.muted, maxWidth: 540, margin: "0 auto", lineHeight: 1.8 }}>2017 से Gautam Budh Nagar में industries, labs और households को शुद्ध जल की supply।</p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 28 }}>
+          <div className="grid-3-col">
             {[
               { img: "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=500&q=80", title: "Industrial Water Supply", desc: "DM, DI और distilled water boilers, batteries और chemical processes के लिए। 99% purity guarantee।" },
               { img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=500&q=80", title: "Laboratory Grade Quality", desc: "Lab-grade DI और distilled water जो सभी industrial standards को meet करता है। pH tested।" },
@@ -342,7 +367,7 @@ export default function App() {
 
       {/* ─── EXPERIENCED WORKERS BANNER ─── */}
       <section style={{ background: C.blueLight, padding: "0 6%", position: "relative", overflow: "hidden" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", alignItems: "stretch", minHeight: 320 }}>
+        <div className="grid-2-col" style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ position: "relative" }}>
             <img src="https://images.unsplash.com/photo-1581093458791-9d15482442f5?w=700&q=80" alt="worker"
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", maxHeight: 340, display: "block" }} />
@@ -379,7 +404,7 @@ export default function App() {
             <div className="sec-tag">Our Products</div>
             <h2 className="sec-h2">हम जो <span>Bottles & Cans</span> Deliver करते हैं</h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
+          <div className="grid-3-col" style={{ gap: 24 }}>
             {PRODUCTS.map((p, i) => (
               <div key={i} className="pcard reveal" style={{ transitionDelay: `${i * 0.1}s` }}>
                 <div style={{ background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", height: 200, overflow: "hidden" }}>
@@ -433,7 +458,7 @@ export default function App() {
 
       {/* ─── 3 FEATURE ICONS ─── */}
       <section style={{ padding: "60px 6%", background: C.white }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 28 }}>
+        <div className="grid-3-col" style={{ maxWidth: 1200, margin: "0 auto" }}>
           {FEATURES.map((f, i) => (
             <div key={i} className="icon-bounce" style={{ background: C.blueLight, borderRadius: 16, padding: "32px 28px", display: "flex", gap: 18, alignItems: "flex-start", border: `1.5px solid ${C.border}`, transition: "all 0.3s" }}
               onMouseEnter={e => { e.currentTarget.style.background = "white"; e.currentTarget.style.boxShadow = `0 10px 30px ${C.blue}18`; }}
@@ -455,7 +480,7 @@ export default function App() {
             <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: 2, color: "rgba(255,255,255,0.7)", textTransform: "uppercase", marginBottom: 10 }}>Our Achievements</div>
             <h2 style={{ fontSize: "clamp(24px,3.5vw,38px)", fontWeight: 700, color: "white" }}>हमारी उपलब्धियां</h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 20 }}>
+          <div className="grid-4-col">
             {STATS.map((s, i) => (
               <div key={i} style={{ textAlign: "center", padding: "30px 16px", borderRight: i < 3 ? "1px solid rgba(255,255,255,0.2)" : "none" }}>
                 <div style={{ fontSize: 42, fontWeight: 800, color: "white", lineHeight: 1 }}><AnimatedNumber text={s.n} /></div>
@@ -473,7 +498,7 @@ export default function App() {
             <div className="sec-tag">Client Testimonials</div>
             <h2 className="sec-h2">हमारे <span>Clients</span> क्या कहते हैं</h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
+          <div className="grid-3-col" style={{ gap: 24 }}>
             {TESTIMONIALS.map((t, i) => (
               <div key={i} className="tcard">
                 <div style={{ display: "flex", gap: 14, alignItems: "center", marginBottom: 18 }}>
@@ -494,14 +519,14 @@ export default function App() {
       {/* ─── ARTICLES ─── */}
       <section style={{ padding: "90px 6%", background: C.white }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 50 }}>
+          <div className="articles-header">
             <div>
               <div className="sec-tag">News &amp; Articles</div>
               <h2 className="sec-h2">Latest <span>Articles</span></h2>
             </div>
             <button className="btn-outline" style={{ fontSize: 13 }}>View All →</button>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
+          <div className="grid-3-col" style={{ gap: 24 }}>
             {ARTICLES.map((a, i) => (
               <div key={i} className="pcard acard" style={{ borderRadius: 14 }}>
                 <div style={{ height: 200, overflow: "hidden", position: "relative" }}>
@@ -522,7 +547,7 @@ export default function App() {
       {/* ─── FOOTER ─── */}
       <footer id="contact" style={{ background: "#0d2137", color: "rgba(255,255,255,0.75)", padding: "70px 6% 0" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1.5fr", gap: 50, paddingBottom: 50, borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+          <div className="footer-grid">
             {/* Brand */}
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
