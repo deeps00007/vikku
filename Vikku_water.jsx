@@ -151,9 +151,9 @@ function NavBar() {
       </div>
       {/* Main nav */}
       <div className="nav-bar-inner">
-        <div style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }} onClick={() => go("")}>
-          <div style={{ width: 44, height: 44, borderRadius: "50%", background: `linear-gradient(135deg, ${C.blue}, ${C.blueMid})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}>💧</div>
-          <div>
+        <div className="nav-logo" style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }} onClick={() => go("")}>
+          <div className="nav-logo-icon" style={{ width: 44, height: 44, borderRadius: "50%", background: `linear-gradient(135deg, ${C.blue}, ${C.blueMid})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0 }}>💧</div>
+          <div className="nav-logo-text">
             <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: 18, color: C.blue, lineHeight: 1 }}>Vikku</div>
             <div style={{ fontSize: 10, color: C.muted, letterSpacing: 2, textTransform: "uppercase" }}>Water Supplier</div>
           </div>
@@ -310,6 +310,9 @@ export default function App() {
 
         @media (max-width: 640px) {
           .nav-bar-inner { height: 56px; padding: 0 4%; }
+          .nav-logo-icon { width: 36px !important; height: 36px !important; font-size: 18px !important; }
+          .nav-logo-text div:first-child { font-size: 15px !important; }
+          .nav-logo-text div:last-child { font-size: 8px !important; letter-spacing: 1px !important; }
           .hero { padding-top: 72px !important; min-height: auto !important; }
           .hero-grid { padding: 24px 4% 48px; gap: 20px; }
           .hero h1 { font-size: 26px !important; line-height: 1.3 !important; }
