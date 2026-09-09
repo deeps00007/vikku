@@ -286,10 +286,10 @@ export default function App() {
         .stat-cell:last-child { border-right: none; }
         .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
         
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
           .top-bar { display: none !important; }
           .nav-links { display: none; }
-          .nav-btn { display: none; }
+          .nav-btn { display: none !important; }
           .hamburger { display: flex; }
           .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 24px; }
           .hero-grid p { margin: 0 auto 20px auto; }
