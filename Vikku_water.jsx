@@ -231,6 +231,10 @@ export default function App() {
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
         *{box-sizing:border-box;margin:0;padding:0}
         html{scroll-behavior:smooth}
+        html,body{overflow-x:hidden;max-width:100%}
+        body{-webkit-font-smoothing:antialiased}
+        img{max-width:100%}
+        button,input,select,textarea{-webkit-tap-highlight-color:transparent;font-family:'Poppins',sans-serif}
         @keyframes floatUp{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
         @keyframes splash{0%{transform:scale(1);opacity:0.6}100%{transform:scale(2.2);opacity:0}}
         @keyframes fadeIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
@@ -269,7 +273,7 @@ export default function App() {
         .nav-bar-inner { padding: 0 6%; display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 20px; }
         .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; padding: 8px; flex-shrink: 0; }
         .hamburger span { display: block; width: 24px; height: 2px; background: ${C.blue}; border-radius: 2px; transition: all 0.3s; }
-        .hero-grid { maxWidth: 1200px; margin: 0 auto; padding: 60px 6%; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .hero-grid { max-width: 1200px; margin: 0 auto; padding: 60px 6%; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
         .grid-3-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
         .grid-2-col { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; min-height: 320px; }
         .grid-4-col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
@@ -316,6 +320,8 @@ export default function App() {
           .stat-num { font-size: 34px !important; }
           .team-panel { padding: 34px 24px !important; }
           .form-card { padding: 26px 20px !important; }
+          .hero-cta { width: 100%; flex-direction: column; }
+          .hero-cta .btn-blue, .hero-cta .btn-outline { width: 100%; text-align: center; }
           .footer-grid { grid-template-columns: 1fr; gap: 26px; }
           .footer-brand, .footer-subscribe { grid-column: auto; }
           .footer-bottom { flex-direction: column; text-align: center; gap: 14px; }
@@ -354,7 +360,7 @@ export default function App() {
             <p style={{ fontSize: 16, color: C.muted, lineHeight: 1.8, marginBottom: 32, maxWidth: 460 }}>
               Noida और Greater Noida में DM Water, Battery Water, RO Water, Distilled Water की reliable supply। 99% purity guarantee। ₹35 से शुरू।
             </p>
-            <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginBottom: 44 }}>
+            <div className="hero-cta" style={{ display: "flex", gap: 14, flexWrap: "wrap", marginBottom: 44 }}>
               <button className="btn-blue">Get A Quote</button>
               <button className="btn-outline">Read More</button>
             </div>
@@ -420,7 +426,7 @@ export default function App() {
 
       {/* ─── WHY CHOOSE US ─── */}
       {(currentPage === "#home" || currentPage === "" || currentPage === "#aboutus") && (
-      <section id="aboutus" style={{ padding: "90px 6%", background: C.white }}>
+      <section id="aboutus" style={{ padding: "clamp(52px, 8vw, 90px) 6%", background: C.white }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 56 }}>
             <div className="sec-tag">Why Choose Us</div>
@@ -498,7 +504,7 @@ export default function App() {
 
       {/* ─── PRODUCTS ─── */}
       {(currentPage === "#home" || currentPage === "" || currentPage === "#products" || currentPage === "#services") && (
-      <section id="products" style={{ padding: "90px 6%", background: "#f7fbff" }}>
+      <section id="products" style={{ padding: "clamp(52px, 8vw, 90px) 6%", background: "#f7fbff" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 56 }}>
             <div className="sec-tag">Our Products</div>
@@ -555,7 +561,7 @@ export default function App() {
 
       {/* ─── 3 FEATURE ICONS ─── */}
       {(currentPage !== "#contact") && (
-      <section style={{ padding: "60px 6%", background: C.white }}>
+      <section style={{ padding: "clamp(40px, 5vw, 60px) 6%", background: C.white }}>
         <div className="grid-3-col" style={{ maxWidth: 1200, margin: "0 auto" }}>
           {FEATURES.map((f, i) => (
             <div key={i} className="icon-bounce" style={{ background: C.blueLight, borderRadius: 16, padding: "32px 28px", display: "flex", gap: 18, alignItems: "flex-start", border: `1.5px solid ${C.border}`, transition: "all 0.3s" }}
@@ -574,7 +580,7 @@ export default function App() {
 
       {/* ─── ACHIEVEMENTS ─── */}
       {(currentPage === "#home" || currentPage === "" || currentPage === "#aboutus") && (
-      <section style={{ padding: "70px 6%", background: C.blue }}>
+      <section style={{ padding: "clamp(48px, 7vw, 70px) 6%", background: C.blue }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 50 }}>
             <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: 2, color: "rgba(255,255,255,0.7)", textTransform: "uppercase", marginBottom: 10 }}>Our Achievements</div>
@@ -594,7 +600,7 @@ export default function App() {
 
       {/* ─── TESTIMONIALS ─── */}
       {(currentPage === "#home" || currentPage === "" || currentPage === "#aboutus" || currentPage === "#products") && (
-      <section style={{ padding: "90px 6%", background: "#f7fbff" }}>
+      <section style={{ padding: "clamp(52px, 8vw, 90px) 6%", background: "#f7fbff" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 56 }}>
             <div className="sec-tag">Client Testimonials</div>
@@ -621,7 +627,7 @@ export default function App() {
 
       {/* ─── ARTICLES ─── */}
       {(currentPage === "#home" || currentPage === "") && (
-      <section style={{ padding: "90px 6%", background: C.white }}>
+      <section style={{ padding: "clamp(52px, 8vw, 90px) 6%", background: C.white }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="articles-header">
             <div>
@@ -651,8 +657,8 @@ export default function App() {
 
       {/* ─── DEDICATED CONTACT PAGE FORM ─── */}
       {(currentPage === "#contact") && (
-      <section style={{ padding: "90px 6%", background: C.bg }}>
-        <div className="grid-2-col" style={{ maxWidth: 1200, margin: "0 auto", gap: 50, alignItems: "start" }}>
+      <section style={{ padding: "clamp(52px, 8vw, 90px) 6%", background: C.bg }}>
+        <div className="grid-2-col" style={{ maxWidth: 1200, margin: "0 auto", gap: "clamp(24px, 4vw, 50px)", alignItems: "start" }}>
           <div className="form-card" style={{ background: "white", padding: "40px", borderRadius: 16, boxShadow: "0 10px 40px rgba(0,0,0,0.05)" }}>
             <h3 style={{ fontSize: 24, fontWeight: 700, color: C.text, marginBottom: 20 }}>Send a Message</h3>
             <form style={{ display: "flex", flexDirection: "column", gap: 20 }} onSubmit={e => e.preventDefault()}>
@@ -705,8 +711,8 @@ export default function App() {
 
       {/* ─── ENQUIRY PAGE ─── */}
       {currentPage === "#enquiry" && (
-      <section style={{ padding: "90px 6%", background: C.bg }}>
-        <div className="grid-2-col" style={{ maxWidth: 1200, margin: "0 auto", gap: 50, alignItems: "start" }}>
+      <section style={{ padding: "clamp(52px, 8vw, 90px) 6%", background: C.bg }}>
+        <div className="grid-2-col" style={{ maxWidth: 1200, margin: "0 auto", gap: "clamp(24px, 4vw, 50px)", alignItems: "start" }}>
           <div className="form-card" style={{ background: "white", padding: "40px", borderRadius: 16, boxShadow: "0 10px 40px rgba(0,0,0,0.05)" }}>
             <h3 style={{ fontSize: 24, fontWeight: 700, color: C.text, marginBottom: 20 }}>Enquiry Form</h3>
             <form style={{ display: "flex", flexDirection: "column", gap: 20 }} onSubmit={e => e.preventDefault()}>
