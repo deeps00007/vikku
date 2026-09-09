@@ -278,7 +278,7 @@ export default function App() {
         .grid-3-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
         .grid-2-col { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; min-height: 320px; }
         .grid-4-col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 50px; padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; padding-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.08); }
         .articles-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px; }
         .articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 
@@ -298,7 +298,7 @@ export default function App() {
           .grid-3-col, .grid-4-col, .grid-2-col { grid-template-columns: 1fr; }
           .stat-cell { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
           .stat-cell:last-child { border-bottom: none; }
-          .footer-grid { grid-template-columns: 1fr; gap: 20px; text-align: left; }
+          .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
           .footer-grid > div { margin: 0; }
           .footer-brand, .footer-subscribe { grid-column: auto; }
           .articles-header { flex-direction: column; align-items: center; text-align: center; gap: 16px; }
@@ -314,12 +314,12 @@ export default function App() {
           .nav-logo-text div:first-child { font-size: 15px !important; }
           .nav-logo-text div:last-child { font-size: 8px !important; letter-spacing: 1px !important; }
           .hero { padding-top: 72px !important; min-height: auto !important; }
-          .hero-grid { padding: 24px 4% 48px; gap: 20px; }
+          .hero-grid { padding: 24px 4% 40px; gap: 20px; }
           .hero h1 { font-size: 26px !important; line-height: 1.3 !important; }
           .hero-img { width: 180px !important; height: 180px !important; }
           .hero-img-wrap { max-width: 240px; margin: 0 auto; }
-          .hero-badge-left { bottom: 40px !important; left: 10px !important; padding: 8px 10px !important; }
-          .hero-badge-right { top: 20px !important; right: 10px !important; padding: 8px 10px !important; }
+          .hero-badge-left { bottom: 30px !important; left: 10px !important; padding: 8px 10px !important; }
+          .hero-badge-right { top: 10px !important; right: 10px !important; padding: 8px 10px !important; }
           .hero-badge-right > div:first-child { font-size: 16px !important; }
           .page-hero { padding: 90px 4% 32px !important; }
           .page-hero h1 { font-size: 26px !important; }
@@ -339,6 +339,10 @@ export default function App() {
           .pcard { border-radius: 10px; }
           .pcard > div:first-child { height: 160px !important; }
           .why-choose-img { height: 180px !important; }
+          .grid-3-col { gap: 16px; }
+          .grid-4-col { gap: 12px; }
+          .icon-bounce { padding: 20px 16px !important; }
+          .icon-bounce > div:first-child { width: 42px !important; height: 42px !important; font-size: 20px !important; }
         }
       `}</style>
 
@@ -594,17 +598,23 @@ export default function App() {
 
       {/* ─── ACHIEVEMENTS ─── */}
       {(currentPage === "#home" || currentPage === "" || currentPage === "#aboutus") && (
-      <section style={{ padding: "clamp(48px, 7vw, 70px) 6%", background: C.blue }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 36 }}>
-            <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: 2, color: "rgba(255,255,255,0.7)", textTransform: "uppercase", marginBottom: 8 }}>Our Achievements</div>
+      <section style={{ padding: "clamp(48px, 7vw, 70px) 6%", background: `linear-gradient(135deg, ${C.blueDark} 0%, ${C.blue} 100%)`, position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", top: -60, right: -60, width: 200, height: 200, borderRadius: "50%", background: "rgba(255,255,255,0.05)" }} />
+        <div style={{ position: "absolute", bottom: -40, left: -40, width: 160, height: 160, borderRadius: "50%", background: "rgba(255,255,255,0.03)" }} />
+        <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: 2, color: "rgba(255,255,255,0.6)", textTransform: "uppercase", marginBottom: 8 }}>Our Achievements</div>
             <h2 style={{ fontSize: "clamp(24px,3.5vw,38px)", fontWeight: 700, color: "white" }}>हमारी उपलब्धियां</h2>
+            <div style={{ width: 60, height: 3, background: "rgba(255,255,255,0.4)", borderRadius: 2, margin: "12px auto 0" }} />
           </div>
           <div className="grid-4-col">
             {STATS.map((s, i) => (
-              <div key={i} className="stat-cell" style={{ textAlign: "center", padding: "24px 12px" }}>
+              <div key={i} className="stat-cell reveal" style={{ textAlign: "center", padding: "28px 12px", transitionDelay: `${i * 0.1}s`, background: "rgba(255,255,255,0.06)", borderRadius: 16, border: "1px solid rgba(255,255,255,0.1)", backdropFilter: "blur(10px)", transition: "all 0.3s" }}
+                onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.12)"; e.currentTarget.style.transform = "translateY(-4px)"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.06)"; e.currentTarget.style.transform = "translateY(0)"; }}>
+                <div style={{ fontSize: 32, marginBottom: 10 }}>{["🏆", "⭐", "💧", "🤝"][i] || "💧"}</div>
                 <div className="stat-num" style={{ fontSize: 38, fontWeight: 800, color: "white", lineHeight: 1 }}><AnimatedNumber text={s.n} /></div>
-                <div style={{ fontSize: 13, color: "rgba(255,255,255,0.75)", marginTop: 6 }}>{s.l}</div>
+                <div style={{ fontSize: 13, color: "rgba(255,255,255,0.75)", marginTop: 8 }}>{s.l}</div>
               </div>
             ))}
           </div>
@@ -619,19 +629,23 @@ export default function App() {
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div className="sec-tag">Client Testimonials</div>
             <h2 className="sec-h2">हमारे <span>Clients</span> क्या कहते हैं</h2>
+            <div style={{ width: 60, height: 3, background: C.blue, borderRadius: 2, margin: "12px auto 0" }} />
           </div>
           <div className="grid-3-col" style={{ gap: 20 }}>
             {TESTIMONIALS.map((t, i) => (
-              <div key={i} className="tcard">
-                <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 14 }}>
-                  <div style={{ width: 44, height: 44, borderRadius: "50%", background: `linear-gradient(135deg,${C.blue},${C.blueMid})`, display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 700, fontSize: 15, flexShrink: 0 }}>{t.avatar}</div>
+              <div key={i} className="tcard reveal" style={{ position: "relative", transitionDelay: `${i * 0.1}s` }}>
+                <div style={{ position: "absolute", top: 16, right: 20, fontSize: 48, color: C.blue, opacity: 0.08, fontFamily: "Georgia", lineHeight: 1 }}>"</div>
+                <div style={{ display: "flex", gap: 4, marginBottom: 14 }}>
+                  {[1,2,3,4,5].map(s => <span key={s} style={{ color: "#f39c12", fontSize: 14 }}>★</span>)}
+                </div>
+                <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 16 }}>
+                  <div style={{ width: 48, height: 48, borderRadius: "50%", background: `linear-gradient(135deg,${C.blue},${C.blueMid})`, display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 700, fontSize: 16, flexShrink: 0, boxShadow: `0 4px 12px ${C.blue}30` }}>{t.avatar}</div>
                   <div>
-                    <div style={{ fontWeight: 700, fontSize: 14, color: C.text }}>{t.name}</div>
-                    <div style={{ fontSize: 11, color: C.muted }}>{t.role}</div>
+                    <div style={{ fontWeight: 700, fontSize: 15, color: C.text }}>{t.name}</div>
+                    <div style={{ fontSize: 12, color: C.muted }}>{t.role}</div>
                   </div>
                 </div>
-                <p style={{ fontSize: 13, color: C.muted, lineHeight: 1.7, marginBottom: 12 }}>"{t.text}"</p>
-                <div style={{ fontSize: 20, color: C.blue, opacity: 0.3, fontFamily: "Georgia", lineHeight: 1 }}>"</div>
+                <p style={{ fontSize: 13, color: C.muted, lineHeight: 1.8, fontStyle: "italic" }}>"{t.text}"</p>
               </div>
             ))}
           </div>
@@ -767,76 +781,50 @@ export default function App() {
       )}
 
       {/* ─── FOOTER ─── */}
-      <footer id="contact" style={{ background: "#0d2137", color: "rgba(255,255,255,0.75)", padding: "70px 6% 0" }}>
+      <footer id="contact" style={{ background: "#0d2137", color: "rgba(255,255,255,0.75)", padding: "40px 6% 0" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="footer-grid">
             {/* Brand */}
             <div className="footer-brand">
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
-                <div style={{ width: 42, height: 42, borderRadius: "50%", background: `linear-gradient(135deg,${C.blue},${C.blueMid})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>💧</div>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+                <div style={{ width: 38, height: 38, borderRadius: "50%", background: `linear-gradient(135deg,${C.blue},${C.blueMid})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>💧</div>
                 <div>
-                  <div style={{ fontWeight: 700, fontSize: 18, color: "white", lineHeight: 1 }}>Vikku Water</div>
-                  <div style={{ fontSize: 10, letterSpacing: 2, color: "rgba(255,255,255,0.5)", textTransform: "uppercase" }}>Supplier</div>
+                  <div style={{ fontWeight: 700, fontSize: 16, color: "white", lineHeight: 1 }}>Vikku Water</div>
+                  <div style={{ fontSize: 9, letterSpacing: 2, color: "rgba(255,255,255,0.5)", textTransform: "uppercase" }}>Supplier</div>
                 </div>
               </div>
-              <p style={{ fontSize: 13, lineHeight: 1.9, maxWidth: 270, marginBottom: 22 }}>
+              <p style={{ fontSize: 12, lineHeight: 1.8, maxWidth: 260, marginBottom: 14 }}>
                 Noida, UP में industrial water supply का trusted naam। 2017 से GST-verified, quality-assured service।
               </p>
-              <div style={{ fontSize: 13, display: "flex", flexDirection: "column", gap: 8 }}>
-                <span>📍 Village-Basai, Barauddin Nagar, Sector-70 Noida, UP – 201308</span>
+              <div style={{ fontSize: 12, display: "flex", flexDirection: "column", gap: 6 }}>
+                <span>📍 Village-Basai, Sector-70 Noida, UP – 201308</span>
                 <span>📞 +91 9811036674</span>
                 <span>✉ info@vikkuwater.in</span>
               </div>
             </div>
+            {/* Quick Links */}
+            <div className="footer-links">
+              <h4 style={{ fontSize: 14, fontWeight: 700, color: "white", marginBottom: 14 }}>Quick Links</h4>
+              {["Home","About Us","Products","Contact Us","Enquiry"].map(l => (
+                <div key={l} style={{ fontSize: 12, marginBottom: 8, cursor: "pointer", transition: "color 0.2s" }}
+                  onMouseEnter={e => e.target.style.color = "#7ec8f7"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.75)"}>{l}</div>
+              ))}
+            </div>
             {/* Services */}
             <div className="footer-links">
-              <h4 style={{ fontSize: 15, fontWeight: 700, color: "white", marginBottom: 20 }}>Services</h4>
-              {["DM Water","Distilled Water","DI Water","Battery Water","RO Water","Soft Water","RAW Water"].map(s => (
-                <div key={s} style={{ fontSize: 13, marginBottom: 10, cursor: "pointer", transition: "color 0.2s" }}
+              <h4 style={{ fontSize: 14, fontWeight: 700, color: "white", marginBottom: 14 }}>Services</h4>
+              {["DM Water","RO Water","Distilled Water","Battery Water","DI Water"].map(s => (
+                <div key={s} style={{ fontSize: 12, marginBottom: 8, cursor: "pointer", transition: "color 0.2s" }}
                   onMouseEnter={e => e.target.style.color = "#7ec8f7"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.75)"}>{s}</div>
               ))}
             </div>
-            {/* Useful Links */}
-            <div className="footer-links">
-              <h4 style={{ fontSize: 15, fontWeight: 700, color: "white", marginBottom: 20 }}>Useful Links</h4>
-              {["Home","About Us","Products","Quality Specs","Bulk Orders","Contact Us","GST Info"].map(l => (
-                <div key={l} style={{ fontSize: 13, marginBottom: 10, cursor: "pointer", transition: "color 0.2s" }}
-                  onMouseEnter={e => e.target.style.color = "#7ec8f7"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.75)"}>{l}</div>
-              ))}
-              <a href="/App-privacy-policy.html" style={{ display: "block", fontSize: 13, marginBottom: 10, cursor: "pointer", transition: "color 0.2s", color: "rgba(255,255,255,0.75)", textDecoration: "none" }}
-                onMouseEnter={e => e.target.style.color = "#7ec8f7"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.75)"}>
-                App Privacy Policy
-              </a>
-              <a href="/privacy-policy.html" style={{ display: "block", fontSize: 13, marginBottom: 10, cursor: "pointer", transition: "color 0.2s", color: "rgba(255,255,255,0.75)", textDecoration: "none" }}
-                onMouseEnter={e => e.target.style.color = "#7ec8f7"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.75)"}>
-                Privacy Policy
-              </a>
-            </div>
-            {/* Subscribe */}
-            <div className="footer-subscribe">
-              <h4 style={{ fontSize: 15, fontWeight: 700, color: "white", marginBottom: 20 }}>Subscribe</h4>
-              <p style={{ fontSize: 13, lineHeight: 1.8, marginBottom: 20 }}>Latest offers और water quality tips के लिए subscribe करें।</p>
-              <div style={{ display: "flex", gap: 0, marginBottom: 24 }}>
-                <input placeholder="Your Email Address" style={{ flex: 1, padding: "11px 14px", border: "none", borderRadius: "6px 0 0 6px", fontSize: 13, background: "rgba(255,255,255,0.1)", color: "white", outline: "none" }} />
-                <button style={{ padding: "11px 16px", background: C.blue, border: "none", borderRadius: "0 6px 6px 0", color: "white", cursor: "pointer", fontSize: 14 }}>➤</button>
-              </div>
-              <div>
-                <div style={{ fontSize: 13, color: "white", marginBottom: 12, fontWeight: 600 }}>📞 Office Number</div>
-                <div style={{ fontSize: 15, fontWeight: 700, color: "#7ec8f7" }}>+91 9811036674</div>
-                <div style={{ fontSize: 12, marginTop: 4, marginBottom: 18 }}>Mon–Sat, 8am – 7pm</div>
-                <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 18px", background: "#25D366", color: "white", borderRadius: 6, fontSize: 13, fontWeight: 600, textDecoration: "none", cursor: "pointer" }}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                  WhatsApp Support
-                </a>
-              </div>
-            </div>
           </div>
           {/* Bottom bar */}
-          <div className="footer-bottom" style={{ padding: "22px 0", fontSize: 12, color: "rgba(255,255,255,0.4)" }}>
-            <span>© 2024 Vikku Water Supplier. All Rights Reserved. | Proprietor: Ashok Kumar | Developed by Deepanshu Singh</span>
-            <div style={{ display: "flex", gap: 12 }}>
+          <div className="footer-bottom" style={{ padding: "16px 0", fontSize: 11, color: "rgba(255,255,255,0.35)" }}>
+            <span>© 2024 Vikku Water Supplier. All Rights Reserved.</span>
+            <div style={{ display: "flex", gap: 10 }}>
               {["f","t","in","yt"].map(s => (
-                <div key={s} style={{ width: 30, height: 30, borderRadius: "50%", background: "rgba(255,255,255,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, cursor: "pointer", transition: "background 0.2s" }}
+                <div key={s} style={{ width: 28, height: 28, borderRadius: "50%", background: "rgba(255,255,255,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, cursor: "pointer", transition: "background 0.2s" }}
                   onMouseEnter={e => e.currentTarget.style.background = C.blue} onMouseLeave={e => e.currentTarget.style.background = "rgba(255,255,255,0.08)"}>{s}</div>
               ))}
             </div>
