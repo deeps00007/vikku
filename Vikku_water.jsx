@@ -291,44 +291,51 @@ export default function App() {
           .nav-links { display: none; }
           .nav-btn { display: none; }
           .hamburger { display: flex; }
-          .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 32px; }
-          .hero-grid p { margin: 0 auto 24px auto; }
+          .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 24px; }
+          .hero-grid p { margin: 0 auto 20px auto; }
           .hero-grid .reveal > div:nth-child(4) { justify-content: center; }
           .hero-grid .reveal > div:nth-child(5) { justify-content: center; }
           .grid-3-col, .grid-4-col, .grid-2-col { grid-template-columns: 1fr; }
           .stat-cell { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
           .stat-cell:last-child { border-bottom: none; }
-          .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; text-align: left; }
+          .footer-grid { grid-template-columns: 1fr; gap: 20px; text-align: left; }
           .footer-grid > div { margin: 0; }
-          .footer-brand, .footer-subscribe { grid-column: span 2; }
-          .articles-header { flex-direction: column; align-items: center; text-align: center; gap: 20px; }
+          .footer-brand, .footer-subscribe { grid-column: auto; }
+          .articles-header { flex-direction: column; align-items: center; text-align: center; gap: 16px; }
           .articles-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 20px; margin: 0 -6%; padding-left: 6%; padding-right: 6%; gap: 16px; scroll-padding-left: 6%; }
           .articles-grid > div { min-width: 75vw; scroll-snap-align: start; flex-shrink: 0; margin-bottom: 0; }
-          .hero-img { width: 280px !important; height: 280px !important; }
+          .hero-img { width: 240px !important; height: 240px !important; }
           .hero-decor { display: none; }
         }
 
         @media (max-width: 640px) {
-          .nav-bar-inner { height: 60px; padding: 0 4%; }
-          .hero { padding-top: 76px !important; min-height: auto !important; }
-          .hero-grid { padding: 32px 4% 64px; gap: 28px; }
-          .hero h1 { font-size: 28px !important; line-height: 1.25 !important; }
-          .hero-img { width: 200px !important; height: 200px !important; }
-          .hero-img-wrap { max-width: 280px; margin: 0 auto; }
-          .page-hero { padding: 100px 4% 40px !important; }
-          .page-hero h1 { font-size: 28px !important; }
-          .sec-h2 { font-size: 24px; line-height: 1.3; }
-          .sec-tag { font-size: 11px; }
-          .stat-num { font-size: 32px !important; }
-          .stat-cell { padding: 24px 12px !important; }
-          .team-panel { padding: 28px 20px !important; }
-          .form-card { padding: 24px 18px !important; }
-          .hero-cta { width: 100%; flex-direction: column; gap: 12px; }
-          .hero-cta .btn-blue, .hero-cta .btn-outline { width: 100%; text-align: center; padding: 14px 20px; }
-          .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+          .nav-bar-inner { height: 56px; padding: 0 4%; }
+          .hero { padding-top: 72px !important; min-height: auto !important; }
+          .hero-grid { padding: 24px 4% 48px; gap: 20px; }
+          .hero h1 { font-size: 26px !important; line-height: 1.3 !important; }
+          .hero-img { width: 180px !important; height: 180px !important; }
+          .hero-img-wrap { max-width: 240px; margin: 0 auto; }
+          .hero-badge-left { bottom: 40px !important; left: 10px !important; padding: 8px 10px !important; }
+          .hero-badge-right { top: 20px !important; right: 10px !important; padding: 8px 10px !important; }
+          .hero-badge-right > div:first-child { font-size: 16px !important; }
+          .page-hero { padding: 90px 4% 32px !important; }
+          .page-hero h1 { font-size: 26px !important; }
+          .sec-h2 { font-size: 22px; line-height: 1.3; }
+          .sec-tag { font-size: 11px; letter-spacing: 1px; }
+          .stat-num { font-size: 28px !important; }
+          .stat-cell { padding: 20px 12px !important; }
+          .team-panel { padding: 24px 18px !important; }
+          .form-card { padding: 20px 16px !important; }
+          .hero-cta { width: 100%; flex-direction: column; gap: 10px; }
+          .hero-cta .btn-blue, .hero-cta .btn-outline { width: 100%; text-align: center; padding: 12px 18px; }
+          .footer-grid { grid-template-columns: 1fr; gap: 18px; }
           .footer-brand, .footer-subscribe { grid-column: auto; }
-          .footer-bottom { flex-direction: column; text-align: center; gap: 12px; }
-          .btn-blue, .btn-outline { padding: 12px 20px; font-size: 13px; }
+          .footer-bottom { flex-direction: column; text-align: center; gap: 10px; padding: 16px 0 !important; }
+          .btn-blue, .btn-outline { padding: 11px 18px; font-size: 13px; }
+          .tcard { padding: 20px; }
+          .pcard { border-radius: 10px; }
+          .pcard > div:first-child { height: 160px !important; }
+          .why-choose-img { height: 180px !important; }
         }
       `}</style>
 
@@ -388,16 +395,16 @@ export default function App() {
               style={{ width: 420, height: 420, objectFit: "cover", borderRadius: "50%", position: "relative", zIndex: 2, border: `6px solid white`, boxShadow: `0 20px 60px ${C.blue}30` }}
             />
             {/* Floating badges */}
-            <div style={{ position: "absolute", bottom: 60, left: 0, background: "white", borderRadius: 12, padding: "12px 18px", boxShadow: "0 8px 24px rgba(0,0,0,0.1)", display: "flex", alignItems: "center", gap: 10, zIndex: 2 }}>
-              <div style={{ width: 36, height: 36, borderRadius: "50%", background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>✅</div>
+            <div className="hero-badge-left" style={{ position: "absolute", bottom: 60, left: 0, background: "white", borderRadius: 12, padding: "10px 14px", boxShadow: "0 8px 24px rgba(0,0,0,0.1)", display: "flex", alignItems: "center", gap: 8, zIndex: 2 }}>
+              <div style={{ width: 32, height: 32, borderRadius: "50%", background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>✅</div>
               <div>
-                <div style={{ fontSize: 13, fontWeight: 700, color: C.text }}>GST Verified</div>
-                <div style={{ fontSize: 11, color: C.muted }}>Registered Supplier</div>
+                <div style={{ fontSize: 12, fontWeight: 700, color: C.text }}>GST Verified</div>
+                <div style={{ fontSize: 10, color: C.muted }}>Registered Supplier</div>
               </div>
             </div>
-            <div style={{ position: "absolute", top: 40, right: -10, background: C.blue, borderRadius: 12, padding: "12px 18px", color: "white", zIndex: 2 }}>
-              <div style={{ fontSize: 20, fontWeight: 800 }}>10,000 L</div>
-              <div style={{ fontSize: 11, opacity: 0.85 }}>Max Bulk Capacity</div>
+            <div className="hero-badge-right" style={{ position: "absolute", top: 40, right: -10, background: C.blue, borderRadius: 12, padding: "10px 14px", color: "white", zIndex: 2 }}>
+              <div style={{ fontSize: 18, fontWeight: 800 }}>10,000 L</div>
+              <div style={{ fontSize: 10, opacity: 0.85 }}>Max Bulk Capacity</div>
             </div>
           </div>
         </div>
@@ -449,20 +456,20 @@ export default function App() {
               { img: "/ro-water-supplier.jpg", title: "Bulk RO Water Delivery", desc: "10,000 litre तक bulk RO water। समय पर delivery। Competitive industrial pricing।" },
             ].map((c, i) => (
               <div key={i} className="pcard reveal" style={{ borderRadius: 14, transitionDelay: `${i * 0.15}s` }}>
-                <div style={{ overflow: "hidden", height: 200 }}>
+                <div className="why-choose-img" style={{ overflow: "hidden", height: 200 }}>
                   <img src={c.img} alt={c.title} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
                     onMouseEnter={e => e.target.style.transform = "scale(1.07)"} onMouseLeave={e => e.target.style.transform = "scale(1)"} />
                 </div>
-                <div style={{ padding: "22px 20px" }}>
-                  <div style={{ display: "flex", gap: 16, marginBottom: 14 }}>
+                <div style={{ padding: "20px 18px" }}>
+                  <div style={{ display: "flex", gap: 16, marginBottom: 12 }}>
                     {[["💧", "Pure"], ["🧪", "Tested"], ["🚚", "Fast"]].map(([ic, lb]) => (
                       <div key={lb} style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 12, color: C.muted }}>
                         <span>{ic}</span>{lb}
                       </div>
                     ))}
                   </div>
-                  <h3 style={{ fontSize: 17, fontWeight: 700, color: C.text, marginBottom: 10 }}>{c.title}</h3>
-                  <p style={{ fontSize: 13, color: C.muted, lineHeight: 1.75, marginBottom: 16 }}>{c.desc}</p>
+                  <h3 style={{ fontSize: 16, fontWeight: 700, color: C.text, marginBottom: 8 }}>{c.title}</h3>
+                  <p style={{ fontSize: 13, color: C.muted, lineHeight: 1.7, marginBottom: 14 }}>{c.desc}</p>
                   <a href="#products" style={{ fontSize: 13, fontWeight: 600, color: C.blue, textDecoration: "none" }}>Read More →</a>
                 </div>
               </div>
@@ -586,15 +593,15 @@ export default function App() {
       {(currentPage === "#home" || currentPage === "" || currentPage === "#aboutus") && (
       <section style={{ padding: "clamp(48px, 7vw, 70px) 6%", background: C.blue }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 50 }}>
-            <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: 2, color: "rgba(255,255,255,0.7)", textTransform: "uppercase", marginBottom: 10 }}>Our Achievements</div>
+          <div style={{ textAlign: "center", marginBottom: 36 }}>
+            <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: 2, color: "rgba(255,255,255,0.7)", textTransform: "uppercase", marginBottom: 8 }}>Our Achievements</div>
             <h2 style={{ fontSize: "clamp(24px,3.5vw,38px)", fontWeight: 700, color: "white" }}>हमारी उपलब्धियां</h2>
           </div>
           <div className="grid-4-col">
             {STATS.map((s, i) => (
-              <div key={i} className="stat-cell" style={{ textAlign: "center", padding: "30px 16px" }}>
-                <div className="stat-num" style={{ fontSize: 42, fontWeight: 800, color: "white", lineHeight: 1 }}><AnimatedNumber text={s.n} /></div>
-                <div style={{ fontSize: 14, color: "rgba(255,255,255,0.75)", marginTop: 8 }}>{s.l}</div>
+              <div key={i} className="stat-cell" style={{ textAlign: "center", padding: "24px 12px" }}>
+                <div className="stat-num" style={{ fontSize: 38, fontWeight: 800, color: "white", lineHeight: 1 }}><AnimatedNumber text={s.n} /></div>
+                <div style={{ fontSize: 13, color: "rgba(255,255,255,0.75)", marginTop: 6 }}>{s.l}</div>
               </div>
             ))}
           </div>
@@ -606,22 +613,22 @@ export default function App() {
       {(currentPage === "#home" || currentPage === "" || currentPage === "#aboutus" || currentPage === "#products") && (
       <section style={{ padding: "clamp(52px, 8vw, 90px) 6%", background: "#f7fbff" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div className="sec-tag">Client Testimonials</div>
             <h2 className="sec-h2">हमारे <span>Clients</span> क्या कहते हैं</h2>
           </div>
-          <div className="grid-3-col" style={{ gap: 24 }}>
+          <div className="grid-3-col" style={{ gap: 20 }}>
             {TESTIMONIALS.map((t, i) => (
               <div key={i} className="tcard">
-                <div style={{ display: "flex", gap: 14, alignItems: "center", marginBottom: 18 }}>
-                  <div style={{ width: 50, height: 50, borderRadius: "50%", background: `linear-gradient(135deg,${C.blue},${C.blueMid})`, display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 700, fontSize: 16, flexShrink: 0 }}>{t.avatar}</div>
+                <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 14 }}>
+                  <div style={{ width: 44, height: 44, borderRadius: "50%", background: `linear-gradient(135deg,${C.blue},${C.blueMid})`, display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 700, fontSize: 15, flexShrink: 0 }}>{t.avatar}</div>
                   <div>
-                    <div style={{ fontWeight: 700, fontSize: 15, color: C.text }}>{t.name}</div>
-                    <div style={{ fontSize: 12, color: C.muted }}>{t.role}</div>
+                    <div style={{ fontWeight: 700, fontSize: 14, color: C.text }}>{t.name}</div>
+                    <div style={{ fontSize: 11, color: C.muted }}>{t.role}</div>
                   </div>
                 </div>
-                <p style={{ fontSize: 13, color: C.muted, lineHeight: 1.8, marginBottom: 16 }}>"{t.text}"</p>
-                <div style={{ fontSize: 22, color: C.blue, opacity: 0.3, fontFamily: "Georgia", lineHeight: 1 }}>"</div>
+                <p style={{ fontSize: 13, color: C.muted, lineHeight: 1.7, marginBottom: 12 }}>"{t.text}"</p>
+                <div style={{ fontSize: 20, color: C.blue, opacity: 0.3, fontFamily: "Georgia", lineHeight: 1 }}>"</div>
               </div>
             ))}
           </div>
