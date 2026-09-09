@@ -699,20 +699,20 @@ export default function App() {
                   <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6 }}>Village-Basai, Barauddin Nagar,<br/>Sector-70 Noida, UP – 201308</p>
                 </div>
               </div>
-              <div style={{ display: "flex", gap: 16 }}>
+              <a href="tel:+919811036674" style={{ display: "flex", gap: 16, textDecoration: "none", color: "inherit" }}>
                 <div style={{ width: 50, height: 50, borderRadius: "50%", background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, color: C.blue, flexShrink: 0 }}>📞</div>
                 <div>
                   <h4 style={{ fontSize: 16, fontWeight: 700, color: C.text, marginBottom: 6 }}>Call Us</h4>
                   <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6 }}>+91 9811036674<br/>Mon-Sat: 8am - 7pm</p>
                 </div>
-              </div>
-              <div style={{ display: "flex", gap: 16 }}>
+              </a>
+              <a href="mailto:info@vikkuwater.in" style={{ display: "flex", gap: 16, textDecoration: "none", color: "inherit" }}>
                 <div style={{ width: 50, height: 50, borderRadius: "50%", background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, color: C.blue, flexShrink: 0 }}>✉</div>
                 <div>
                   <h4 style={{ fontSize: 16, fontWeight: 700, color: C.text, marginBottom: 6 }}>Email Us</h4>
                   <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6 }}>info@vikkuwater.in<br/>sales@vikkuwater.in</p>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
