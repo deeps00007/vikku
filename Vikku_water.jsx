@@ -376,16 +376,16 @@ export default function App() {
             <h1 style={{ fontSize: "clamp(36px,5vw,62px)", fontWeight: 800, lineHeight: 1.1, color: C.text, marginBottom: 20 }}>
               हर बूंद आपको <br /><span className="text-shimmer">ताज़ा और शुद्ध</span> रखेगी!
             </h1>
-            <p style={{ fontSize: 16, color: C.muted, lineHeight: 1.8, marginBottom: 32, maxWidth: 460 }}>
-              Noida और Greater Noida में DM Water, Battery Water, RO Water, Distilled Water की reliable supply। 99% purity guarantee। ₹35 से शुरू।
+            <p style={{ fontSize: 15, color: C.muted, lineHeight: 1.8, marginBottom: 24, maxWidth: 520 }}>
+              Founded in 2001, <strong>Vikku Water Supplier</strong> is a prominent and widely renowned Water Supplier of DM (Demineralized) Water, Distilled Water, Battery Water, Soft Water, R.O. Water, DI Water & RAW Water in Noida, Greater Noida, Ghaziabad, Delhi NCR & Meerut. We supply water to various Industries, Business Units, Builders, Contractors, Caterers etc.
             </p>
-            <div className="hero-cta" style={{ display: "flex", gap: 14, flexWrap: "wrap", marginBottom: 44 }}>
+            <div className="hero-cta" style={{ display: "flex", gap: 14, flexWrap: "wrap", marginBottom: 32 }}>
               <button className="btn-blue">Get A Quote</button>
               <button className="btn-outline">Read More</button>
             </div>
             {/* Trust badges */}
-            <div style={{ display: "flex", gap: 28 }}>
-              {[["5,000+", "Happy Clients"], ["10+", "Years Experience"], ["99%", "Pure Water"]].map(([n, l]) => (
+            <div style={{ display: "flex", gap: 28, flexWrap: "wrap" }}>
+              {[["5,000+", "Happy Clients"], ["20+", "Years Experience"], ["99%", "Pure Water"]].map(([n, l]) => (
                 <div key={l}>
                   <div style={{ fontSize: 22, fontWeight: 700, color: C.blue }}><AnimatedNumber text={n} /></div>
                   <div style={{ fontSize: 12, color: C.muted }}>{l}</div>
@@ -393,26 +393,13 @@ export default function App() {
               ))}
             </div>
           </div>
-          {/* Hero image – big water can/splash illustration */}
-          <div className="hero-img-wrap" style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
-            <div className="pulse-water" />
-            <div style={{ position: "absolute", width: 380, height: 380, borderRadius: "50%", background: `${C.blue}14`, zIndex: 1 }} />
-            <img className="hero-img"
-              src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=600&q=85"
-              alt="Pure water"
-              style={{ width: 420, height: 420, objectFit: "cover", borderRadius: "50%", position: "relative", zIndex: 2, border: `6px solid white`, boxShadow: `0 20px 60px ${C.blue}30` }}
-            />
-            {/* Floating badges */}
-            <div className="hero-badge-left" style={{ position: "absolute", bottom: 60, left: 0, background: "white", borderRadius: 12, padding: "10px 14px", boxShadow: "0 8px 24px rgba(0,0,0,0.1)", display: "flex", alignItems: "center", gap: 8, zIndex: 2 }}>
-              <div style={{ width: 32, height: 32, borderRadius: "50%", background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>✅</div>
-              <div>
-                <div style={{ fontSize: 12, fontWeight: 700, color: C.text }}>GST Verified</div>
-                <div style={{ fontSize: 10, color: C.muted }}>Registered Supplier</div>
-              </div>
-            </div>
-            <div className="hero-badge-right" style={{ position: "absolute", top: 40, right: -10, background: C.blue, borderRadius: 12, padding: "10px 14px", color: "white", zIndex: 2 }}>
-              <div style={{ fontSize: 18, fontWeight: 800 }}>10,000 L</div>
-              <div style={{ fontSize: 10, opacity: 0.85 }}>Max Bulk Capacity</div>
+          {/* Hero images collage */}
+          <div className="hero-img-wrap" style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative", gap: 12 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, maxWidth: 420 }}>
+              <img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=300&q=85" alt="Water bottles" style={{ width: "100%", height: 180, objectFit: "cover", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)" }} />
+              <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&q=85" alt="Water supply" style={{ width: "100%", height: 180, objectFit: "cover", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)" }} />
+              <img src="https://images.unsplash.com/photo-1564419320461-6b7c4d0d3b0e?w=300&q=85" alt="Pure water" style={{ width: "100%", height: 180, objectFit: "cover", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)" }} />
+              <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?w=300&q=85" alt="Water delivery" style={{ width: "100%", height: 180, objectFit: "cover", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)" }} />
             </div>
           </div>
         </div>
@@ -817,12 +804,6 @@ export default function App() {
           {/* Bottom bar */}
           <div className="footer-bottom" style={{ padding: "16px 0", fontSize: 11, color: "rgba(255,255,255,0.35)" }}>
             <span>© 2024 Vikku Water Supplier. All Rights Reserved.</span>
-            <div style={{ display: "flex", gap: 10 }}>
-              {["f","t","in","yt"].map(s => (
-                <div key={s} style={{ width: 28, height: 28, borderRadius: "50%", background: "rgba(255,255,255,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, cursor: "pointer", transition: "background 0.2s" }}
-                  onMouseEnter={e => e.currentTarget.style.background = C.blue} onMouseLeave={e => e.currentTarget.style.background = "rgba(255,255,255,0.08)"}>{s}</div>
-              ))}
-            </div>
           </div>
         </div>
       </footer>
