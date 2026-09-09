@@ -341,7 +341,7 @@ export default function App() {
           .pcard > div:first-child { height: 160px !important; }
           .why-choose-img { height: 180px !important; }
           .grid-3-col { gap: 16px; }
-          .grid-4-col { gap: 12px; }
+          .grid-4-col { grid-template-columns: repeat(2, 1fr); gap: 12px; }
           .icon-bounce { padding: 20px 16px !important; }
           .icon-bounce > div:first-child { width: 42px !important; height: 42px !important; font-size: 20px !important; }
         }
