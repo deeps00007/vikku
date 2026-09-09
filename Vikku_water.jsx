@@ -787,17 +787,17 @@ export default function App() {
             {/* Quick Links */}
             <div className="footer-links">
               <h4 style={{ fontSize: 14, fontWeight: 700, color: "white", marginBottom: 14 }}>Quick Links</h4>
-              {["Home","About Us","Products","Contact Us","Enquiry"].map(l => (
-                <div key={l} style={{ fontSize: 12, marginBottom: 8, cursor: "pointer", transition: "color 0.2s" }}
-                  onMouseEnter={e => e.target.style.color = "#7ec8f7"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.75)"}>{l}</div>
+              {[["Home",""],["About Us","#aboutus"],["Products","#products"],["Contact Us","#contact"],["Enquiry","#enquiry"]].map(([l, hash]) => (
+                <a key={l} href={hash} style={{ display: "block", fontSize: 12, marginBottom: 8, color: "rgba(255,255,255,0.75)", textDecoration: "none", transition: "color 0.2s" }}
+                  onMouseEnter={e => e.target.style.color = "#7ec8f7"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.75)"}>{l}</a>
               ))}
             </div>
             {/* Services */}
             <div className="footer-links">
               <h4 style={{ fontSize: 14, fontWeight: 700, color: "white", marginBottom: 14 }}>Services</h4>
               {["DM Water","RO Water","Distilled Water","Battery Water","DI Water"].map(s => (
-                <div key={s} style={{ fontSize: 12, marginBottom: 8, cursor: "pointer", transition: "color 0.2s" }}
-                  onMouseEnter={e => e.target.style.color = "#7ec8f7"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.75)"}>{s}</div>
+                <a key={s} href="#products" style={{ display: "block", fontSize: 12, marginBottom: 8, color: "rgba(255,255,255,0.75)", textDecoration: "none", transition: "color 0.2s" }}
+                  onMouseEnter={e => e.target.style.color = "#7ec8f7"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.75)"}>{s}</a>
               ))}
             </div>
           </div>
