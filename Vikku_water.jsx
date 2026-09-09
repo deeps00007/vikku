@@ -331,8 +331,9 @@ export default function App() {
           .form-card { padding: 20px 16px !important; }
           .hero-cta { width: 100%; flex-direction: column; gap: 10px; }
           .hero-cta .btn-blue, .hero-cta .btn-outline { width: 100%; text-align: center; padding: 12px 18px; }
-          .footer-grid { grid-template-columns: 1fr; gap: 18px; }
-          .footer-brand, .footer-subscribe { grid-column: auto; }
+          .footer-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
+          .footer-brand { grid-column: 1 / -1; }
+          .footer-links { margin-bottom: 0; }
           .footer-bottom { flex-direction: column; text-align: center; gap: 10px; padding: 16px 0 !important; }
           .btn-blue, .btn-outline { padding: 11px 18px; font-size: 13px; }
           .tcard { padding: 20px; }
@@ -598,23 +599,17 @@ export default function App() {
 
       {/* ─── ACHIEVEMENTS ─── */}
       {(currentPage === "#home" || currentPage === "" || currentPage === "#aboutus") && (
-      <section style={{ padding: "clamp(48px, 7vw, 70px) 6%", background: `linear-gradient(135deg, ${C.blueDark} 0%, ${C.blue} 100%)`, position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", top: -60, right: -60, width: 200, height: 200, borderRadius: "50%", background: "rgba(255,255,255,0.05)" }} />
-        <div style={{ position: "absolute", bottom: -40, left: -40, width: 160, height: 160, borderRadius: "50%", background: "rgba(255,255,255,0.03)" }} />
-        <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
-          <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: 2, color: "rgba(255,255,255,0.6)", textTransform: "uppercase", marginBottom: 8 }}>Our Achievements</div>
+      <section style={{ padding: "clamp(48px, 7vw, 70px) 6%", background: C.blue }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 36 }}>
+            <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: 2, color: "rgba(255,255,255,0.7)", textTransform: "uppercase", marginBottom: 8 }}>Our Achievements</div>
             <h2 style={{ fontSize: "clamp(24px,3.5vw,38px)", fontWeight: 700, color: "white" }}>हमारी उपलब्धियां</h2>
-            <div style={{ width: 60, height: 3, background: "rgba(255,255,255,0.4)", borderRadius: 2, margin: "12px auto 0" }} />
           </div>
           <div className="grid-4-col">
             {STATS.map((s, i) => (
-              <div key={i} className="stat-cell reveal" style={{ textAlign: "center", padding: "28px 12px", transitionDelay: `${i * 0.1}s`, background: "rgba(255,255,255,0.06)", borderRadius: 16, border: "1px solid rgba(255,255,255,0.1)", backdropFilter: "blur(10px)", transition: "all 0.3s" }}
-                onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.12)"; e.currentTarget.style.transform = "translateY(-4px)"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.06)"; e.currentTarget.style.transform = "translateY(0)"; }}>
-                <div style={{ fontSize: 32, marginBottom: 10 }}>{["🏆", "⭐", "💧", "🤝"][i] || "💧"}</div>
+              <div key={i} className="stat-cell" style={{ textAlign: "center", padding: "24px 12px" }}>
                 <div className="stat-num" style={{ fontSize: 38, fontWeight: 800, color: "white", lineHeight: 1 }}><AnimatedNumber text={s.n} /></div>
-                <div style={{ fontSize: 13, color: "rgba(255,255,255,0.75)", marginTop: 8 }}>{s.l}</div>
+                <div style={{ fontSize: 13, color: "rgba(255,255,255,0.75)", marginTop: 6 }}>{s.l}</div>
               </div>
             ))}
           </div>
