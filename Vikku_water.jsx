@@ -59,12 +59,6 @@ const TESTIMONIALS = [
   { name: "Suresh Gupta", role: "Proprietor, Gurugram", text: "Best battery water supplier in NCR. Our inverters last longer since we switched to Vikku's distilled alkaline battery water.", avatar: "SG" },
 ];
 
-const ARTICLES = [
-  { date: "12 मार्च 2024", cat: "Guide", title: "DM Water vs RO Water: आपके बॉयलर के लिए कौन सा बेहतर है?", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" },
-  { date: "5 फरवरी 2024", cat: "Tips", title: "Battery Water से इन्वर्टर की उम्र कैसे बढ़ाएं — 5 जरूरी टिप्स", img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80" },
-  { date: "20 जनवरी 2024", cat: "Industry", title: "नोएडा के औद्योगिक क्षेत्र में शुद्ध जल की बढ़ती मांग", img: "https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=400&q=80" },
-];
-
 const BRANDS = ["AQUA PURE", "NOIDA IND.", "NCR WATER", "HI-PURE", "VIKKU CO."];
 
 function AnimatedNumber({ text }) {
@@ -628,36 +622,6 @@ export default function App() {
                   </div>
                 </div>
                 <p style={{ fontSize: 13, color: C.muted, lineHeight: 1.8, fontStyle: "italic" }}>"{t.text}"</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      )}
-
-      {/* ─── ARTICLES ─── */}
-      {(currentPage === "#home" || currentPage === "") && (
-      <section style={{ padding: "clamp(52px, 8vw, 90px) 6%", background: C.white }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div className="articles-header">
-            <div>
-              <div className="sec-tag">News &amp; Articles</div>
-              <h2 className="sec-h2">Latest <span>Articles</span></h2>
-            </div>
-            <button className="btn-outline" style={{ fontSize: 13 }}>View All →</button>
-          </div>
-          <div className="articles-grid">
-            {ARTICLES.map((a, i) => (
-              <div key={i} className="pcard acard" style={{ borderRadius: 14 }}>
-                <div style={{ height: 200, overflow: "hidden", position: "relative" }}>
-                  <img src={a.img} alt={a.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  <div style={{ position: "absolute", top: 14, left: 14, background: C.blue, color: "white", borderRadius: 6, padding: "4px 12px", fontSize: 11, fontWeight: 600 }}>{a.cat}</div>
-                </div>
-                <div style={{ padding: "20px" }}>
-                  <div style={{ fontSize: 12, color: C.muted, marginBottom: 10 }}>📅 {a.date} &nbsp;·&nbsp; By Vikku Water</div>
-                  <h3 style={{ fontSize: 15, fontWeight: 700, color: C.text, lineHeight: 1.5, marginBottom: 16 }}>{a.title}</h3>
-                  <a href="#" style={{ fontSize: 13, fontWeight: 600, color: C.blue, textDecoration: "none" }}>Read More →</a>
-                </div>
               </div>
             ))}
           </div>
