@@ -276,6 +276,10 @@ export default function App() {
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 50px; padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.08); }
         .articles-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px; }
         .articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+        .stat-cell { border-right: 1px solid rgba(255,255,255,0.2); }
+        .stat-cell:last-child { border-right: none; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
         
         @media (max-width: 900px) {
           .top-bar { display: none !important; }
@@ -287,6 +291,8 @@ export default function App() {
           .hero-grid .reveal > div:nth-child(4) { justify-content: center; }
           .hero-grid .reveal > div:nth-child(5) { justify-content: center; }
           .grid-3-col, .grid-4-col, .grid-2-col { grid-template-columns: 1fr; }
+          .stat-cell { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
+          .stat-cell:last-child { border-bottom: none; }
           .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; text-align: left; }
           .footer-grid > div { margin: 0; }
           .footer-brand, .footer-subscribe { grid-column: span 2; }
@@ -299,12 +305,20 @@ export default function App() {
 
         @media (max-width: 640px) {
           .nav-bar-inner { height: 62px; padding: 0 5%; }
-          .hero { padding-top: 92px !important; min-height: auto !important; }
-          .hero-grid { padding: 44px 5% 90px; gap: 34px; }
-          .hero-img { width: 230px !important; height: 230px !important; }
-          .hero-img-wrap { max-width: 320px; margin: 0 auto; }
-          .page-hero { padding: 120px 5% 52px !important; }
-          .sec-h2 { font-size: 26px; }
+          .hero { padding-top: 88px !important; min-height: auto !important; }
+          .hero-grid { padding: 40px 5% 84px; gap: 32px; }
+          .hero h1 { font-size: 30px !important; line-height: 1.2 !important; }
+          .hero-img { width: 220px !important; height: 220px !important; }
+          .hero-img-wrap { max-width: 300px; margin: 0 auto; }
+          .page-hero { padding: 118px 5% 48px !important; }
+          .page-hero h1 { font-size: 30px !important; }
+          .sec-h2 { font-size: 25px; line-height: 1.25; }
+          .stat-num { font-size: 34px !important; }
+          .team-panel { padding: 34px 24px !important; }
+          .form-card { padding: 26px 20px !important; }
+          .footer-grid { grid-template-columns: 1fr; gap: 26px; }
+          .footer-brand, .footer-subscribe { grid-column: auto; }
+          .footer-bottom { flex-direction: column; text-align: center; gap: 14px; }
         }
       `}</style>
 
@@ -460,7 +474,7 @@ export default function App() {
               <div style={{ fontSize: 12, opacity: 0.9 }}>Satisfied Clients</div>
             </div>
           </div>
-          <div style={{ background: C.blue, padding: "52px 48px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <div className="team-panel" style={{ background: C.blue, padding: "52px 48px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
             <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: 2, color: "rgba(255,255,255,0.7)", textTransform: "uppercase", marginBottom: 14 }}>Our Team</div>
             <h2 style={{ fontSize: "clamp(24px,3vw,36px)", fontWeight: 700, color: "white", lineHeight: 1.25, marginBottom: 20 }}>
               Experienced &amp; Dedicated Water Experts
@@ -568,8 +582,8 @@ export default function App() {
           </div>
           <div className="grid-4-col">
             {STATS.map((s, i) => (
-              <div key={i} style={{ textAlign: "center", padding: "30px 16px", borderRight: i < 3 ? "1px solid rgba(255,255,255,0.2)" : "none" }}>
-                <div style={{ fontSize: 42, fontWeight: 800, color: "white", lineHeight: 1 }}><AnimatedNumber text={s.n} /></div>
+              <div key={i} className="stat-cell" style={{ textAlign: "center", padding: "30px 16px" }}>
+                <div className="stat-num" style={{ fontSize: 42, fontWeight: 800, color: "white", lineHeight: 1 }}><AnimatedNumber text={s.n} /></div>
                 <div style={{ fontSize: 14, color: "rgba(255,255,255,0.75)", marginTop: 8 }}>{s.l}</div>
               </div>
             ))}
@@ -639,7 +653,7 @@ export default function App() {
       {(currentPage === "#contact") && (
       <section style={{ padding: "90px 6%", background: C.bg }}>
         <div className="grid-2-col" style={{ maxWidth: 1200, margin: "0 auto", gap: 50, alignItems: "start" }}>
-          <div style={{ background: "white", padding: "40px", borderRadius: 16, boxShadow: "0 10px 40px rgba(0,0,0,0.05)" }}>
+          <div className="form-card" style={{ background: "white", padding: "40px", borderRadius: 16, boxShadow: "0 10px 40px rgba(0,0,0,0.05)" }}>
             <h3 style={{ fontSize: 24, fontWeight: 700, color: C.text, marginBottom: 20 }}>Send a Message</h3>
             <form style={{ display: "flex", flexDirection: "column", gap: 20 }} onSubmit={e => e.preventDefault()}>
               <input type="text" placeholder="Your Name" style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif" }} />
@@ -693,7 +707,7 @@ export default function App() {
       {currentPage === "#enquiry" && (
       <section style={{ padding: "90px 6%", background: C.bg }}>
         <div className="grid-2-col" style={{ maxWidth: 1200, margin: "0 auto", gap: 50, alignItems: "start" }}>
-          <div style={{ background: "white", padding: "40px", borderRadius: 16, boxShadow: "0 10px 40px rgba(0,0,0,0.05)" }}>
+          <div className="form-card" style={{ background: "white", padding: "40px", borderRadius: 16, boxShadow: "0 10px 40px rgba(0,0,0,0.05)" }}>
             <h3 style={{ fontSize: 24, fontWeight: 700, color: C.text, marginBottom: 20 }}>Enquiry Form</h3>
             <form style={{ display: "flex", flexDirection: "column", gap: 20 }} onSubmit={e => e.preventDefault()}>
               <input type="text" placeholder="Your Name" style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif" }} />
@@ -798,7 +812,7 @@ export default function App() {
             </div>
           </div>
           {/* Bottom bar */}
-          <div style={{ padding: "22px 0", display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 12, color: "rgba(255,255,255,0.4)" }}>
+          <div className="footer-bottom" style={{ padding: "22px 0", fontSize: 12, color: "rgba(255,255,255,0.4)" }}>
             <span>© 2024 Vikku Water Supplier. All Rights Reserved. | Proprietor: Ashok Kumar | Developed by Deepanshu Singh</span>
             <div style={{ display: "flex", gap: 12 }}>
               {["f","t","in","yt"].map(s => (
