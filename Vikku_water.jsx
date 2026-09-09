@@ -186,12 +186,13 @@ function NavBar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div style={{ background: C.white, borderTop: `1px solid ${C.border}`, padding: "8px 6% 20px", display: "flex", flexDirection: "column", boxShadow: "0 24px 34px rgba(0,0,0,0.1)" }}>
+        <div style={{ background: C.white, borderTop: `1px solid ${C.border}`, padding: "12px 5% 24px", display: "flex", flexDirection: "column", gap: 4, boxShadow: "0 24px 48px rgba(0,0,0,0.12)" }}>
           {links.map(([l, hash]) => (
-            <div key={l} onClick={() => go(hash)} style={{ padding: "13px 4px", fontSize: 15, fontWeight: 500, color: C.text, cursor: "pointer", borderBottom: `1px solid ${C.border}` }}
-              onMouseEnter={e => e.target.style.color = C.blue} onMouseLeave={e => e.target.style.color = C.text}>{l}</div>
+            <div key={l} onClick={() => go(hash)} style={{ padding: "14px 8px", fontSize: 16, fontWeight: 500, color: C.text, cursor: "pointer", borderBottom: `1px solid ${C.border}`, transition: "all 0.2s" }}
+              onMouseEnter={e => { e.target.style.color = C.blue; e.target.style.paddingLeft = "12px"; }} 
+              onMouseLeave={e => { e.target.style.color = C.text; e.target.style.paddingLeft = "8px"; }}>{l}</div>
           ))}
-          <button className="btn-blue" style={{ marginTop: 16, width: "100%", fontSize: 14 }} onClick={() => go("#enquiry")}>Get A Quote</button>
+          <button className="btn-blue" style={{ marginTop: 16, width: "100%", fontSize: 15, padding: "14px 20px" }} onClick={() => go("#enquiry")}>Get A Quote</button>
         </div>
       )}
     </nav>
@@ -269,7 +270,7 @@ export default function App() {
         ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#f0f8ff}::-webkit-scrollbar-thumb{background:${C.blue}55;border-radius:3px}
         
         /* ─── RESPONSIVE STYLES ─── */
-        .nav-links { display: flex; gap: 30px; alignItems: center; }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-bar-inner { padding: 0 6%; display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 20px; }
         .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; padding: 8px; flex-shrink: 0; }
         .hamburger span { display: block; width: 24px; height: 2px; background: ${C.blue}; border-radius: 2px; transition: all 0.3s; }
@@ -290,8 +291,8 @@ export default function App() {
           .nav-links { display: none; }
           .nav-btn { display: none; }
           .hamburger { display: flex; }
-          .hero-grid { grid-template-columns: 1fr; text-align: center; }
-          .hero-grid p { margin: 0 auto 32px auto; }
+          .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 32px; }
+          .hero-grid p { margin: 0 auto 24px auto; }
           .hero-grid .reveal > div:nth-child(4) { justify-content: center; }
           .hero-grid .reveal > div:nth-child(5) { justify-content: center; }
           .grid-3-col, .grid-4-col, .grid-2-col { grid-template-columns: 1fr; }
@@ -303,28 +304,31 @@ export default function App() {
           .articles-header { flex-direction: column; align-items: center; text-align: center; gap: 20px; }
           .articles-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 20px; margin: 0 -6%; padding-left: 6%; padding-right: 6%; gap: 16px; scroll-padding-left: 6%; }
           .articles-grid > div { min-width: 75vw; scroll-snap-align: start; flex-shrink: 0; margin-bottom: 0; }
-          .hero-img { width: 300px !important; height: 300px !important; }
+          .hero-img { width: 280px !important; height: 280px !important; }
           .hero-decor { display: none; }
         }
 
         @media (max-width: 640px) {
-          .nav-bar-inner { height: 62px; padding: 0 5%; }
-          .hero { padding-top: 88px !important; min-height: auto !important; }
-          .hero-grid { padding: 40px 5% 84px; gap: 32px; }
-          .hero h1 { font-size: 30px !important; line-height: 1.2 !important; }
-          .hero-img { width: 220px !important; height: 220px !important; }
-          .hero-img-wrap { max-width: 300px; margin: 0 auto; }
-          .page-hero { padding: 118px 5% 48px !important; }
-          .page-hero h1 { font-size: 30px !important; }
-          .sec-h2 { font-size: 25px; line-height: 1.25; }
-          .stat-num { font-size: 34px !important; }
-          .team-panel { padding: 34px 24px !important; }
-          .form-card { padding: 26px 20px !important; }
-          .hero-cta { width: 100%; flex-direction: column; }
-          .hero-cta .btn-blue, .hero-cta .btn-outline { width: 100%; text-align: center; }
-          .footer-grid { grid-template-columns: 1fr; gap: 26px; }
+          .nav-bar-inner { height: 60px; padding: 0 4%; }
+          .hero { padding-top: 76px !important; min-height: auto !important; }
+          .hero-grid { padding: 32px 4% 64px; gap: 28px; }
+          .hero h1 { font-size: 28px !important; line-height: 1.25 !important; }
+          .hero-img { width: 200px !important; height: 200px !important; }
+          .hero-img-wrap { max-width: 280px; margin: 0 auto; }
+          .page-hero { padding: 100px 4% 40px !important; }
+          .page-hero h1 { font-size: 28px !important; }
+          .sec-h2 { font-size: 24px; line-height: 1.3; }
+          .sec-tag { font-size: 11px; }
+          .stat-num { font-size: 32px !important; }
+          .stat-cell { padding: 24px 12px !important; }
+          .team-panel { padding: 28px 20px !important; }
+          .form-card { padding: 24px 18px !important; }
+          .hero-cta { width: 100%; flex-direction: column; gap: 12px; }
+          .hero-cta .btn-blue, .hero-cta .btn-outline { width: 100%; text-align: center; padding: 14px 20px; }
+          .footer-grid { grid-template-columns: 1fr; gap: 24px; }
           .footer-brand, .footer-subscribe { grid-column: auto; }
-          .footer-bottom { flex-direction: column; text-align: center; gap: 14px; }
+          .footer-bottom { flex-direction: column; text-align: center; gap: 12px; }
+          .btn-blue, .btn-outline { padding: 12px 20px; font-size: 13px; }
         }
       `}</style>
 
@@ -526,8 +530,8 @@ export default function App() {
                   <h3 style={{ fontSize: 16, fontWeight: 700, color: C.text, marginBottom: 6 }}>{p.name}</h3>
                   <p style={{ fontSize: 12, color: C.muted, lineHeight: 1.6, marginBottom: 14 }}>{p.desc}</p>
                   <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
-                    <button className="btn-blue" style={{ flex: 1, borderRadius: 6, padding: "10px 0", fontSize: 12 }} onClick={() => window.open(WHATSAPP_URL, "_blank")}>Get Best Price</button>
-                    <button className="btn-outline" style={{ flex: 1, borderRadius: 6, padding: "8px 0", fontSize: 12, border: `1.5px solid ${C.blue}` }} onClick={() => window.open(WHATSAPP_URL, "_blank")}>Contact</button>
+                    <button className="btn-blue" style={{ flex: 1, borderRadius: 6, padding: "12px 8px", fontSize: 13, fontWeight: 600 }} onClick={() => window.open(WHATSAPP_URL, "_blank")}>Get Best Price</button>
+                    <button className="btn-outline" style={{ flex: 1, borderRadius: 6, padding: "10px 8px", fontSize: 13, fontWeight: 600, border: `1.5px solid ${C.blue}` }} onClick={() => window.open(WHATSAPP_URL, "_blank")}>Contact</button>
                   </div>
                 </div>
               </div>
@@ -661,18 +665,18 @@ export default function App() {
         <div className="grid-2-col" style={{ maxWidth: 1200, margin: "0 auto", gap: "clamp(24px, 4vw, 50px)", alignItems: "start" }}>
           <div className="form-card" style={{ background: "white", padding: "40px", borderRadius: 16, boxShadow: "0 10px 40px rgba(0,0,0,0.05)" }}>
             <h3 style={{ fontSize: 24, fontWeight: 700, color: C.text, marginBottom: 20 }}>Send a Message</h3>
-            <form style={{ display: "flex", flexDirection: "column", gap: 20 }} onSubmit={e => e.preventDefault()}>
-              <input type="text" placeholder="Your Name" style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif" }} />
-              <input type="email" placeholder="Email Address" style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif" }} />
-              <input type="tel" placeholder="Phone Number" style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif" }} />
-              <select style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif", color: C.muted }}>
+            <form style={{ display: "flex", flexDirection: "column", gap: 16 }} onSubmit={e => e.preventDefault()}>
+              <input type="text" placeholder="Your Name" style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif" }} />
+              <input type="email" placeholder="Email Address" style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif" }} />
+              <input type="tel" placeholder="Phone Number" style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif" }} />
+              <select style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif", color: C.muted }}>
                 <option>Interested in DM Water</option>
                 <option>Interested in RO Water</option>
                 <option>Interested in Battery Water</option>
                 <option>Other Enquiry</option>
               </select>
-              <textarea placeholder="Write your message here..." rows="5" style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif", resize: "vertical" }} />
-              <button className="btn-blue" style={{ fontSize: 16, padding: "16px", marginTop: 10 }}>Submit Request</button>
+              <textarea placeholder="Write your message here..." rows="5" style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif", resize: "vertical" }} />
+              <button className="btn-blue" style={{ fontSize: 15, padding: "14px", marginTop: 8 }}>Submit Request</button>
             </form>
           </div>
           <div>
@@ -715,11 +719,11 @@ export default function App() {
         <div className="grid-2-col" style={{ maxWidth: 1200, margin: "0 auto", gap: "clamp(24px, 4vw, 50px)", alignItems: "start" }}>
           <div className="form-card" style={{ background: "white", padding: "40px", borderRadius: 16, boxShadow: "0 10px 40px rgba(0,0,0,0.05)" }}>
             <h3 style={{ fontSize: 24, fontWeight: 700, color: C.text, marginBottom: 20 }}>Enquiry Form</h3>
-            <form style={{ display: "flex", flexDirection: "column", gap: 20 }} onSubmit={e => e.preventDefault()}>
-              <input type="text" placeholder="Your Name" style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif" }} />
-              <input type="email" placeholder="Email Address" style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif" }} />
-              <input type="tel" placeholder="Phone Number" style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif" }} />
-              <select style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif", color: C.muted }}>
+            <form style={{ display: "flex", flexDirection: "column", gap: 16 }} onSubmit={e => e.preventDefault()}>
+              <input type="text" placeholder="Your Name" style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif" }} />
+              <input type="email" placeholder="Email Address" style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif" }} />
+              <input type="tel" placeholder="Phone Number" style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif" }} />
+              <select style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif", color: C.muted }}>
                 <option>DM (Demineralized) Water</option>
                 <option>Distilled Water</option>
                 <option>DI Water</option>
@@ -729,8 +733,8 @@ export default function App() {
                 <option>RAW Water</option>
                 <option>Other Enquiry</option>
               </select>
-              <textarea placeholder="Write your requirement here..." rows="5" style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif", resize: "vertical" }} />
-              <button className="btn-blue" style={{ fontSize: 16, padding: "16px", marginTop: 10 }}>Submit Enquiry</button>
+              <textarea placeholder="Write your requirement here..." rows="5" style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif", resize: "vertical" }} />
+              <button className="btn-blue" style={{ fontSize: 15, padding: "14px", marginTop: 8 }}>Submit Enquiry</button>
             </form>
           </div>
           <div>
