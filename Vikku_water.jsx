@@ -115,13 +115,28 @@ function AnimatedNumber({ text }) {
 
 function NavBar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
   }, []);
+
+  const links = [
+    ["Home", "#home"],
+    ["About Us", "#aboutus"],
+    ["Water We Supply", "#products"],
+    ["Contact Us", "#contact"],
+    ["Enquiry", "#enquiry"],
+  ];
+
+  const go = (hash) => {
+    setMenuOpen(false);
+    window.location.hash = hash;
+  };
+
   return (
-    <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, background: scrolled ? C.white : "rgba(255,255,255,0.97)", boxShadow: scrolled ? "0 2px 20px rgba(26,111,196,0.12)" : "none", transition: "all 0.3s", borderBottom: `1px solid ${scrolled ? C.border : "transparent"}` }}>
+    <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, background: scrolled || menuOpen ? C.white : "rgba(255,255,255,0.97)", boxShadow: scrolled ? "0 2px 20px rgba(26,111,196,0.12)" : "none", transition: "all 0.3s", borderBottom: `1px solid ${scrolled ? C.border : "transparent"}` }}>
       {/* Top bar */}
       <div className="top-bar" style={{ background: C.blue, padding: "6px 6%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <div style={{ display: "flex", gap: 24, fontSize: 12, color: "rgba(255,255,255,0.9)", cursor: "pointer" }} onClick={() => window.location.hash = ""}>
@@ -136,7 +151,7 @@ function NavBar() {
       </div>
       {/* Main nav */}
       <div className="nav-bar-inner">
-        <div style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }} onClick={() => window.location.hash = ""}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }} onClick={() => go("")}>
           <div style={{ width: 44, height: 44, borderRadius: "50%", background: `linear-gradient(135deg, ${C.blue}, ${C.blueMid})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}>💧</div>
           <div>
             <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: 18, color: C.blue, lineHeight: 1 }}>Vikku</div>
@@ -144,8 +159,8 @@ function NavBar() {
           </div>
         </div>
         <div className="nav-links">
-          {[["Home", "#home"], ["About Us", "#aboutus"], ["Water We Supply", "#products"], ["Contact Us", "#contact"], ["Enquiry", "#enquiry"]].map(([l, hash]) => (
-            <div key={l} onClick={() => window.location.hash = hash} style={{ fontSize: 14, fontWeight: 500, color: C.text, textDecoration: "none", transition: "color 0.2s", fontFamily: "'Poppins', sans-serif", cursor: "pointer" }}
+          {links.map(([l, hash]) => (
+            <div key={l} onClick={() => go(hash)} style={{ fontSize: 14, fontWeight: 500, color: C.text, textDecoration: "none", transition: "color 0.2s", fontFamily: "'Poppins', sans-serif", cursor: "pointer" }}
               onMouseEnter={e => e.target.style.color = C.blue} onMouseLeave={e => e.target.style.color = C.text}>{l}</div>
           ))}
         </div>
@@ -161,7 +176,24 @@ function NavBar() {
             Get A Quote
           </button>
         </div>
+        {/* Hamburger */}
+        <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
+          <span style={{ transform: menuOpen ? "translateY(7px) rotate(45deg)" : "none" }} />
+          <span style={{ opacity: menuOpen ? 0 : 1 }} />
+          <span style={{ transform: menuOpen ? "translateY(-8px) rotate(-45deg)" : "none" }} />
+        </div>
       </div>
+
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div style={{ background: C.white, borderTop: `1px solid ${C.border}`, padding: "8px 6% 20px", display: "flex", flexDirection: "column", boxShadow: "0 24px 34px rgba(0,0,0,0.1)" }}>
+          {links.map(([l, hash]) => (
+            <div key={l} onClick={() => go(hash)} style={{ padding: "13px 4px", fontSize: 15, fontWeight: 500, color: C.text, cursor: "pointer", borderBottom: `1px solid ${C.border}` }}
+              onMouseEnter={e => e.target.style.color = C.blue} onMouseLeave={e => e.target.style.color = C.text}>{l}</div>
+          ))}
+          <button className="btn-blue" style={{ marginTop: 16, width: "100%", fontSize: 14 }} onClick={() => go("#enquiry")}>Get A Quote</button>
+        </div>
+      )}
     </nav>
   );
 }
@@ -234,7 +266,9 @@ export default function App() {
         
         /* ─── RESPONSIVE STYLES ─── */
         .nav-links { display: flex; gap: 30px; alignItems: center; }
-        .nav-bar-inner { padding: 0 6%; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+        .nav-bar-inner { padding: 0 6%; display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 20px; }
+        .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; padding: 8px; flex-shrink: 0; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: ${C.blue}; border-radius: 2px; transition: all 0.3s; }
         .hero-grid { maxWidth: 1200px; margin: 0 auto; padding: 60px 6%; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
         .grid-3-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
         .grid-2-col { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; min-height: 320px; }
@@ -247,6 +281,7 @@ export default function App() {
           .top-bar { display: none !important; }
           .nav-links { display: none; }
           .nav-btn { display: none; }
+          .hamburger { display: flex; }
           .hero-grid { grid-template-columns: 1fr; text-align: center; }
           .hero-grid p { margin: 0 auto 32px auto; }
           .hero-grid .reveal > div:nth-child(4) { justify-content: center; }
@@ -259,13 +294,24 @@ export default function App() {
           .articles-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 20px; margin: 0 -6%; padding-left: 6%; padding-right: 6%; gap: 16px; scroll-padding-left: 6%; }
           .articles-grid > div { min-width: 75vw; scroll-snap-align: start; flex-shrink: 0; margin-bottom: 0; }
           .hero-img { width: 300px !important; height: 300px !important; }
+          .hero-decor { display: none; }
+        }
+
+        @media (max-width: 640px) {
+          .nav-bar-inner { height: 62px; padding: 0 5%; }
+          .hero { padding-top: 92px !important; min-height: auto !important; }
+          .hero-grid { padding: 44px 5% 90px; gap: 34px; }
+          .hero-img { width: 230px !important; height: 230px !important; }
+          .hero-img-wrap { max-width: 320px; margin: 0 auto; }
+          .page-hero { padding: 120px 5% 52px !important; }
+          .sec-h2 { font-size: 26px; }
         }
       `}</style>
 
       <NavBar />
 
       {currentPage !== "#home" && currentPage !== "" && (
-        <section style={{ paddingTop: 160, paddingBottom: 80, background: `linear-gradient(135deg, ${C.blueDark} 0%, ${C.blue} 100%)`, textAlign: "center", color: "white" }}>
+        <section className="page-hero" style={{ paddingTop: 160, paddingBottom: 80, background: `linear-gradient(135deg, ${C.blueDark} 0%, ${C.blue} 100%)`, textAlign: "center", color: "white" }}>
           <h1 style={{ fontSize: "clamp(32px, 5vw, 54px)", fontWeight: 800, marginBottom: 12 }}>
             {currentPage === "#aboutus" ? "About Us" : currentPage === "#products" ? "Water We Supply" : currentPage === "#contact" ? "Contact Us" : currentPage === "#enquiry" ? "Enquiry" : "Page"}
           </h1>
@@ -275,15 +321,15 @@ export default function App() {
 
       {/* ─── HERO ─── */}
       {(currentPage === "#home" || currentPage === "") && (
-      <section style={{ paddingTop: 110, minHeight: "90vh", background: `linear-gradient(135deg, ${C.blueLight} 0%, #dbeeff 50%, #f0f8ff 100%)`, display: "flex", alignItems: "center", position: "relative", overflow: "hidden" }}>
+      <section className="hero" style={{ paddingTop: 110, minHeight: "90vh", background: `linear-gradient(135deg, ${C.blueLight} 0%, #dbeeff 50%, #f0f8ff 100%)`, display: "flex", alignItems: "center", position: "relative", overflow: "hidden" }}>
         {/* Decorative dots */}
         {[...Array(12)].map((_, i) => (
           <div key={i} style={{ position: "absolute", width: 8, height: 8, borderRadius: "50%", background: `${C.blue}30`, top: `${10 + i * 7}%`, left: `${2 + (i % 4) * 2}%`, animation: `floatUp ${3 + (i % 3)}s ease-in-out infinite alternate` }} />
         ))}
         {/* Animated wave bg circles */}
-        <div style={{ position: "absolute", right: "5%", top: "10%", width: 480, height: 480, borderRadius: "50%", background: `radial-gradient(circle, ${C.blue}18 0%, transparent 70%)` }} />
-        <div style={{ position: "absolute", right: "8%", top: "12%", width: 380, height: 380, borderRadius: "50%", border: `2px solid ${C.blue}20`, animation: "spin 30s linear infinite" }} />
-        <div style={{ position: "absolute", right: "11%", top: "15%", width: 280, height: 280, borderRadius: "50%", border: `2px dashed ${C.blue}15`, animation: "spin 20s linear infinite reverse" }} />
+        <div className="hero-decor" style={{ position: "absolute", right: "5%", top: "10%", width: 480, height: 480, borderRadius: "50%", background: `radial-gradient(circle, ${C.blue}18 0%, transparent 70%)` }} />
+        <div className="hero-decor" style={{ position: "absolute", right: "8%", top: "12%", width: 380, height: 380, borderRadius: "50%", border: `2px solid ${C.blue}20`, animation: "spin 30s linear infinite" }} />
+        <div className="hero-decor" style={{ position: "absolute", right: "11%", top: "15%", width: 280, height: 280, borderRadius: "50%", border: `2px dashed ${C.blue}15`, animation: "spin 20s linear infinite reverse" }} />
 
         <div className="hero-grid">
           <div className="reveal">
@@ -309,7 +355,7 @@ export default function App() {
             </div>
           </div>
           {/* Hero image – big water can/splash illustration */}
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
+          <div className="hero-img-wrap" style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
             <div className="pulse-water" />
             <div style={{ position: "absolute", width: 380, height: 380, borderRadius: "50%", background: `${C.blue}14`, zIndex: 1 }} />
             <img className="hero-img"
