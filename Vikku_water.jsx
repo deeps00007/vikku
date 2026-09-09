@@ -14,28 +14,30 @@ const C = {
   border: "#d6eaf8",
 };
 
+const WHATSAPP_URL = "https://api.whatsapp.com/send/?phone=919811036674&text&type=phone_number&app_absent=0";
+
 const PRODUCTS = [
-  { name: "RO Water", price: "Get Latest Price", old: "", img: "https://images.unsplash.com/photo-1559825481-12a05cc00344?w=300&q=80", 
-    desc: "Made in India • Reverse Osmosis Purification",
-    details: ["Type: Filtered RO Water", "Purity: 99%"] },
-  { name: "Raw Water", price: "₹0 / Litre", old: "", img: "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=300&q=80", 
-    desc: "Made in India • Liquid State",
-    details: ["pH Value: 6.5-8.5", "Purity: 99%"] },
-  { name: "Inverter Battery Distilled Alkaline Water", price: "₹5 / Litre", old: "", img: "https://images.unsplash.com/photo-1620714223084-8fcacc2dfd4d?w=300&q=80", 
-    desc: "Made in India • Can Packaging",
-    details: ["Capacity: 20 L", "Usage: Industrial"] },
-  { name: "DM Water", price: "₹1 / Litre", old: "", img: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=300&q=80", 
-    desc: "Made in India • Industrial Grade",
+  { name: "DM (Demineralized) Water", img: "/dm-demineralized-water-supplier.jpg", 
+    desc: "Industrial Grade",
     details: ["Purity: 99%", "Usage: Industrial"] },
-  { name: "Distilled Water", price: "Get Latest Price", old: "", img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=300&q=80", 
-    desc: "Made in India • Source: H2O",
+  { name: "Distilled Water", img: "/distilled-water-supplier.jpg", 
+    desc: "Source: H2O",
     details: ["Usage: Laboratory", "Boiling Point: 100°C"] },
-  { name: "Demineralised Water", price: "₹10 / Litre", old: "", img: "https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=300&q=80", 
-    desc: "Made in India • Plastic Can Packaging",
-    details: ["Purity: >99%", "Details: 5 L Bottle"] },
-  { name: "Battery Distilled Water", price: "Get Latest Price", old: "", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&q=80", 
-    desc: "Made in India • Packaging: 200 Litre",
-    details: ["Conductivity: < 1.3", "Bacteria: < 10 cfu/100ml"] }
+  { name: "DI Water", img: "/DI-deionized-water.jpg", 
+    desc: "Deionized Water",
+    details: ["Conductivity: < 1.3", "Usage: Laboratory"] },
+  { name: "Battery Water", img: "/battery-water-supplier.jpg", 
+    desc: "Can Packaging",
+    details: ["Capacity: 20 L", "Usage: Battery / Inverter"] },
+  { name: "R.O. Water", img: "/ro-water-supplier.jpg", 
+    desc: "Reverse Osmosis Purification",
+    details: ["Type: Filtered RO Water", "Purity: 99%"] },
+  { name: "Soft Water", img: "/soft-water-supplier.jpg", 
+    desc: "Softened Water",
+    details: ["Hardness: Low", "Usage: Industrial"] },
+  { name: "RAW Water", img: "/raw-water-supplier.jpg", 
+    desc: "Liquid State",
+    details: ["pH Value: 6.5-8.5", "Purity: 99%"] }
 ];
 
 const FEATURES = [
@@ -142,8 +144,8 @@ function NavBar() {
           </div>
         </div>
         <div className="nav-links">
-          {["Home", "About Us", "Services", "Products", "Contact"].map(l => (
-            <div key={l} onClick={() => window.location.hash = l.toLowerCase().replace(" ", "")} style={{ fontSize: 14, fontWeight: 500, color: C.text, textDecoration: "none", transition: "color 0.2s", fontFamily: "'Poppins', sans-serif", cursor: "pointer" }}
+          {[["Home", "#home"], ["About Us", "#aboutus"], ["Water We Supply", "#products"], ["Contact Us", "#contact"], ["Enquiry", "#enquiry"]].map(([l, hash]) => (
+            <div key={l} onClick={() => window.location.hash = hash} style={{ fontSize: 14, fontWeight: 500, color: C.text, textDecoration: "none", transition: "color 0.2s", fontFamily: "'Poppins', sans-serif", cursor: "pointer" }}
               onMouseEnter={e => e.target.style.color = C.blue} onMouseLeave={e => e.target.style.color = C.text}>{l}</div>
           ))}
         </div>
@@ -265,7 +267,7 @@ export default function App() {
       {currentPage !== "#home" && currentPage !== "" && (
         <section style={{ paddingTop: 160, paddingBottom: 80, background: `linear-gradient(135deg, ${C.blueDark} 0%, ${C.blue} 100%)`, textAlign: "center", color: "white" }}>
           <h1 style={{ fontSize: "clamp(32px, 5vw, 54px)", fontWeight: 800, marginBottom: 12 }}>
-            {currentPage === "#aboutus" ? "About Us" : currentPage === "#products" ? "Our Products" : currentPage === "#contact" ? "Contact Us" : currentPage === "#services" ? "Our Services" : "Page"}
+            {currentPage === "#aboutus" ? "About Us" : currentPage === "#products" ? "Water We Supply" : currentPage === "#contact" ? "Contact Us" : currentPage === "#enquiry" ? "Enquiry" : "Page"}
           </h1>
           <p style={{ fontSize: 16, opacity: 0.85, maxWidth: 600, margin: "0 auto" }}>Noida's Premium DM and RO Water Supplier</p>
         </section>
@@ -363,13 +365,18 @@ export default function App() {
           <div style={{ textAlign: "center", marginBottom: 56 }}>
             <div className="sec-tag">Why Choose Us</div>
             <h2 className="sec-h2">Noida का <span>विश्वसनीय</span> Water Supplier</h2>
-            <p style={{ fontSize: 15, color: C.muted, maxWidth: 540, margin: "0 auto", lineHeight: 1.8 }}>2017 से Gautam Budh Nagar में industries, labs और households को शुद्ध जल की supply।</p>
+            <p style={{ fontSize: 15, color: C.muted, maxWidth: 640, margin: "0 auto", lineHeight: 1.8 }}>2017 से Gautam Budh Nagar में हर तरह के businesses को शुद्ध जल की reliable supply।</p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center", marginTop: 20 }}>
+              {["Industries", "Business Units", "Builders", "Contractors", "Caterers"].map(a => (
+                <span key={a} style={{ fontSize: 13, fontWeight: 600, background: C.blueLight, color: C.blue, padding: "8px 16px", borderRadius: 30, border: `1.5px solid ${C.border}` }}>{a}</span>
+              ))}
+            </div>
           </div>
           <div className="grid-3-col">
             {[
-              { img: "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=500&q=80", title: "Industrial Water Supply", desc: "DM, DI और distilled water boilers, batteries और chemical processes के लिए। 99% purity guarantee।" },
-              { img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=500&q=80", title: "Laboratory Grade Quality", desc: "Lab-grade DI और distilled water जो सभी industrial standards को meet करता है। pH tested।" },
-              { img: "https://images.unsplash.com/photo-1550159930-40066082a4fc?w=500&q=80", title: "Bulk RO Water Delivery", desc: "10,000 litre तक bulk RO water। समय पर delivery। Competitive industrial pricing।" },
+              { img: "/dm-demineralized-water-supplier.jpg", title: "Industrial Water Supply", desc: "DM, DI और distilled water boilers, batteries और chemical processes के लिए। 99% purity guarantee।" },
+              { img: "/distilled-water-supplier.jpg", title: "Laboratory Grade Quality", desc: "Lab-grade DI और distilled water जो सभी industrial standards को meet करता है। pH tested।" },
+              { img: "/ro-water-supplier.jpg", title: "Bulk RO Water Delivery", desc: "10,000 litre तक bulk RO water। समय पर delivery। Competitive industrial pricing।" },
             ].map((c, i) => (
               <div key={i} className="pcard reveal" style={{ borderRadius: 14, transitionDelay: `${i * 0.15}s` }}>
                 <div style={{ overflow: "hidden", height: 200 }}>
@@ -452,15 +459,9 @@ export default function App() {
                   </div>
                   <h3 style={{ fontSize: 16, fontWeight: 700, color: C.text, marginBottom: 6 }}>{p.name}</h3>
                   <p style={{ fontSize: 12, color: C.muted, lineHeight: 1.6, marginBottom: 14 }}>{p.desc}</p>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
-                    <div style={{ display: "flex", alignItems: "flex-end" }}>
-                      <span style={{ fontSize: 16, fontWeight: 700, color: C.blue }}>{p.price}</span>
-                      {p.old && <span style={{ fontSize: 12, color: C.muted, textDecoration: "line-through", marginLeft: 6, marginBottom: 2 }}>{p.old}</span>}
-                    </div>
-                  </div>
                   <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
-                    <button className="btn-blue" style={{ flex: 1, borderRadius: 6, padding: "10px 0", fontSize: 12 }}>Get Best Price</button>
-                    <button className="btn-outline" style={{ flex: 1, borderRadius: 6, padding: "8px 0", fontSize: 12, border: `1.5px solid ${C.blue}` }} onClick={() => window.location.hash = "contact"}>Contact</button>
+                    <button className="btn-blue" style={{ flex: 1, borderRadius: 6, padding: "10px 0", fontSize: 12 }} onClick={() => window.open(WHATSAPP_URL, "_blank")}>Get Best Price</button>
+                    <button className="btn-outline" style={{ flex: 1, borderRadius: 6, padding: "8px 0", fontSize: 12, border: `1.5px solid ${C.blue}` }} onClick={() => window.open(WHATSAPP_URL, "_blank")}>Contact</button>
                   </div>
                 </div>
               </div>
@@ -626,7 +627,7 @@ export default function App() {
                 <div style={{ width: 50, height: 50, borderRadius: "50%", background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, color: C.blue, flexShrink: 0 }}>📞</div>
                 <div>
                   <h4 style={{ fontSize: 16, fontWeight: 700, color: C.text, marginBottom: 6 }}>Call Us</h4>
-                  <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6 }}>+91 99999 XXXXX<br/>Mon-Sat: 8am - 7pm</p>
+                  <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6 }}>+91 9811036674<br/>Mon-Sat: 8am - 7pm</p>
                 </div>
               </div>
               <div style={{ display: "flex", gap: 16 }}>
@@ -636,6 +637,49 @@ export default function App() {
                   <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6 }}>info@vikkuwater.in<br/>sales@vikkuwater.in</p>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      )}
+
+      {/* ─── ENQUIRY PAGE ─── */}
+      {currentPage === "#enquiry" && (
+      <section style={{ padding: "90px 6%", background: C.bg }}>
+        <div className="grid-2-col" style={{ maxWidth: 1200, margin: "0 auto", gap: 50, alignItems: "start" }}>
+          <div style={{ background: "white", padding: "40px", borderRadius: 16, boxShadow: "0 10px 40px rgba(0,0,0,0.05)" }}>
+            <h3 style={{ fontSize: 24, fontWeight: 700, color: C.text, marginBottom: 20 }}>Enquiry Form</h3>
+            <form style={{ display: "flex", flexDirection: "column", gap: 20 }} onSubmit={e => e.preventDefault()}>
+              <input type="text" placeholder="Your Name" style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif" }} />
+              <input type="email" placeholder="Email Address" style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif" }} />
+              <input type="tel" placeholder="Phone Number" style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif" }} />
+              <select style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif", color: C.muted }}>
+                <option>DM (Demineralized) Water</option>
+                <option>Distilled Water</option>
+                <option>DI Water</option>
+                <option>Battery Water</option>
+                <option>R.O. Water</option>
+                <option>Soft Water</option>
+                <option>RAW Water</option>
+                <option>Other Enquiry</option>
+              </select>
+              <textarea placeholder="Write your requirement here..." rows="5" style={{ padding: "14px 18px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 14, fontFamily: "'Poppins', sans-serif", resize: "vertical" }} />
+              <button className="btn-blue" style={{ fontSize: 16, padding: "16px", marginTop: 10 }}>Submit Enquiry</button>
+            </form>
+          </div>
+          <div>
+            <div className="sec-tag">Enquiry</div>
+            <h2 className="sec-h2">Have a Requirement? <span>Send Enquiry</span></h2>
+            <p style={{ fontSize: 16, color: C.muted, lineHeight: 1.8, marginBottom: 30 }}>
+              Bulk orders, custom requirements या price quotes के लिए enquiry form भरें। हमारी team जल्द ही आपको आपके requirement के मुताबिक best price के साथ respond करेगी।
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              {["DM Water", "Distilled Water", "DI Water", "Battery Water", "RO Water", "Soft Water", "RAW Water"].map(w => (
+                <div key={w} style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 14, color: C.text, background: "white", padding: "14px 18px", borderRadius: 10, border: `1.5px solid ${C.border}` }}>
+                  <div style={{ width: 30, height: 30, borderRadius: "50%", background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, color: C.blue, flexShrink: 0 }}>💧</div>
+                  {w}
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -660,14 +704,14 @@ export default function App() {
               </p>
               <div style={{ fontSize: 13, display: "flex", flexDirection: "column", gap: 8 }}>
                 <span>📍 Village-Basai, Barauddin Nagar, Sector-70 Noida, UP – 201308</span>
-                <span>📞 +91 99999 XXXXX</span>
+                <span>📞 +91 9811036674</span>
                 <span>✉ info@vikkuwater.in</span>
               </div>
             </div>
             {/* Services */}
             <div className="footer-links">
               <h4 style={{ fontSize: 15, fontWeight: 700, color: "white", marginBottom: 20 }}>Services</h4>
-              {["DM Water Supply","Battery Water","Distilled Water","RO Water","Soft Water","Raw Water","Boiler Chemicals"].map(s => (
+              {["DM Water","Distilled Water","DI Water","Battery Water","RO Water","Soft Water","RAW Water"].map(s => (
                 <div key={s} style={{ fontSize: 13, marginBottom: 10, cursor: "pointer", transition: "color 0.2s" }}
                   onMouseEnter={e => e.target.style.color = "#7ec8f7"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.75)"}>{s}</div>
               ))}
@@ -698,14 +742,18 @@ export default function App() {
               </div>
               <div>
                 <div style={{ fontSize: 13, color: "white", marginBottom: 12, fontWeight: 600 }}>📞 Office Number</div>
-                <div style={{ fontSize: 15, fontWeight: 700, color: "#7ec8f7" }}>+91 99999 XXXXX</div>
-                <div style={{ fontSize: 12, marginTop: 4 }}>Mon–Sat, 8am – 7pm</div>
+                <div style={{ fontSize: 15, fontWeight: 700, color: "#7ec8f7" }}>+91 9811036674</div>
+                <div style={{ fontSize: 12, marginTop: 4, marginBottom: 18 }}>Mon–Sat, 8am – 7pm</div>
+                <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 18px", background: "#25D366", color: "white", borderRadius: 6, fontSize: 13, fontWeight: 600, textDecoration: "none", cursor: "pointer" }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  WhatsApp Support
+                </a>
               </div>
             </div>
           </div>
           {/* Bottom bar */}
           <div style={{ padding: "22px 0", display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 12, color: "rgba(255,255,255,0.4)" }}>
-            <span>© 2024 Vikku Water Supplier. All Rights Reserved. | Proprietor: Ashok Kumar</span>
+            <span>© 2024 Vikku Water Supplier. All Rights Reserved. | Proprietor: Ashok Kumar | Developed by Deepanshu Singh</span>
             <div style={{ display: "flex", gap: 12 }}>
               {["f","t","in","yt"].map(s => (
                 <div key={s} style={{ width: 30, height: 30, borderRadius: "50%", background: "rgba(255,255,255,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, cursor: "pointer", transition: "background 0.2s" }}
@@ -715,6 +763,14 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* ─── FLOATING WHATSAPP BUTTON ─── */}
+      <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" aria-label="WhatsApp Support"
+        style={{ position: "fixed", bottom: 24, right: 24, zIndex: 2000, width: 60, height: 60, borderRadius: "50%", background: "#25D366", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 6px 20px rgba(37,211,102,0.45)", cursor: "pointer", transition: "transform 0.2s", textDecoration: "none" }}
+        onMouseEnter={e => e.currentTarget.style.transform = "scale(1.1)"}
+        onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
     </div>
   );
 }
