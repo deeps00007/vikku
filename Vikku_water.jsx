@@ -565,7 +565,8 @@ export default function App() {
               </div>
             ))}
           </div>
-          {/* Detailed water info */}
+          {/* Detailed water info – only on Water We Supply page */}
+          {currentPage === "#products" && (
           <div style={{ marginTop: 60 }}>
             {WATER_DETAILS.map((w, i) => (
               <div key={w.name} className="reveal" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 28, alignItems: "center", background: "white", borderRadius: 16, border: `1.5px solid ${C.border}`, padding: "clamp(20px, 4vw, 36px)", marginBottom: 24, flexDirection: i % 2 ? "row-reverse" : "row" }}>
@@ -585,28 +586,7 @@ export default function App() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-      )}
-
-      {/* ─── VIDEO / TRUST BANNER ─── */}
-      {(currentPage === "#home" || currentPage === "" || currentPage === "#aboutus") && (
-      <section style={{ padding: "0 6%", background: C.white }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", padding: "60px 0 30px" }}>
-            <div className="sec-tag">Why We Are</div>
-            <h2 className="sec-h2">Bottled Water Industry में <span>Trusted Name</span></h2>
-          </div>
-          <div className="video-banner" style={{ position: "relative", borderRadius: 20, overflow: "hidden", height: 400, marginBottom: 0 }}>
-            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1400&q=80" alt="team"
-              style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.5)" }} />
-            <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to right, ${C.blue}88, transparent)` }} />
-            <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <div className="pulse-play" style={{ position: "absolute", width: 70, height: 70, borderRadius: "50%", background: "white", zIndex: 0 }} />
-              <div style={{ width: 70, height: 70, borderRadius: "50%", background: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, cursor: "pointer", boxShadow: "0 0 0 14px rgba(255,255,255,0.2)", transition: "transform 0.2s", zIndex: 1 }}
-                onMouseEnter={e => e.currentTarget.style.transform = "scale(1.1)"} onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}>▶</div>
-            </div>
-          </div>
+          )}
         </div>
       </section>
       )}
