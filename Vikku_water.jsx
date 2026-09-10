@@ -134,8 +134,8 @@ function NavBar() {
       {/* Top bar */}
       <div className="top-bar" style={{ background: C.blue, padding: "6px 6%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <div style={{ display: "flex", gap: 24, fontSize: 12, color: "rgba(255,255,255,0.9)", cursor: "pointer" }} onClick={() => window.location.hash = ""}>
-          <span>📍 Village-Basai, Sector-70, Noida – 201308</span>
-          <span>✉ info@vikkuwater.in</span>
+          <span>📍 Vill.-Basai, Sector-70, Noida (U.P.)</span>
+          <span>✉ vikkuwatersupplier@gmail.com</span>
           <span>📞 +91 9811036674</span>
         </div>
       </div>
@@ -607,32 +607,30 @@ export default function App() {
           <div>
             <div className="sec-tag">Get In Touch</div>
             <h2 className="sec-h2">हमसे <span>संपर्क</span> करें</h2>
-            <p style={{ fontSize: 16, color: C.muted, lineHeight: 1.8, marginBottom: 30 }}>
+            <p style={{ fontSize: 16, color: C.muted, lineHeight: 1.8, marginBottom: 24 }}>
               Water supply queries, bulk orders, या quality testing के लिए नीचे दिए गए तरीकों से हमसे संपर्क कर सकते हैं। हमारी team जल्द ही आपको respond करेगी।
             </p>
-            <div style={{ display: "flex",flexDirection: "column", gap: 30 }}>
-              <div style={{ display: "flex", gap: 16 }}>
-                <div style={{ width: 50, height: 50, borderRadius: "50%", background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, color: C.blue, flexShrink: 0 }}>📍</div>
-                <div>
-                  <h4 style={{ fontSize: 16, fontWeight: 700, color: C.text, marginBottom: 6 }}>Our Office Address</h4>
-                  <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6 }}>Village-Basai, Barauddin Nagar,<br/>Sector-70 Noida, UP – 201308</p>
+            {[
+              { site: "Site 1", addr: "Vill. - Basai, Sector - 70, Noida (U.P.)", phone: "+91 - 9811036674", tel: "+919811036674", map: "https://maps.google.com/maps?q=Village+Basai,+Sector+70,+Noida,+Uttar+Pradesh&t=&z=14&ie=UTF8&iwloc=&output=embed" },
+              { site: "Site 2", addr: "Udyog Kendra 1, Ecotech III, Near Habibpur, Greater Noida (U.P.)", phone: "+91 - 9911096674", tel: "+919911096674", map: "https://maps.google.com/maps?q=Udyog+Kendra+1,+Ecotech+III,+Greater+Noida,+Uttar+Pradesh&t=&z=14&ie=UTF8&iwloc=&output=embed" },
+            ].map(o => (
+              <div key={o.site} style={{ background: "white", borderRadius: 14, border: `1.5px solid ${C.border}`, padding: 20, marginBottom: 20 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
+                  <div style={{ width: 40, height: 40, borderRadius: "50%", background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, color: C.blue, flexShrink: 0 }}>📍</div>
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: 16, color: C.text }}>Vikku Water Supplier</div>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: C.blue }}>:: {o.site} ::</div>
+                  </div>
                 </div>
+                <div style={{ fontSize: 13, color: C.muted, lineHeight: 2, marginBottom: 14 }}>
+                  <div><strong style={{ color: C.text }}>Address :</strong> {o.addr}</div>
+                  <div><strong style={{ color: C.text }}>Mobile No. :</strong> <a href={`tel:${o.tel}`} style={{ color: C.blue, textDecoration: "none" }}>{o.phone}</a></div>
+                  <div><strong style={{ color: C.text }}>Email :</strong> <a href="mailto:vikkuwatersupplier@gmail.com" style={{ color: C.blue, textDecoration: "none" }}>vikkuwatersupplier@gmail.com</a></div>
+                  <div><strong style={{ color: C.text }}>Website :</strong> www.vikkuwatersupplier.com</div>
+                </div>
+                <iframe src={o.map} title={`${o.site} Map`} style={{ width: "100%", height: 220, border: 0, borderRadius: 10 }} loading="lazy" />
               </div>
-              <a href="tel:+919811036674" style={{ display: "flex", gap: 16, textDecoration: "none", color: "inherit" }}>
-                <div style={{ width: 50, height: 50, borderRadius: "50%", background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, color: C.blue, flexShrink: 0 }}>📞</div>
-                <div>
-                  <h4 style={{ fontSize: 16, fontWeight: 700, color: C.text, marginBottom: 6 }}>Call Us</h4>
-                  <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6 }}>+91 9811036674<br/>Mon-Sat: 8am - 7pm</p>
-                </div>
-              </a>
-              <a href="mailto:info@vikkuwater.in" style={{ display: "flex", gap: 16, textDecoration: "none", color: "inherit" }}>
-                <div style={{ width: 50, height: 50, borderRadius: "50%", background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, color: C.blue, flexShrink: 0 }}>✉</div>
-                <div>
-                  <h4 style={{ fontSize: 16, fontWeight: 700, color: C.text, marginBottom: 6 }}>Email Us</h4>
-                  <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6 }}>info@vikkuwater.in<br/>sales@vikkuwater.in</p>
-                </div>
-              </a>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -694,9 +692,11 @@ export default function App() {
                 Noida, UP में industrial water supply का trusted naam। 2001 से GST-verified, quality-assured service।
               </p>
               <div style={{ fontSize: 12, display: "flex", flexDirection: "column", gap: 6 }}>
-                <span>📍 Village-Basai, Sector-70 Noida, UP – 201308</span>
-                <span>📞 +91 9811036674</span>
-                <span>✉ info@vikkuwater.in</span>
+                <span>📍 <strong>Site 1:</strong> Vill.-Basai, Sector-70, Noida (U.P.)</span>
+                <span>📍 <strong>Site 2:</strong> Udyog Kendra 1, Ecotech III, Near Habibpur, Greater Noida (U.P.)</span>
+                <a href="tel:+919811036674" style={{ color: "rgba(255,255,255,0.75)", textDecoration: "none" }}>📞 +91 9811036674</a>
+                <a href="tel:+919911096674" style={{ color: "rgba(255,255,255,0.75)", textDecoration: "none" }}>📞 +91 9911096674</a>
+                <a href="mailto:vikkuwatersupplier@gmail.com" style={{ color: "rgba(255,255,255,0.75)", textDecoration: "none" }}>✉ vikkuwatersupplier@gmail.com</a>
               </div>
             </div>
             {/* Quick Links */}
