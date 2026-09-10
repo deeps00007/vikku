@@ -49,7 +49,7 @@ const FEATURES = [
 const STATS = [
   { n: "5,000+", l: "Happy Clients" },
   { n: "8+", l: "Product Types" },
-  { n: "10+", l: "Years in Noida" },
+  { n: "20+", l: "Years Experience" },
   { n: "678", l: "Bulk Deliveries / Month" },
 ];
 
@@ -136,11 +136,7 @@ function NavBar() {
         <div style={{ display: "flex", gap: 24, fontSize: 12, color: "rgba(255,255,255,0.9)", cursor: "pointer" }} onClick={() => window.location.hash = ""}>
           <span>📍 Village-Basai, Sector-70, Noida – 201308</span>
           <span>✉ info@vikkuwater.in</span>
-        </div>
-        <div style={{ display: "flex", gap: 12 }}>
-          {["f", "t", "in", "yt"].map(s => (
-            <div key={s} style={{ width: 24, height: 24, borderRadius: "50%", background: "rgba(255,255,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, color: "white", cursor: "pointer" }}>{s}</div>
-          ))}
+          <span>📞 +91 9811036674</span>
         </div>
       </div>
       {/* Main nav */}
@@ -431,7 +427,7 @@ export default function App() {
           <div style={{ textAlign: "center", marginBottom: 56 }}>
             <div className="sec-tag">Why Choose Us</div>
             <h2 className="sec-h2">Noida का <span>विश्वसनीय</span> Water Supplier</h2>
-            <p style={{ fontSize: 15, color: C.muted, maxWidth: 640, margin: "0 auto", lineHeight: 1.8 }}>2017 से Gautam Budh Nagar में हर तरह के businesses को शुद्ध जल की reliable supply।</p>
+            <p style={{ fontSize: 15, color: C.muted, maxWidth: 640, margin: "0 auto", lineHeight: 1.8 }}>2001 से Noida, Greater Noida, Ghaziabad, Delhi NCR और Meerut में हर तरह के businesses को शुद्ध जल की reliable supply।</p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center", marginTop: 20 }}>
               {["Industries", "Business Units", "Builders", "Contractors", "Caterers"].map(a => (
                 <span key={a} style={{ fontSize: 13, fontWeight: 600, background: C.blueLight, color: C.blue, padding: "8px 16px", borderRadius: 30, border: `1.5px solid ${C.border}` }}>{a}</span>
@@ -486,7 +482,7 @@ export default function App() {
               Experienced &amp; Dedicated Water Experts
             </h2>
             <p style={{ fontSize: 14, color: "rgba(255,255,255,0.8)", lineHeight: 1.85, marginBottom: 28 }}>
-              Ashok Kumar के नेतृत्व में Vikku Water की team 2017 से NCR की industries को timely, pure water supply कर रही है। हर order personally monitored और quality-checked।
+              Ashok Kumar के नेतृत्व में Vikku Water की team 2001 से NCR की industries को timely, pure water supply कर रही है। हर order personally monitored और quality-checked।
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 28 }}>
               {["GST Registered Verified Business", "pH &amp; Conductivity Tested Every Batch", "Flexible Order Size: 5L से 10,000L तक"].map(f => (
@@ -740,7 +736,7 @@ export default function App() {
                 </div>
               </div>
               <p style={{ fontSize: 12, lineHeight: 1.8, maxWidth: 260, marginBottom: 14 }}>
-                Noida, UP में industrial water supply का trusted naam। 2017 से GST-verified, quality-assured service।
+                Noida, UP में industrial water supply का trusted naam। 2001 से GST-verified, quality-assured service।
               </p>
               <div style={{ fontSize: 12, display: "flex", flexDirection: "column", gap: 6 }}>
                 <span>📍 Village-Basai, Sector-70 Noida, UP – 201308</span>
