@@ -142,11 +142,7 @@ function NavBar() {
       {/* Main nav */}
       <div className="nav-bar-inner">
         <div className="nav-logo" style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }} onClick={() => go("")}>
-          <div className="nav-logo-icon" style={{ width: 44, height: 44, borderRadius: "50%", background: `linear-gradient(135deg, ${C.blue}, ${C.blueMid})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0 }}>💧</div>
-          <div className="nav-logo-text">
-            <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: 18, color: C.blue, lineHeight: 1 }}>Vikku</div>
-            <div style={{ fontSize: 10, color: C.muted, letterSpacing: 2, textTransform: "uppercase" }}>Water Supplier</div>
-          </div>
+          <img src="/logo.png" alt="Vikku Water Supplier" className="nav-logo-img" style={{ height: 48, width: "auto", objectFit: "contain", borderRadius: 6 }} />
         </div>
         <div className="nav-links">
           {links.map(([l, hash]) => (
@@ -300,9 +296,7 @@ export default function App() {
 
         @media (max-width: 640px) {
           .nav-bar-inner { height: 56px; padding: 0 4%; }
-          .nav-logo-icon { width: 36px !important; height: 36px !important; font-size: 18px !important; }
-          .nav-logo-text div:first-child { font-size: 15px !important; }
-          .nav-logo-text div:last-child { font-size: 8px !important; letter-spacing: 1px !important; }
+          .nav-logo-img { height: 38px !important; }
           .hero { padding-top: 72px !important; min-height: auto !important; }
           .hero-grid { padding: 24px 4% 40px; gap: 20px; }
           .hero h1 { font-size: 26px !important; line-height: 1.3 !important; }
@@ -386,10 +380,9 @@ export default function App() {
           {/* Hero images collage */}
           <div className="hero-img-wrap" style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative", gap: 12 }}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, maxWidth: 420 }}>
-              <img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=300&q=85" alt="Water bottles" style={{ width: "100%", height: 180, objectFit: "cover", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)" }} />
-              <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&q=85" alt="Water supply" style={{ width: "100%", height: 180, objectFit: "cover", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)" }} />
-              <img src="https://images.unsplash.com/photo-1564419320461-6b7c4d0d3b0e?w=300&q=85" alt="Pure water" style={{ width: "100%", height: 180, objectFit: "cover", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)" }} />
-              <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?w=300&q=85" alt="Water delivery" style={{ width: "100%", height: 180, objectFit: "cover", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)" }} />
+              <img src="/vikkuwaters.jpeg" alt="Vikku Water Tanker" style={{ width: "100%", height: 180, objectFit: "cover", objectPosition: "center 30%", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)" }} />
+              <img src="/vikkuwaters3.jpeg" alt="Vikku Water Supplier Tanker" style={{ width: "100%", height: 180, objectFit: "cover", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)" }} />
+              <img src="/vikkuwaters2.jpeg" alt="Vikku Water Fleet" style={{ width: "100%", height: 180, objectFit: "cover", objectPosition: "center 40%", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)", gridColumn: "1 / -1" }} />
             </div>
           </div>
         </div>
@@ -729,11 +722,7 @@ export default function App() {
             {/* Brand */}
             <div className="footer-brand">
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-                <div style={{ width: 38, height: 38, borderRadius: "50%", background: `linear-gradient(135deg,${C.blue},${C.blueMid})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>💧</div>
-                <div>
-                  <div style={{ fontWeight: 700, fontSize: 16, color: "white", lineHeight: 1 }}>Vikku Water</div>
-                  <div style={{ fontSize: 9, letterSpacing: 2, color: "rgba(255,255,255,0.5)", textTransform: "uppercase" }}>Supplier</div>
-                </div>
+                <img src="/logo.png" alt="Vikku Water Supplier" style={{ height: 52, width: "auto", objectFit: "contain", borderRadius: 6, background: "white", padding: 4 }} />
               </div>
               <p style={{ fontSize: 12, lineHeight: 1.8, maxWidth: 260, marginBottom: 14 }}>
                 Noida, UP में industrial water supply का trusted naam। 2001 से GST-verified, quality-assured service।
