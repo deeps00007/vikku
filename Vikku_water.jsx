@@ -675,8 +675,8 @@ export default function App() {
               Water supply queries, bulk orders, या quality testing के लिए नीचे दिए गए तरीकों से हमसे संपर्क कर सकते हैं। हमारी team जल्द ही आपको respond करेगी।
             </p>
             {[
-              { site: "Site 1", addr: "Vill. - Basai, Sector - 70, Noida (U.P.)", phone: "+91 - 9811036674", tel: "+919811036674", map: "https://maps.google.com/maps?q=Village+Basai,+Sector+70,+Noida,+Uttar+Pradesh&t=&z=14&ie=UTF8&iwloc=&output=embed" },
-              { site: "Site 2", addr: "Udyog Kendra 1, Ecotech III, Near Habibpur, Greater Noida (U.P.)", phone: "+91 - 9911096674", tel: "+919911096674", map: "https://maps.google.com/maps?q=Udyog+Kendra+1,+Ecotech+III,+Greater+Noida,+Uttar+Pradesh&t=&z=14&ie=UTF8&iwloc=&output=embed" },
+              { site: "Site 1", addr: "Vill. - Basai, Sector - 70, Noida (U.P.)", phone: "+91 - 9811036674", tel: "+919811036674", map: "https://maps.google.com/maps?q=28.5222018,77.40182545&z=16&output=embed", link: "https://share.google/vhLDHAppKaM0iTxdr" },
+              { site: "Site 2", addr: "Udyog Kendra 1, Ecotech III, Near Habibpur, Greater Noida (U.P.)", phone: "+91 - 9911096674", tel: "+919911096674", map: "https://maps.google.com/maps?q=28.4983598,77.51599555&z=16&output=embed", link: "https://share.google/NjstPcCcdpo1L2JyI" },
             ].map(o => (
               <div key={o.site} style={{ background: "white", borderRadius: 14, border: `1.5px solid ${C.border}`, padding: 20, marginBottom: 20 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
@@ -693,6 +693,7 @@ export default function App() {
                   <div><strong style={{ color: C.text }}>Website :</strong> www.vikkuwatersupplier.com</div>
                 </div>
                 <iframe src={o.map} title={`${o.site} Map`} style={{ width: "100%", height: 220, border: 0, borderRadius: 10 }} loading="lazy" />
+                <a href={o.link} target="_blank" rel="noreferrer" style={{ display: "inline-block", marginTop: 10, fontSize: 13, fontWeight: 600, color: C.blue, textDecoration: "none" }}>📍 View on Google Maps →</a>
               </div>
             ))}
           </div>
