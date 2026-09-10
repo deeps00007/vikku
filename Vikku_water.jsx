@@ -327,7 +327,11 @@ export default function App() {
           .hero-grid { padding: 24px 4% 40px; gap: 20px; }
           .hero h1 { font-size: 26px !important; line-height: 1.3 !important; }
           .hero-img { width: 180px !important; height: 180px !important; }
-          .hero-img-wrap { max-width: 240px; margin: 0 auto; }
+          .hero-img-wrap { max-width: 100%; margin: 0 auto; }
+          .hero-collage { grid-template-columns: 1fr !important; max-width: 340px !important; gap: 10px !important; }
+          .hero-collage-img { height: 150px !important; }
+          .hero-collage-wide { height: 120px !important; }
+          .video-banner { height: 220px !important; border-radius: 12px !important; }
           .hero-badge-left { bottom: 30px !important; left: 10px !important; padding: 8px 10px !important; }
           .hero-badge-right { top: 10px !important; right: 10px !important; padding: 8px 10px !important; }
           .hero-badge-right > div:first-child { font-size: 16px !important; }
@@ -405,10 +409,10 @@ export default function App() {
           </div>
           {/* Hero images collage */}
           <div className="hero-img-wrap" style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative", gap: 12 }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, maxWidth: 420 }}>
-              <img src="/vikkuwaters.jpeg" alt="Vikku Water Tanker" style={{ width: "100%", height: 180, objectFit: "cover", objectPosition: "center 30%", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)" }} />
-              <img src="/vikkuwaters3.jpeg" alt="Vikku Water Supplier Tanker" style={{ width: "100%", height: 180, objectFit: "cover", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)" }} />
-              <img src="/vikkuwaters2.jpeg" alt="Vikku Water Fleet" style={{ width: "100%", height: 180, objectFit: "cover", objectPosition: "center 40%", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)", gridColumn: "1 / -1" }} />
+            <div className="hero-collage" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, maxWidth: 420, width: "100%" }}>
+              <img src="/vikkuwaters.jpeg" alt="Vikku Water Tanker" className="hero-collage-img" style={{ width: "100%", height: 180, objectFit: "cover", objectPosition: "center 30%", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)" }} />
+              <img src="/vikkuwaters3.jpeg" alt="Vikku Water Supplier Tanker" className="hero-collage-img" style={{ width: "100%", height: 180, objectFit: "cover", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)" }} />
+              <img src="/vikkuwaters2.jpeg" alt="Vikku Water Fleet" className="hero-collage-img hero-collage-wide" style={{ width: "100%", height: 180, objectFit: "cover", objectPosition: "center 40%", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)", gridColumn: "1 / -1" }} />
             </div>
           </div>
         </div>
@@ -580,7 +584,7 @@ export default function App() {
             <div className="sec-tag">Why We Are</div>
             <h2 className="sec-h2">Bottled Water Industry में <span>Trusted Name</span></h2>
           </div>
-          <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", height: 400, marginBottom: 0 }}>
+          <div className="video-banner" style={{ position: "relative", borderRadius: 20, overflow: "hidden", height: 400, marginBottom: 0 }}>
             <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1400&q=80" alt="team"
               style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.5)" }} />
             <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to right, ${C.blue}88, transparent)` }} />
