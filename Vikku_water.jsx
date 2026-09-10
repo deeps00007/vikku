@@ -512,7 +512,7 @@ export default function App() {
             ].map((c, i) => (
               <div key={i} className="pcard reveal" style={{ borderRadius: 14, transitionDelay: `${i * 0.15}s` }}>
                 <div className="why-choose-img" style={{ overflow: "hidden", height: 200 }}>
-                  <img src={c.img} alt={c.title} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
+                  <img src={c.img} loading="lazy" decoding="async" alt={c.title} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
                     onMouseEnter={e => e.target.style.transform = "scale(1.07)"} onMouseLeave={e => e.target.style.transform = "scale(1)"} />
                 </div>
                 <div style={{ padding: "20px 18px" }}>
@@ -549,7 +549,7 @@ export default function App() {
             {PRODUCTS.map((p, i) => (
               <div key={i} className="pcard reveal" style={{ transitionDelay: `${i * 0.1}s` }}>
                 <div style={{ background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", height: 200, overflow: "hidden" }}>
-                  <img src={p.img} alt={`${p.name} Tanker & Can Supplier in Noida, Greater Noida, Ghaziabad, East Delhi`} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
+                  <img src={p.img} loading="lazy" decoding="async" alt={`${p.name} Tanker & Can Supplier in Noida, Greater Noida, Ghaziabad, East Delhi`} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
                     onMouseEnter={e => e.target.style.transform = "scale(1.08)"} onMouseLeave={e => e.target.style.transform = "scale(1)"} />
                 </div>
                 <div style={{ padding: "20px" }}>
@@ -574,7 +574,7 @@ export default function App() {
             {WATER_DETAILS.map((w, i) => (
               <div key={w.name} className="reveal" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 28, alignItems: "center", background: "white", borderRadius: 16, border: `1.5px solid ${C.border}`, padding: "clamp(20px, 4vw, 36px)", marginBottom: 24, flexDirection: i % 2 ? "row-reverse" : "row" }}>
                 <div style={{ order: i % 2 ? 2 : 1 }}>
-                  <img src={w.img} alt={`${w.name} supplier in Noida, Greater Noida, Ghaziabad, East Delhi - tanker & can delivery`} style={{ width: "100%", height: 220, objectFit: "cover", borderRadius: 12 }} />
+                  <img src={w.img} loading="lazy" decoding="async" alt={`${w.name} supplier in Noida, Greater Noida, Ghaziabad, East Delhi - tanker & can delivery`} style={{ width: "100%", height: 220, objectFit: "cover", borderRadius: 12 }} />
                 </div>
                 <div style={{ order: i % 2 ? 1 : 2 }}>
                   <h3 style={{ fontSize: 20, fontWeight: 700, color: C.blue, marginBottom: 12 }}>{w.name}</h3>
