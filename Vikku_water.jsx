@@ -328,9 +328,13 @@ export default function App() {
           .hero h1 { font-size: 26px !important; line-height: 1.3 !important; }
           .hero-img { width: 180px !important; height: 180px !important; }
           .hero-img-wrap { max-width: 100%; margin: 0 auto; }
-          .hero-collage { grid-template-columns: 1fr !important; max-width: 340px !important; gap: 10px !important; }
-          .hero-collage-img { height: 150px !important; }
-          .hero-collage-wide { height: 120px !important; }
+          .hero-collage { max-width: 320px !important; margin-bottom: 20px !important; }
+          .hero-collage-main { height: 210px !important; border-radius: 16px !important; }
+          .hero-collage-float1 { width: 95px !important; height: 95px !important; top: -14px !important; left: -8px !important; border-radius: 12px !important; }
+          .hero-collage-float2 { width: 88px !important; height: 88px !important; bottom: -12px !important; right: -8px !important; }
+          .hero-collage-badge { padding: 7px 12px !important; }
+          .hero-collage-badge div:first-child { font-size: 16px !important; }
+          .hero-collage-ring { width: 100px !important; height: 100px !important; top: -20px !important; right: -14px !important; }
           .video-banner { height: 220px !important; border-radius: 12px !important; }
           .hero-badge-left { bottom: 30px !important; left: 10px !important; padding: 8px 10px !important; }
           .hero-badge-right { top: 10px !important; right: 10px !important; padding: 8px 10px !important; }
@@ -408,11 +412,24 @@ export default function App() {
             </div>
           </div>
           {/* Hero images collage */}
-          <div className="hero-img-wrap" style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative", gap: 12 }}>
-            <div className="hero-collage" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, maxWidth: 420, width: "100%" }}>
-              <img src="/vikkuwaters.jpeg" alt="Vikku Water Tanker" className="hero-collage-img" style={{ width: "100%", height: 180, objectFit: "cover", objectPosition: "center 30%", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)" }} />
-              <img src="/vikkuwaters3.jpeg" alt="Vikku Water Supplier Tanker" className="hero-collage-img" style={{ width: "100%", height: 180, objectFit: "cover", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)" }} />
-              <img src="/vikkuwaters2.jpeg" alt="Vikku Water Fleet" className="hero-collage-img hero-collage-wide" style={{ width: "100%", height: 180, objectFit: "cover", objectPosition: "center 40%", borderRadius: 12, border: "4px solid white", boxShadow: "0 10px 30px rgba(26,111,196,0.2)", gridColumn: "1 / -1" }} />
+          <div className="hero-img-wrap" style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
+            <div className="hero-collage" style={{ position: "relative", maxWidth: 460, width: "100%", marginBottom: 26 }}>
+              {/* Decorative spinning ring */}
+              <div className="hero-collage-ring" style={{ position: "absolute", top: -34, right: -26, width: 150, height: 150, borderRadius: "50%", border: `2px dashed ${C.blue}45`, animation: "spin 25s linear infinite", zIndex: 0 }} />
+              {/* Main fleet image */}
+              <img src="/vikkuwaters2.jpeg" alt="Vikku Water Fleet" className="hero-collage-main"
+                style={{ width: "100%", height: 310, objectFit: "cover", objectPosition: "center 45%", borderRadius: 20, border: "6px solid white", boxShadow: "0 24px 60px rgba(26,111,196,0.28)", display: "block", position: "relative", zIndex: 1 }} />
+              {/* Floating image – red tanker */}
+              <img src="/vikkuwaters.jpeg" alt="Vikku Water Tanker" className="hero-collage-float1"
+                style={{ position: "absolute", top: -26, left: -22, width: 155, height: 155, objectFit: "cover", objectPosition: "center 30%", borderRadius: 16, border: "5px solid white", boxShadow: "0 16px 40px rgba(26,111,196,0.32)", transform: "rotate(-4deg)", zIndex: 2 }} />
+              {/* Floating image – orange tanker (circular) */}
+              <img src="/vikkuwaters3.jpeg" alt="Vikku Water Supplier Tanker" className="hero-collage-float2"
+                style={{ position: "absolute", bottom: -20, right: -16, width: 145, height: 145, objectFit: "cover", borderRadius: "50%", border: "5px solid white", boxShadow: "0 16px 40px rgba(26,111,196,0.32)", zIndex: 2 }} />
+              {/* Years badge */}
+              <div className="hero-collage-badge" style={{ position: "absolute", top: 14, right: 14, background: C.blue, color: "white", borderRadius: 12, padding: "10px 16px", boxShadow: "0 10px 24px rgba(26,111,196,0.45)", textAlign: "center", zIndex: 3 }}>
+                <div style={{ fontSize: 20, fontWeight: 800, lineHeight: 1 }}>20+</div>
+                <div style={{ fontSize: 10, opacity: 0.9 }}>Years of Trust</div>
+              </div>
             </div>
           </div>
         </div>
