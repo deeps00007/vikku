@@ -131,7 +131,7 @@ function AnimatedNumber({ text }) {
   );
 }
 
-function NavBar() {
+function NavBar({ currentPage }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
@@ -147,6 +147,8 @@ function NavBar() {
     ["Contact Us", "#contact"],
     ["Enquiry", "#enquiry"],
   ];
+
+  const isActive = (hash) => (currentPage || "#home") === hash || (!currentPage && hash === "#home");
 
   const go = (hash) => {
     setMenuOpen(false);
@@ -170,8 +172,8 @@ function NavBar() {
         </div>
         <div className="nav-links">
           {links.map(([l, hash]) => (
-            <div key={l} onClick={() => go(hash)} style={{ fontSize: 14, fontWeight: 500, color: C.text, textDecoration: "none", transition: "color 0.2s", fontFamily: "'Poppins', sans-serif", cursor: "pointer" }}
-              onMouseEnter={e => e.target.style.color = C.blue} onMouseLeave={e => e.target.style.color = C.text}>{l}</div>
+            <div key={l} onClick={() => go(hash)} style={{ fontSize: 14, fontWeight: isActive(hash) ? 700 : 500, color: isActive(hash) ? C.blue : C.text, textDecoration: "none", transition: "color 0.2s", fontFamily: "'Poppins', sans-serif", cursor: "pointer", borderBottom: isActive(hash) ? `2px solid ${C.blue}` : "2px solid transparent", paddingBottom: 4 }}
+              onMouseEnter={e => e.target.style.color = C.blue} onMouseLeave={e => { if (!isActive(hash)) e.target.style.color = C.text; }}>{l}</div>
           ))}
         </div>
         <div className="nav-btn" style={{ display: "flex", gap: 10 }}>
@@ -198,9 +200,9 @@ function NavBar() {
       {menuOpen && (
         <div style={{ background: C.white, borderTop: `1px solid ${C.border}`, padding: "12px 5% 24px", display: "flex", flexDirection: "column", gap: 4, boxShadow: "0 24px 48px rgba(0,0,0,0.12)" }}>
           {links.map(([l, hash]) => (
-            <div key={l} onClick={() => go(hash)} style={{ padding: "14px 8px", fontSize: 16, fontWeight: 500, color: C.text, cursor: "pointer", borderBottom: `1px solid ${C.border}`, transition: "all 0.2s" }}
-              onMouseEnter={e => { e.target.style.color = C.blue; e.target.style.paddingLeft = "12px"; }} 
-              onMouseLeave={e => { e.target.style.color = C.text; e.target.style.paddingLeft = "8px"; }}>{l}</div>
+            <div key={l} onClick={() => go(hash)} style={{ padding: "14px 8px", fontSize: 16, fontWeight: isActive(hash) ? 700 : 500, color: isActive(hash) ? C.blue : C.text, cursor: "pointer", borderBottom: `1px solid ${C.border}`, transition: "all 0.2s", background: isActive(hash) ? C.blueLight : "transparent", borderRadius: isActive(hash) ? 8 : 0 }}
+              onMouseEnter={e => { e.target.style.color = C.blue; e.target.style.paddingLeft = "12px"; }}
+              onMouseLeave={e => { if (!isActive(hash)) e.target.style.color = C.text; e.target.style.paddingLeft = "8px"; }}>{l}</div>
           ))}
           <button className="btn-blue" style={{ marginTop: 16, width: "100%", fontSize: 15, padding: "14px 20px" }} onClick={() => go("#enquiry")}>Get A Quote</button>
         </div>
@@ -355,7 +357,7 @@ export default function App() {
         }
       `}</style>
 
-      <NavBar />
+      <NavBar currentPage={currentPage} />
 
       {currentPage !== "#home" && currentPage !== "" && (
         <section className="page-hero" style={{ paddingTop: 160, paddingBottom: 80, background: `linear-gradient(135deg, ${C.blueDark} 0%, ${C.blue} 100%)`, textAlign: "center", color: "white" }}>
@@ -665,23 +667,7 @@ export default function App() {
       {/* ─── DEDICATED CONTACT PAGE FORM ─── */}
       {(currentPage === "#contact") && (
       <section style={{ padding: "clamp(52px, 8vw, 90px) 6%", background: C.bg }}>
-        <div className="grid-2-col" style={{ maxWidth: 1200, margin: "0 auto", gap: "clamp(24px, 4vw, 50px)", alignItems: "start" }}>
-          <div className="form-card" style={{ background: "white", padding: "40px", borderRadius: 16, boxShadow: "0 10px 40px rgba(0,0,0,0.05)" }}>
-            <h3 style={{ fontSize: 24, fontWeight: 700, color: C.text, marginBottom: 20 }}>Send a Message</h3>
-            <form style={{ display: "flex", flexDirection: "column", gap: 16 }} onSubmit={e => e.preventDefault()}>
-              <input type="text" placeholder="Your Name" style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif" }} />
-              <input type="email" placeholder="Email Address" style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif" }} />
-              <input type="tel" placeholder="Phone Number" style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif" }} />
-              <select style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif", color: C.muted }}>
-                <option>Interested in DM Water</option>
-                <option>Interested in RO Water</option>
-                <option>Interested in Battery Water</option>
-                <option>Other Enquiry</option>
-              </select>
-              <textarea placeholder="Write your message here..." rows="5" style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif", resize: "vertical" }} />
-              <button className="btn-blue" style={{ fontSize: 15, padding: "14px", marginTop: 8 }}>Submit Request</button>
-            </form>
-          </div>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <div>
             <div className="sec-tag">Get In Touch</div>
             <h2 className="sec-h2">हमसे <span>संपर्क</span> करें</h2>
