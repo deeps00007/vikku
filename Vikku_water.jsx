@@ -754,7 +754,7 @@ export default function App() {
                 <img src="/logo.png" alt="Vikku Water Supplier" style={{ height: 52, width: "auto", objectFit: "contain", borderRadius: 6, background: "white", padding: 4 }} />
               </div>
               <p style={{ fontSize: 12, lineHeight: 1.8, maxWidth: 260, marginBottom: 14 }}>
-                Trusted water tanker & can supplier in Noida, Greater Noida, Ghaziabad & East Delhi। 2001 से GST-verified, quality-assured service।
+                Trusted water tanker & can supplier in Noida, Greater Noida, Ghaziabad & East Delhi। <em>Giving quality-assured service since 2001.</em>
               </p>
               <div style={{ fontSize: 12, display: "flex", flexDirection: "column", gap: 6 }}>
                 <span>📍 <strong>Site 1:</strong> Vill.-Basai, Sector-70, Noida (U.P.)</span>
