@@ -457,40 +457,6 @@ export default function App() {
       </section>
       )}
 
-      {/* ─── EXPERIENCED WORKERS BANNER ─── */}
-      {(currentPage === "#home" || currentPage === "" || currentPage === "#aboutus" || currentPage === "#services") && (
-      <section style={{ background: C.blueLight, padding: "0 6%", position: "relative", overflow: "hidden" }}>
-        <div className="grid-2-col" style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ position: "relative" }}>
-            <img src="https://images.unsplash.com/photo-1581093458791-9d15482442f5?w=700&q=80" alt="worker"
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", maxHeight: 340, display: "block" }} />
-            <div style={{ position: "absolute", bottom: 20, left: 20, background: C.blue, borderRadius: 10, padding: "12px 20px", color: "white" }}>
-              <div style={{ fontSize: 24, fontWeight: 800 }}><AnimatedNumber text="5,000+" /></div>
-              <div style={{ fontSize: 12, opacity: 0.9 }}>Satisfied Clients</div>
-            </div>
-          </div>
-          <div className="team-panel" style={{ background: C.blue, padding: "52px 48px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-            <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: 2, color: "rgba(255,255,255,0.7)", textTransform: "uppercase", marginBottom: 14 }}>Our Team</div>
-            <h2 style={{ fontSize: "clamp(24px,3vw,36px)", fontWeight: 700, color: "white", lineHeight: 1.25, marginBottom: 20 }}>
-              Experienced &amp; Dedicated Water Experts
-            </h2>
-            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.8)", lineHeight: 1.85, marginBottom: 28 }}>
-              Ashok Kumar के नेतृत्व में Vikku Water की team 2001 से NCR की industries को timely, pure water supply कर रही है। हर order personally monitored और quality-checked।
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 28 }}>
-              {["GST Registered Verified Business", "pH &amp; Conductivity Tested Every Batch", "Flexible Order Size: 5L से 10,000L तक"].map(f => (
-                <div key={f} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: "rgba(255,255,255,0.9)" }}>
-                  <div style={{ width: 20, height: 20, borderRadius: "50%", background: "rgba(255,255,255,0.25)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, flexShrink: 0 }}>✓</div>
-                  <span dangerouslySetInnerHTML={{ __html: f }} />
-                </div>
-              ))}
-            </div>
-            <button className="btn-blue" style={{ alignSelf: "flex-start", background: "white", color: C.blue }}>Read More</button>
-          </div>
-        </div>
-      </section>
-      )}
-
       {/* ─── PRODUCTS ─── */}
       {(currentPage === "#home" || currentPage === "" || currentPage === "#products" || currentPage === "#services") && (
       <section id="products" style={{ padding: "clamp(52px, 8vw, 90px) 6%", background: "#f7fbff" }}>
