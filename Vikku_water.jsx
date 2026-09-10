@@ -537,7 +537,7 @@ export default function App() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div className="sec-tag">Our Products</div>
-            <h2 className="sec-h2">हम जो <span>Bottles & Cans</span> Deliver करते हैं</h2>
+            <h2 className="sec-h2">हम जो <span>Cans & Tankers</span> में Water Supply करते हैं</h2>
             <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.9, maxWidth: 900, margin: "16px auto 0" }}>
               Founded in 2001, "Vikku Water Supplier" is a prominent and widely renowned Water Supplier of DM (Demineralized) Water, Distilled Water, Battery Water, Soft Water, R.O. Water, DI Water & RAW Water in Noida & Greater Noida as well as other nearby places such as Ghaziabad, Sahibabad, Mohan Nagar, Anand Vihar, Delhi NCR & Meerut. We supply Water to various Industries, Business Units, Builders, Contractors, Caterers etc.
             </p>
