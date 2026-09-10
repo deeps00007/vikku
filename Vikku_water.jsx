@@ -368,7 +368,7 @@ export default function App() {
           <h1 style={{ fontSize: "clamp(32px, 5vw, 54px)", fontWeight: 800, marginBottom: 12 }}>
             {currentPage === "#aboutus" ? "About Us" : currentPage === "#products" ? "Water We Supply" : currentPage === "#contact" ? "Contact Us" : currentPage === "#enquiry" ? "Enquiry" : "Page"}
           </h1>
-          <p style={{ fontSize: 16, opacity: 0.85, maxWidth: 600, margin: "0 auto" }}>Noida's Premium DM and RO Water Supplier</p>
+          <p style={{ fontSize: 16, opacity: 0.85, maxWidth: 700, margin: "0 auto" }}>Premium Water Tanker & Can Supplier — DM Water, Distilled Water, Battery Water, RO Water, DI Water, Soft Water & RAW Water in Noida, Greater Noida, Ghaziabad & East Delhi</p>
         </section>
       )}
 
@@ -386,12 +386,15 @@ export default function App() {
 
         <div className="hero-grid">
           <div className="reveal">
-            <div className="sec-tag">शुद्ध जल · शुद्ध जीवन</div>
-            <h1 style={{ fontSize: "clamp(36px,5vw,62px)", fontWeight: 800, lineHeight: 1.1, color: C.text, marginBottom: 20 }}>
-              हर बूंद आपको <br /><span className="text-shimmer">ताज़ा और शुद्ध</span> रखेगी!
+            <div className="sec-tag">शुद्ध जल · शुद्ध जीवन · Since 2001</div>
+            <h1 style={{ fontSize: "clamp(30px,4.2vw,52px)", fontWeight: 800, lineHeight: 1.15, color: C.text, marginBottom: 14 }}>
+              No.1 <span className="text-shimmer">Water Tanker & Can</span> Supplier in Noida
             </h1>
+            <div style={{ fontSize: 13, fontWeight: 600, color: C.blue, letterSpacing: 0.5, marginBottom: 18 }}>
+              📍 Noida &nbsp;|&nbsp; Greater Noida &nbsp;|&nbsp; Ghaziabad &nbsp;|&nbsp; East Delhi &nbsp;|&nbsp; Delhi NCR
+            </div>
             <p style={{ fontSize: 15, color: C.muted, lineHeight: 1.8, marginBottom: 24, maxWidth: 520 }}>
-              Founded in 2001, <strong>Vikku Water Supplier</strong> is a prominent and widely renowned Water Supplier of DM (Demineralized) Water, Distilled Water, Battery Water, Soft Water, R.O. Water, DI Water & RAW Water in Noida, Greater Noida, Ghaziabad, Delhi NCR & Meerut. We supply water to various Industries, Business Units, Builders, Contractors, Caterers etc.
+              Founded in 2001, <strong>Vikku Water Supplier</strong> is the most trusted <strong>Water Tanker & Can Supplier</strong> of DM (Demineralized) Water, Distilled Water, Battery Water, Soft Water, R.O. Water, DI Water & RAW Water in Noida, Greater Noida, Ghaziabad & East Delhi. Bulk water supply by tanker and can for Industries, Business Units, Builders, Contractors & Caterers.
             </p>
             <div className="hero-cta" style={{ display: "flex", gap: 14, flexWrap: "wrap", marginBottom: 32 }}>
               <button className="btn-blue">Get A Quote</button>
@@ -413,13 +416,13 @@ export default function App() {
               {/* Decorative spinning ring */}
               <div className="hero-collage-ring" style={{ position: "absolute", top: -34, right: -26, width: 150, height: 150, borderRadius: "50%", border: `2px dashed ${C.blue}45`, animation: "spin 25s linear infinite", zIndex: 0 }} />
               {/* Main fleet image */}
-              <img src="/vikkuwaters2.jpeg" alt="Vikku Water Fleet" className="hero-collage-main"
+              <img src="/vikkuwaters2.jpeg" alt="Vikku Water Supplier tanker fleet in Noida, Greater Noida, Ghaziabad, East Delhi" className="hero-collage-main"
                 style={{ width: "100%", height: 310, objectFit: "cover", objectPosition: "center 45%", borderRadius: 20, border: "6px solid white", boxShadow: "0 24px 60px rgba(26,111,196,0.28)", display: "block", position: "relative", zIndex: 1 }} />
               {/* Floating image – red tanker */}
-              <img src="/vikkuwaters.jpeg" alt="Vikku Water Tanker" className="hero-collage-float1"
+              <img src="/vikkuwaters.jpeg" alt="Bulk water tanker supply in Noida by Vikku Water Supplier" className="hero-collage-float1"
                 style={{ position: "absolute", top: -26, left: -22, width: 155, height: 155, objectFit: "cover", objectPosition: "center 30%", borderRadius: 16, border: "5px solid white", boxShadow: "0 16px 40px rgba(26,111,196,0.32)", transform: "rotate(-4deg)", zIndex: 2 }} />
               {/* Floating image – orange tanker (circular) */}
-              <img src="/vikkuwaters3.jpeg" alt="Vikku Water Supplier Tanker" className="hero-collage-float2"
+              <img src="/vikkuwaters3.jpeg" alt="Vikku Water Supplier water tanker delivery Greater Noida" className="hero-collage-float2"
                 style={{ position: "absolute", bottom: -20, right: -16, width: 145, height: 145, objectFit: "cover", borderRadius: "50%", border: "5px solid white", boxShadow: "0 16px 40px rgba(26,111,196,0.32)", zIndex: 2 }} />
               {/* Years badge */}
               <div className="hero-collage-badge" style={{ position: "absolute", top: 14, right: 14, background: C.blue, color: "white", borderRadius: 12, padding: "10px 16px", boxShadow: "0 10px 24px rgba(26,111,196,0.45)", textAlign: "center", zIndex: 3 }}>
@@ -462,7 +465,7 @@ export default function App() {
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div className="reveal" style={{ marginBottom: 36 }}>
             <p style={{ fontSize: 15, color: C.muted, lineHeight: 2, marginBottom: 18 }}>
-              Founded in 2001, <strong style={{ color: C.text }}>"Vikku Water Supplier"</strong> is a prominent and widely renowned Water Supplier of DM (Demineralized) Water, Distilled Water, Battery Water, Soft Water, R.O. Water, DI Water & RAW Water in Noida & Greater Noida as well as other nearby places such as Ghaziabad, Sahibabad, Mohan Nagar, Anand Vihar, Delhi NCR & Meerut. We supply Water to various Industries, Business Units, Builders, Contractors, Caterers etc. With each passing year, we have achieved new milestones and have now been positioned as pioneers in terms of techno-managerial acumen and quality of water in the water supply domain.
+              Founded in 2001, <strong style={{ color: C.text }}>"Vikku Water Supplier"</strong> is a prominent and widely renowned <strong style={{ color: C.text }}>Water Tanker & Can Supplier</strong> of DM (Demineralized) Water, Distilled Water, Battery Water, Soft Water, R.O. Water, DI Water & RAW Water in Noida, Greater Noida, Ghaziabad & East Delhi as well as other nearby places such as Sahibabad, Mohan Nagar, Anand Vihar, Delhi NCR & Meerut. We supply Water by tanker and can to various Industries, Business Units, Builders, Contractors, Caterers etc. With each passing year, we have achieved new milestones and have now been positioned as pioneers in terms of techno-managerial acumen and quality of water in the water supply domain.
             </p>
             <p style={{ fontSize: 15, color: C.muted, lineHeight: 2, margin: 0 }}>
               Though a span of twenty years is not so long period in a water supplier's life but our relentless endeavour to prove ourselves trusts worthy in supplying quality DM (Demineralized) Water, Distilled Water, Battery Water, Soft Water, R.O. Water, DI Water & RAW Water, has made us synonymous in Noida, Greater Noida & Delhi NCR Region.
@@ -493,8 +496,8 @@ export default function App() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 56 }}>
             <div className="sec-tag">Why Choose Us</div>
-            <h2 className="sec-h2">Noida का <span>विश्वसनीय</span> Water Supplier</h2>
-            <p style={{ fontSize: 15, color: C.muted, maxWidth: 640, margin: "0 auto", lineHeight: 1.8 }}>2001 से Noida, Greater Noida, Ghaziabad, Delhi NCR और Meerut में हर तरह के businesses को शुद्ध जल की reliable supply।</p>
+            <h2 className="sec-h2">Trusted <span>Water Tanker & Can</span> Supplier in Noida</h2>
+            <p style={{ fontSize: 15, color: C.muted, maxWidth: 640, margin: "0 auto", lineHeight: 1.8 }}>2001 से Noida, Greater Noida, Ghaziabad, East Delhi, Delhi NCR और Meerut में हर तरह के businesses को tanker और can से शुद्ध जल की reliable supply।</p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center", marginTop: 20 }}>
               {["Industries", "Business Units", "Builders", "Contractors", "Caterers"].map(a => (
                 <span key={a} style={{ fontSize: 13, fontWeight: 600, background: C.blueLight, color: C.blue, padding: "8px 16px", borderRadius: 30, border: `1.5px solid ${C.border}` }}>{a}</span>
@@ -503,9 +506,9 @@ export default function App() {
           </div>
           <div className="grid-3-col">
             {[
-              { img: "/dm-demineralized-water-supplier.jpg", title: "Industrial Water Supply", desc: "DM, DI और distilled water boilers, batteries और chemical processes के लिए। 99% purity guarantee।" },
-              { img: "/distilled-water-supplier.jpg", title: "Laboratory Grade Quality", desc: "Lab-grade DI और distilled water जो सभी industrial standards को meet करता है। pH tested।" },
-              { img: "/ro-water-supplier.jpg", title: "Bulk RO Water Delivery", desc: "10,000 litre तक bulk RO water। समय पर delivery। Competitive industrial pricing।" },
+              { img: "/dm-demineralized-water-supplier.jpg", title: "Industrial Water Tanker Supply", desc: "DM, DI और distilled water tanker supply — boilers, batteries और chemical processes के लिए। 99% purity guarantee।" },
+              { img: "/distilled-water-supplier.jpg", title: "Lab-Grade Distilled & DI Water", desc: "Lab-grade DI और distilled water cans जो सभी industrial standards को meet करते हैं। pH tested।" },
+              { img: "/ro-water-supplier.jpg", title: "Bulk RO Water Tanker Delivery", desc: "10,000 litre तक bulk RO water tanker। Noida, Greater Noida, Ghaziabad में समय पर delivery।" },
             ].map((c, i) => (
               <div key={i} className="pcard reveal" style={{ borderRadius: 14, transitionDelay: `${i * 0.15}s` }}>
                 <div className="why-choose-img" style={{ overflow: "hidden", height: 200 }}>
@@ -537,16 +540,16 @@ export default function App() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div className="sec-tag">Our Products</div>
-            <h2 className="sec-h2">हम जो <span>Cans & Tankers</span> में Water Supply करते हैं</h2>
+            <h2 className="sec-h2">Water Supply by <span>Tanker & Can</span> in Noida, Greater Noida, Ghaziabad & East Delhi</h2>
             <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.9, maxWidth: 900, margin: "16px auto 0" }}>
-              Founded in 2001, "Vikku Water Supplier" is a prominent and widely renowned Water Supplier of DM (Demineralized) Water, Distilled Water, Battery Water, Soft Water, R.O. Water, DI Water & RAW Water in Noida & Greater Noida as well as other nearby places such as Ghaziabad, Sahibabad, Mohan Nagar, Anand Vihar, Delhi NCR & Meerut. We supply Water to various Industries, Business Units, Builders, Contractors, Caterers etc.
+              Founded in 2001, "Vikku Water Supplier" is a prominent and widely renowned <strong>Water Tanker & Can Supplier</strong> of DM (Demineralized) Water, Distilled Water, Battery Water, Soft Water, R.O. Water, DI Water & RAW Water in Noida, Greater Noida, Ghaziabad & East Delhi as well as other nearby places such as Sahibabad, Mohan Nagar, Anand Vihar, Delhi NCR & Meerut. We supply Water by tanker and can to various Industries, Business Units, Builders, Contractors, Caterers etc.
             </p>
           </div>
           <div className="grid-3-col" style={{ gap: 24 }}>
             {PRODUCTS.map((p, i) => (
               <div key={i} className="pcard reveal" style={{ transitionDelay: `${i * 0.1}s` }}>
                 <div style={{ background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", height: 200, overflow: "hidden" }}>
-                  <img src={p.img} alt={p.name} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
+                  <img src={p.img} alt={`${p.name} Tanker & Can Supplier in Noida, Greater Noida, Ghaziabad, East Delhi`} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
                     onMouseEnter={e => e.target.style.transform = "scale(1.08)"} onMouseLeave={e => e.target.style.transform = "scale(1)"} />
                 </div>
                 <div style={{ padding: "20px" }}>
@@ -571,7 +574,7 @@ export default function App() {
             {WATER_DETAILS.map((w, i) => (
               <div key={w.name} className="reveal" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 28, alignItems: "center", background: "white", borderRadius: 16, border: `1.5px solid ${C.border}`, padding: "clamp(20px, 4vw, 36px)", marginBottom: 24, flexDirection: i % 2 ? "row-reverse" : "row" }}>
                 <div style={{ order: i % 2 ? 2 : 1 }}>
-                  <img src={w.img} alt={w.name} style={{ width: "100%", height: 220, objectFit: "cover", borderRadius: 12 }} />
+                  <img src={w.img} alt={`${w.name} supplier in Noida, Greater Noida, Ghaziabad, East Delhi - tanker & can delivery`} style={{ width: "100%", height: 220, objectFit: "cover", borderRadius: 12 }} />
                 </div>
                 <div style={{ order: i % 2 ? 1 : 2 }}>
                   <h3 style={{ fontSize: 20, fontWeight: 700, color: C.blue, marginBottom: 12 }}>{w.name}</h3>
@@ -750,7 +753,7 @@ export default function App() {
                 <img src="/logo.png" alt="Vikku Water Supplier" style={{ height: 52, width: "auto", objectFit: "contain", borderRadius: 6, background: "white", padding: 4 }} />
               </div>
               <p style={{ fontSize: 12, lineHeight: 1.8, maxWidth: 260, marginBottom: 14 }}>
-                Noida, UP में industrial water supply का trusted naam। 2001 से GST-verified, quality-assured service।
+                Trusted water tanker & can supplier in Noida, Greater Noida, Ghaziabad & East Delhi। 2001 से GST-verified, quality-assured service।
               </p>
               <div style={{ fontSize: 12, display: "flex", flexDirection: "column", gap: 6 }}>
                 <span>📍 <strong>Site 1:</strong> Vill.-Basai, Sector-70, Noida (U.P.)</span>
