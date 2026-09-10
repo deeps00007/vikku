@@ -17,26 +17,26 @@ const C = {
 const WHATSAPP_URL = "https://api.whatsapp.com/send/?phone=919811036674&text&type=phone_number&app_absent=0";
 
 const PRODUCTS = [
-  { name: "DM (Demineralized) Water", img: "/dm-demineralized-water-supplier.jpg", 
-    desc: "Industrial Grade",
+  { name: "DM (Demineralized) Water", img: "/dm-demineralized-water-supplier.jpg",
+    desc: "Tanker & Can Delivery",
     details: ["Purity: 99%", "Usage: Industrial"] },
-  { name: "Distilled Water", img: "/distilled-water-supplier.jpg", 
-    desc: "Source: H2O",
+  { name: "Distilled Water", img: "/distilled-water-supplier.jpg",
+    desc: "Tanker & Can Delivery",
     details: ["Usage: Laboratory", "Boiling Point: 100°C"] },
-  { name: "DI Water", img: "/DI-deionized-water.jpg", 
-    desc: "Deionized Water",
+  { name: "DI Water", img: "/DI-deionized-water.jpg",
+    desc: "Tanker & Can Delivery",
     details: ["Conductivity: < 1.3", "Usage: Laboratory"] },
-  { name: "Battery Water", img: "/battery-water-supplier.jpg", 
-    desc: "Can Packaging",
+  { name: "Battery Water", img: "/battery-water-supplier.jpg",
+    desc: "Tanker & Can Delivery",
     details: ["Capacity: 20 L", "Usage: Battery / Inverter"] },
-  { name: "R.O. Water", img: "/ro-water-supplier.jpg", 
-    desc: "Reverse Osmosis Purification",
+  { name: "R.O. Water", img: "/ro-water-supplier.jpg",
+    desc: "Tanker & Can Delivery",
     details: ["Type: Filtered RO Water", "Purity: 99%"] },
-  { name: "Soft Water", img: "/soft-water-supplier.jpg", 
-    desc: "Softened Water",
+  { name: "Soft Water", img: "/soft-water-supplier.jpg",
+    desc: "Tanker & Can Delivery",
     details: ["Hardness: Low", "Usage: Industrial"] },
   { name: "RAW Water", img: "/raw-water-supplier.jpg",
-    desc: "Liquid State",
+    desc: "Tanker & Can Delivery",
     details: ["pH Value: 6.5-8.5", "Purity: 99%"] }
 ];
 
@@ -65,22 +65,22 @@ const WATER_DETAILS = [
 ];
 
 const FEATURES = [
-  { icon: "💧", title: "99% Purity Guaranteed", desc: "Every batch tested for pH, conductivity and bacterial count before dispatch." },
-  { icon: "🔬", title: "3-Stage Filtration", desc: "Sediment → Activated Carbon → RO/DM treatment for each water type." },
-  { icon: "🚫", title: "Chemical-Free", desc: "No harmful additives. Pure, safe water meeting industrial standards." },
+  { icon: "🚛", title: "Own Tanker Fleet", desc: "Fast water tanker delivery across Noida, Greater Noida, Ghaziabad & East Delhi with our own fleet." },
+  { icon: "💧", title: "99% Purity Guaranteed", desc: "Every tanker & can batch tested for pH, conductivity and bacterial count before dispatch." },
+  { icon: "🔬", title: "3-Stage Filtration", desc: "Sediment → Activated Carbon → RO/DM treatment for each water type we supply." },
 ];
 
 const STATS = [
   { n: "5,000+", l: "Happy Clients" },
   { n: "8+", l: "Product Types" },
   { n: "20+", l: "Years Experience" },
-  { n: "678", l: "Bulk Deliveries / Month" },
+  { n: "678", l: "Tanker Deliveries / Month" },
 ];
 
 const TESTIMONIALS = [
-  { name: "Rajesh Sharma", role: "Factory Owner, Noida", text: "Vikku Water has been our DM water supplier for 3 years. Delivery is always on time and quality is consistently excellent. Highly recommend!", avatar: "RS" },
-  { name: "Priya Mehta", role: "Lab Manager, Greater Noida", text: "We rely on Vikku for distilled and DI water for our laboratory. Their water meets all our purity requirements without fail.", avatar: "PM" },
-  { name: "Suresh Gupta", role: "Proprietor, Gurugram", text: "Best battery water supplier in NCR. Our inverters last longer since we switched to Vikku's distilled alkaline battery water.", avatar: "SG" },
+  { name: "Rajesh Sharma", role: "Factory Owner, Noida", text: "Vikku has been our DM water tanker supplier for 3 years. Tanker delivery is always on time and quality is consistently excellent. Highly recommend!", avatar: "RS" },
+  { name: "Priya Mehta", role: "Lab Manager, Greater Noida", text: "We rely on Vikku for distilled and DI water cans for our laboratory. Their water meets all our purity requirements without fail.", avatar: "PM" },
+  { name: "Suresh Gupta", role: "Proprietor, Gurugram", text: "Best battery water tanker supplier in NCR. Our inverters last longer since we switched to Vikku's distilled alkaline battery water.", avatar: "SG" },
 ];
 
 const BRANDS = ["AQUA PURE", "NOIDA IND.", "NCR WATER", "HI-PURE", "VIKKU CO."];
