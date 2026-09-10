@@ -35,9 +35,33 @@ const PRODUCTS = [
   { name: "Soft Water", img: "/soft-water-supplier.jpg", 
     desc: "Softened Water",
     details: ["Hardness: Low", "Usage: Industrial"] },
-  { name: "RAW Water", img: "/raw-water-supplier.jpg", 
+  { name: "RAW Water", img: "/raw-water-supplier.jpg",
     desc: "Liquid State",
     details: ["pH Value: 6.5-8.5", "Purity: 99%"] }
+];
+
+const WATER_DETAILS = [
+  { name: "DM (Demineralized) Water", img: "/dm-demineralized-water-supplier.jpg",
+    desc: "DM (Demineralized Water) is the water that is purified by using the technology to remove most of its mineral and salt ions such as Calcium, Chloride, Sulphate, Magnesium & Sodium. DM (Demineralized Water) is also known as demi water or deionised water. Demineralised water is generally considered different from distilled water.",
+    uses: "DM (Demineralized Water) is used for Industrial & Scientific purposes in Laboratory, Car Wash, Computer Chip Washing, Lead-acid batteries & Cooling Systems, Boiler Feed, Laser Cutting, Optimisation of Fuel Cells, Steam Irons & Steam Raising Applications, Pharmaceutical Manufacturing, Cosmetics, Aquariums & Fire extinguishers." },
+  { name: "Distilled Water", img: "/distilled-water-supplier.jpg",
+    desc: "Distilled Water is the water that is boiled into vapor and condensed back into liquid in a separate container. Impurities in the original water that do not boil below or near the boiling point of water remain in the original container. Thus, distilled water is a type of purified water.",
+    uses: "Distilled Water is used for steam irons, aquariums, watering plants, car cooling systems, laboratory experiments, certain medical devices etc." },
+  { name: "DI (Deionized) Water", img: "/DI-deionized-water.jpg",
+    desc: "Deionization (\"DI Water\") simply means the removal of ions. Ion exchange resins are used to exchange non desirable cations and anions with hydrogen and hydroxyl, respectively, forming pure water (H20), which is not an ion.",
+    uses: "Deionized (DI) water is commonly used in scientific applications where experiments using water can be counted on to be 100% pure, leading to more predictable and repeatable results. This type of water is also used in pharmaceutical applications for safety and consistency reasons." },
+  { name: "Battery Water", img: "/battery-water-supplier.jpg",
+    desc: "In lead-acid batteries, water purity can have a major effect on product performance. Water usage needs to be viewed as a priority for maximum performance. The popular misconception is that any type of water can be used. Natural waters may vary considerably in the amount of impurities they contain. So Battery Water plays a key role in the performance and life of a battery.",
+    uses: null },
+  { name: "R.O. Water", img: "/ro-water-supplier.jpg",
+    desc: "RO Water is produced through Reverse Osmosis (RO) which is a pressure-driven membrane process used for purification of water. In all pressure-driven membrane processes, water passes through the membranes more easily than the contaminants that are being removed. However, not all of the water supplied to an RO membrane passes through the membrane.",
+    uses: null },
+  { name: "Soft Water", img: "/soft-water-supplier.jpg",
+    desc: "Soft Water is the water that is free from dissolved salts of such metals as calcium, iron, or magnesium, which form insoluble deposits such as appear as scale in boilers or soap curds in bathtubs and laundry equipment.",
+    uses: null },
+  { name: "RAW Water", img: "/raw-water-supplier.jpg",
+    desc: "Raw Water is the water which is found in the environment that has not been treated and does not have any of its minerals, ions, particles, bacteria, or parasites removed. Raw water includes rainwater, ground water, water from infiltration wells, and water from bodies like lakes and rivers.",
+    uses: null },
 ];
 
 const FEATURES = [
@@ -413,6 +437,37 @@ export default function App() {
       </section>
       )}
 
+      {/* ─── ABOUT US CONTENT ─── */}
+      {currentPage === "#aboutus" && (
+      <section style={{ padding: "clamp(52px, 8vw, 90px) 6%", background: C.white }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+          <div className="reveal" style={{ marginBottom: 36 }}>
+            <p style={{ fontSize: 15, color: C.muted, lineHeight: 2, marginBottom: 18 }}>
+              Founded in 2001, <strong style={{ color: C.text }}>"Vikku Water Supplier"</strong> is a prominent and widely renowned Water Supplier of DM (Demineralized) Water, Distilled Water, Battery Water, Soft Water, R.O. Water, DI Water & RAW Water in Noida & Greater Noida as well as other nearby places such as Ghaziabad, Sahibabad, Mohan Nagar, Anand Vihar, Delhi NCR & Meerut. We supply Water to various Industries, Business Units, Builders, Contractors, Caterers etc. With each passing year, we have achieved new milestones and have now been positioned as pioneers in terms of techno-managerial acumen and quality of water in the water supply domain.
+            </p>
+            <p style={{ fontSize: 15, color: C.muted, lineHeight: 2, margin: 0 }}>
+              Though a span of twenty years is not so long period in a water supplier's life but our relentless endeavour to prove ourselves trusts worthy in supplying quality DM (Demineralized) Water, Distilled Water, Battery Water, Soft Water, R.O. Water, DI Water & RAW Water, has made us synonymous in Noida, Greater Noida & Delhi NCR Region.
+            </p>
+          </div>
+          {[
+            { title: "Infrastructure", text: "We are well-equipped with Most Modern Machines, Technolgies, Treatment Plants & Transportation Vehicles to deliver quality water to our customers with an efficient team of Supervisors, Technical Experts & Drivers. We have 2 Sites for producing quality Water in Noida & Greater Noida." },
+            { title: "Quality Assurance", text: "Starting right from the procurement of raw material till the final dispatch to the clients' place, we take stringent control of quality at every stage. This ensures our consciousness towards delivering flawless range of products to our customers. We value the time and prestige of our customers and thus we subject our products to various stringent norms so as to ensure their reliability." },
+            { title: "Our Water Range", text: "Since the inception, we were supplying Distilled Water. To further strengthen and expand our enterprise, motivated by its grand success; we have introduced another range such as DM (Demineralized) Water, Battery Water, Soft Water, R.O. Water, DI Water & RAW Water to bring out the latest strategies in the field of water supply in Noida, Greater Noida & Delhi NCR." },
+          ].map((b, i) => (
+            <div key={b.title} className="reveal" style={{ background: "#f7fbff", borderRadius: 14, border: `1.5px solid ${C.border}`, padding: "clamp(20px, 4vw, 32px)", marginBottom: 20, transitionDelay: `${i * 0.1}s` }}>
+              <h3 style={{ fontSize: 19, fontWeight: 700, color: C.blue, marginBottom: 10 }}>{b.title}</h3>
+              <p style={{ fontSize: 14, color: C.muted, lineHeight: 2, margin: 0 }}>{b.text}</p>
+            </div>
+          ))}
+          <div className="reveal" style={{ background: C.blueLight, borderRadius: 14, padding: "clamp(20px, 4vw, 32px)", border: `1.5px solid ${C.border}` }}>
+            <p style={{ fontSize: 14, color: C.text, lineHeight: 2, margin: 0 }}>
+              We have built up a sizeable customer base, many of whom are repeat customers who use us for their DM (Demineralized) Water, Distilled Water, Battery Water, Soft Water, R.O. Water, DI Water & RAW Water requirements every time the need arises.
+            </p>
+          </div>
+        </div>
+      </section>
+      )}
+
       {/* ─── WHY CHOOSE US ─── */}
       {(currentPage === "#home" || currentPage === "" || currentPage === "#aboutus") && (
       <section id="aboutus" style={{ padding: "clamp(52px, 8vw, 90px) 6%", background: C.white }}>
@@ -461,9 +516,12 @@ export default function App() {
       {(currentPage === "#home" || currentPage === "" || currentPage === "#products" || currentPage === "#services") && (
       <section id="products" style={{ padding: "clamp(52px, 8vw, 90px) 6%", background: "#f7fbff" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div className="sec-tag">Our Products</div>
             <h2 className="sec-h2">हम जो <span>Bottles & Cans</span> Deliver करते हैं</h2>
+            <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.9, maxWidth: 900, margin: "16px auto 0" }}>
+              Founded in 2001, "Vikku Water Supplier" is a prominent and widely renowned Water Supplier of DM (Demineralized) Water, Distilled Water, Battery Water, Soft Water, R.O. Water, DI Water & RAW Water in Noida & Greater Noida as well as other nearby places such as Ghaziabad, Sahibabad, Mohan Nagar, Anand Vihar, Delhi NCR & Meerut. We supply Water to various Industries, Business Units, Builders, Contractors, Caterers etc.
+            </p>
           </div>
           <div className="grid-3-col" style={{ gap: 24 }}>
             {PRODUCTS.map((p, i) => (
@@ -484,6 +542,26 @@ export default function App() {
                     <button className="btn-blue" style={{ flex: 1, borderRadius: 6, padding: "12px 8px", fontSize: 13, fontWeight: 600 }} onClick={() => window.open(WHATSAPP_URL, "_blank")}>Get Best Price</button>
                     <button className="btn-outline" style={{ flex: 1, borderRadius: 6, padding: "10px 8px", fontSize: 13, fontWeight: 600, border: `1.5px solid ${C.blue}` }} onClick={() => window.open(WHATSAPP_URL, "_blank")}>Contact</button>
                   </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* Detailed water info */}
+          <div style={{ marginTop: 60 }}>
+            {WATER_DETAILS.map((w, i) => (
+              <div key={w.name} className="reveal" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 28, alignItems: "center", background: "white", borderRadius: 16, border: `1.5px solid ${C.border}`, padding: "clamp(20px, 4vw, 36px)", marginBottom: 24, flexDirection: i % 2 ? "row-reverse" : "row" }}>
+                <div style={{ order: i % 2 ? 2 : 1 }}>
+                  <img src={w.img} alt={w.name} style={{ width: "100%", height: 220, objectFit: "cover", borderRadius: 12 }} />
+                </div>
+                <div style={{ order: i % 2 ? 1 : 2 }}>
+                  <h3 style={{ fontSize: 20, fontWeight: 700, color: C.blue, marginBottom: 12 }}>{w.name}</h3>
+                  <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.9, marginBottom: w.uses ? 14 : 0 }}>{w.desc}</p>
+                  {w.uses && (
+                    <>
+                      <div style={{ fontSize: 14, fontWeight: 700, color: C.text, marginBottom: 6 }}>Uses of {w.name} :</div>
+                      <p style={{ fontSize: 13, color: C.muted, lineHeight: 1.9, margin: 0 }}>{w.uses}</p>
+                    </>
+                  )}
                 </div>
               </div>
             ))}
