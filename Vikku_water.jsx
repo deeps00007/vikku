@@ -397,8 +397,8 @@ export default function App() {
               Founded in 2001, <strong>Vikku Water Supplier</strong> is the most trusted <strong>Water Tanker & Can Supplier</strong> of DM (Demineralized) Water, Distilled Water, Battery Water, Soft Water, R.O. Water, DI Water & RAW Water in Noida, Greater Noida, Ghaziabad & East Delhi. Bulk water supply by tanker and can for Industries, Business Units, Builders, Contractors & Caterers.
             </p>
             <div className="hero-cta" style={{ display: "flex", gap: 14, flexWrap: "wrap", marginBottom: 32 }}>
-              <button className="btn-blue">Get A Quote</button>
-              <button className="btn-outline">Read More</button>
+              <button className="btn-blue" onClick={() => window.location.hash = "#enquiry"}>Get A Quote</button>
+              <button className="btn-outline" onClick={() => window.location.hash = "#aboutus"}>Read More</button>
             </div>
             {/* Trust badges */}
             <div style={{ display: "flex", gap: 28, flexWrap: "wrap" }}>
@@ -707,11 +707,19 @@ export default function App() {
         <div className="grid-2-col" style={{ maxWidth: 1200, margin: "0 auto", gap: "clamp(24px, 4vw, 50px)", alignItems: "start" }}>
           <div className="form-card" style={{ background: "white", padding: "40px", borderRadius: 16, boxShadow: "0 10px 40px rgba(0,0,0,0.05)" }}>
             <h3 style={{ fontSize: 24, fontWeight: 700, color: C.text, marginBottom: 20 }}>Enquiry Form</h3>
-            <form style={{ display: "flex", flexDirection: "column", gap: 16 }} onSubmit={e => e.preventDefault()}>
-              <input type="text" placeholder="Your Name" style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif" }} />
-              <input type="email" placeholder="Email Address" style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif" }} />
-              <input type="tel" placeholder="Phone Number" style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif" }} />
-              <select style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif", color: C.muted }}>
+            <form style={{ display: "flex", flexDirection: "column", gap: 16 }} onSubmit={e => {
+              e.preventDefault();
+              const d = new FormData(e.target);
+              const name = d.get("name") || "";
+              const phone = d.get("phone") || "";
+              const type = d.get("type") || "";
+              const msg = d.get("message") || "";
+              const text = `New Enquiry%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AWater Type: ${encodeURIComponent(type)}%0AMessage: ${encodeURIComponent(msg)}`;
+              window.open(`https://wa.me/919811036674?text=${text}`, "_blank");
+            }}>
+              <input type="text" name="name" placeholder="Your Name" required style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif" }} />
+              <input type="tel" name="phone" placeholder="Phone Number" required style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif" }} />
+              <select name="type" style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif", color: C.muted }}>
                 <option>DM (Demineralized) Water</option>
                 <option>Distilled Water</option>
                 <option>DI Water</option>
@@ -721,7 +729,7 @@ export default function App() {
                 <option>RAW Water</option>
                 <option>Other Enquiry</option>
               </select>
-              <textarea placeholder="Write your requirement here..." rows="5" style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif", resize: "vertical" }} />
+              <textarea name="message" placeholder="Write your requirement here..." rows="5" style={{ padding: "13px 16px", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 15, fontFamily: "'Poppins', sans-serif", resize: "vertical" }} />
               <button className="btn-blue" style={{ fontSize: 15, padding: "14px", marginTop: 8 }}>Submit Enquiry</button>
             </form>
           </div>
