@@ -317,47 +317,67 @@ export default function App() {
         }
 
         @media (max-width: 640px) {
-          .nav-bar-inner { height: 56px; padding: 0 4%; }
-          .nav-logo-img { height: 38px !important; }
-          .hero { padding-top: 72px !important; min-height: auto !important; }
-          .hero-grid { padding: 24px 4% 40px; gap: 20px; }
-          .hero h1 { font-size: 26px !important; line-height: 1.3 !important; }
-          .hero-img { width: 180px !important; height: 180px !important; }
+          /* ── Compact, minimal mobile layout ── */
+          section:not(.hero):not(.page-hero):not(.marquee) {
+            padding-top: 30px !important;
+            padding-bottom: 30px !important;
+            padding-left: 4% !important;
+            padding-right: 4% !important;
+          }
+          .nav-bar-inner { height: 52px; padding: 0 4%; }
+          .nav-logo-img { height: 34px !important; }
+          .hero { padding-top: 66px !important; min-height: auto !important; }
+          .hero-grid { padding: 14px 4% 26px; gap: 16px; }
+          .hero h1 { font-size: 21px !important; line-height: 1.28 !important; margin-bottom: 10px !important; }
+          .hero p { font-size: 13px !important; line-height: 1.6 !important; margin-bottom: 16px !important; }
+          .hero-img { width: 150px !important; height: 150px !important; }
           .hero-img-wrap { max-width: 100%; margin: 0 auto; }
-          .hero-collage { max-width: 320px !important; margin-bottom: 20px !important; }
-          .hero-collage-main { height: 210px !important; border-radius: 16px !important; }
-          .hero-collage-float1 { width: 95px !important; height: 95px !important; top: -14px !important; left: -8px !important; border-radius: 12px !important; }
-          .hero-collage-float2 { width: 88px !important; height: 88px !important; bottom: -12px !important; right: -8px !important; }
-          .hero-collage-badge { padding: 7px 12px !important; }
-          .hero-collage-badge div:first-child { font-size: 16px !important; }
-          .hero-collage-ring { width: 100px !important; height: 100px !important; top: -20px !important; right: -14px !important; }
-          .video-banner { height: 220px !important; border-radius: 12px !important; }
-          .hero-badge-left { bottom: 30px !important; left: 10px !important; padding: 8px 10px !important; }
-          .hero-badge-right { top: 10px !important; right: 10px !important; padding: 8px 10px !important; }
-          .hero-badge-right > div:first-child { font-size: 16px !important; }
-          .page-hero { padding: 90px 4% 32px !important; }
-          .page-hero h1 { font-size: 26px !important; }
-          .sec-h2 { font-size: 22px; line-height: 1.3; }
-          .sec-tag { font-size: 11px; letter-spacing: 1px; }
-          .stat-num { font-size: 28px !important; }
-          .stat-cell { padding: 20px 12px !important; }
-          .team-panel { padding: 24px 18px !important; }
-          .form-card { padding: 20px 16px !important; }
-          .hero-cta { width: 100%; flex-direction: column; gap: 10px; }
-          .hero-cta .btn-blue, .hero-cta .btn-outline { width: 100%; text-align: center; padding: 12px 18px; }
-          .footer-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
+          .hero-collage { max-width: 280px !important; margin-bottom: 14px !important; }
+          .hero-collage-main { height: 170px !important; border-radius: 14px !important; border-width: 4px !important; }
+          .hero-collage-float1 { width: 78px !important; height: 78px !important; top: -10px !important; left: -6px !important; border-radius: 10px !important; border-width: 3px !important; }
+          .hero-collage-float2 { width: 72px !important; height: 72px !important; bottom: -8px !important; right: -6px !important; border-width: 3px !important; }
+          .hero-collage-badge { padding: 5px 9px !important; border-radius: 8px !important; }
+          .hero-collage-badge div:first-child { font-size: 13px !important; }
+          .hero-collage-badge div:last-child { font-size: 8px !important; }
+          .hero-collage-ring { width: 80px !important; height: 80px !important; top: -14px !important; right: -10px !important; }
+          .video-banner { height: 180px !important; border-radius: 12px !important; }
+          .page-hero { padding: 78px 4% 26px !important; }
+          .page-hero h1 { font-size: 22px !important; margin-bottom: 8px !important; }
+          .page-hero p { font-size: 13px !important; }
+          .sec-h2 { font-size: 19px !important; line-height: 1.3; margin-bottom: 8px !important; }
+          .sec-tag { font-size: 10px !important; letter-spacing: 1px; margin-bottom: 6px !important; }
+          .sec-head { margin-bottom: 20px !important; }
+          .stat-num { font-size: 22px !important; }
+          .stat-cell { padding: 14px 8px !important; }
+          .team-panel { padding: 20px 16px !important; }
+          .form-card { padding: 18px 14px !important; }
+          .hero-cta { width: 100%; flex-direction: row; gap: 8px; margin-bottom: 18px !important; }
+          .hero-cta .btn-blue, .hero-cta .btn-outline { width: auto; flex: 1; text-align: center; padding: 10px 12px; font-size: 12px; }
+          .footer-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
           .footer-brand { grid-column: 1 / -1; }
           .footer-links { margin-bottom: 0; }
-          .footer-bottom { flex-direction: column; text-align: center; gap: 10px; padding: 16px 0 !important; }
-          .btn-blue, .btn-outline { padding: 11px 18px; font-size: 13px; }
-          .tcard { padding: 20px; }
+          .footer-bottom { flex-direction: column; text-align: center; gap: 8px; padding: 14px 0 !important; }
+          .btn-blue, .btn-outline { padding: 10px 16px; font-size: 12px; }
+          .tcard { padding: 16px; }
           .pcard { border-radius: 10px; }
-          .pcard > div:first-child { height: 160px !important; }
-          .why-choose-img { height: 180px !important; }
-          .grid-3-col { gap: 16px; }
-          .grid-4-col { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-          .icon-bounce { padding: 20px 16px !important; }
-          .icon-bounce > div:first-child { width: 42px !important; height: 42px !important; font-size: 20px !important; }
+          .pcard > div:first-child { height: 140px !important; }
+          .pcard > div:last-child { padding: 14px !important; }
+          .why-choose-img { height: 150px !important; }
+          .grid-3-col { gap: 14px; }
+          .grid-4-col { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+          .icon-bounce { padding: 16px 14px !important; gap: 12px !important; }
+          .icon-bounce > div:first-child { width: 38px !important; height: 38px !important; font-size: 18px !important; }
+          .hero-trust { gap: 18px !important; }
+          .hero-trust div div:first-child { font-size: 17px !important; }
+          .hero-trust div div:last-child { font-size: 10px !important; }
+          h3 { font-size: 15px !important; }
+          .wdetails { margin-top: 28px !important; }
+          .wdetail { padding: 14px !important; gap: 12px !important; margin-bottom: 12px !important; border-radius: 12px !important; }
+          .wdetail-img { height: 155px !important; }
+          .wdetail p { font-size: 12.5px !important; line-height: 1.7 !important; }
+          .map-card { padding: 14px !important; margin-bottom: 14px !important; }
+          .map-frame { height: 170px !important; }
+          input, select, textarea { font-size: 14px !important; padding: 11px 13px !important; }
         }
       `}</style>
 
@@ -401,7 +421,7 @@ export default function App() {
               <button className="btn-outline" onClick={() => window.location.hash = "#aboutus"}>Read More</button>
             </div>
             {/* Trust badges */}
-            <div style={{ display: "flex", gap: 28, flexWrap: "wrap" }}>
+            <div className="hero-trust" style={{ display: "flex", gap: 28, flexWrap: "wrap" }}>
               {[["5,000+", "Happy Clients"], ["20+", "Years Experience"], ["99%", "Pure Water"]].map(([n, l]) => (
                 <div key={l}>
                   <div style={{ fontSize: 22, fontWeight: 700, color: C.blue }}><AnimatedNumber text={n} /></div>
@@ -446,7 +466,7 @@ export default function App() {
 
       {/* ─── BRAND LOGOS ─── */}
       {(currentPage === "#home" || currentPage === "") && (
-      <section style={{ padding: "28px 0", borderBottom: `1px solid ${C.border}`, overflow: "hidden", whiteSpace: "nowrap" }}>
+      <section className="marquee" style={{ padding: "28px 0", borderBottom: `1px solid ${C.border}`, overflow: "hidden", whiteSpace: "nowrap" }}>
         <div style={{ display: "inline-flex", width: "max-content", animation: "marquee 20s linear infinite" }}>
           {[...BRANDS, ...BRANDS, ...BRANDS, ...BRANDS].map((b, i) => (
             <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, opacity: 0.55, cursor: "pointer", transition: "opacity 0.2s", margin: "0 40px" }}
@@ -494,7 +514,7 @@ export default function App() {
       {(currentPage === "#home" || currentPage === "" || currentPage === "#aboutus") && (
       <section id="aboutus" style={{ padding: "clamp(52px, 8vw, 90px) 6%", background: C.white }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <div className="sec-head" style={{ textAlign: "center", marginBottom: 56 }}>
             <div className="sec-tag">Why Choose Us</div>
             <h2 className="sec-h2">Trusted <span>Water Tanker & Can</span> Supplier in Noida</h2>
             <p style={{ fontSize: 15, color: C.muted, maxWidth: 640, margin: "0 auto", lineHeight: 1.8 }}>2001 से Noida, Greater Noida, Ghaziabad, East Delhi, Delhi NCR और Meerut में हर तरह के businesses को tanker और can से शुद्ध जल की reliable supply।</p>
@@ -538,7 +558,7 @@ export default function App() {
       {(currentPage === "#home" || currentPage === "" || currentPage === "#products" || currentPage === "#services") && (
       <section id="products" style={{ padding: "clamp(52px, 8vw, 90px) 6%", background: "#f7fbff" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 40 }}>
+          <div className="sec-head" style={{ textAlign: "center", marginBottom: 40 }}>
             <div className="sec-tag">Our Products</div>
             <h2 className="sec-h2">Water Supply by <span>Tanker & Can</span> in Noida, Greater Noida, Ghaziabad & East Delhi</h2>
             <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.9, maxWidth: 900, margin: "16px auto 0" }}>
@@ -570,11 +590,11 @@ export default function App() {
           </div>
           {/* Detailed water info – only on Water We Supply page */}
           {currentPage === "#products" && (
-          <div style={{ marginTop: 60 }}>
+          <div className="wdetails" style={{ marginTop: 60 }}>
             {WATER_DETAILS.map((w, i) => (
-              <div key={w.name} className="reveal" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 28, alignItems: "center", background: "white", borderRadius: 16, border: `1.5px solid ${C.border}`, padding: "clamp(20px, 4vw, 36px)", marginBottom: 24, flexDirection: i % 2 ? "row-reverse" : "row" }}>
+              <div key={w.name} className="reveal wdetail" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 28, alignItems: "center", background: "white", borderRadius: 16, border: `1.5px solid ${C.border}`, padding: "clamp(20px, 4vw, 36px)", marginBottom: 24, flexDirection: i % 2 ? "row-reverse" : "row" }}>
                 <div style={{ order: i % 2 ? 2 : 1 }}>
-                  <img src={w.img} loading="lazy" decoding="async" alt={`${w.name} supplier in Noida, Greater Noida, Ghaziabad, East Delhi - tanker & can delivery`} style={{ width: "100%", height: 220, objectFit: "cover", borderRadius: 12 }} />
+                  <img src={w.img} loading="lazy" decoding="async" alt={`${w.name} supplier in Noida, Greater Noida, Ghaziabad, East Delhi - tanker & can delivery`} className="wdetail-img" style={{ width: "100%", height: 220, objectFit: "cover", borderRadius: 12 }} />
                 </div>
                 <div style={{ order: i % 2 ? 1 : 2 }}>
                   <h3 style={{ fontSize: 20, fontWeight: 700, color: C.blue, marginBottom: 12 }}>{w.name}</h3>
@@ -617,7 +637,7 @@ export default function App() {
       {(currentPage === "#home" || currentPage === "" || currentPage === "#aboutus") && (
       <section style={{ padding: "clamp(48px, 7vw, 70px) 6%", background: C.blue }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 36 }}>
+          <div className="sec-head" style={{ textAlign: "center", marginBottom: 36 }}>
             <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: 2, color: "rgba(255,255,255,0.7)", textTransform: "uppercase", marginBottom: 8 }}>Our Achievements</div>
             <h2 style={{ fontSize: "clamp(24px,3.5vw,38px)", fontWeight: 700, color: "white" }}>हमारी उपलब्धियां</h2>
           </div>
@@ -637,7 +657,7 @@ export default function App() {
       {(currentPage === "#home" || currentPage === "" || currentPage === "#aboutus" || currentPage === "#products") && (
       <section style={{ padding: "clamp(52px, 8vw, 90px) 6%", background: "#f7fbff" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 40 }}>
+          <div className="sec-head" style={{ textAlign: "center", marginBottom: 40 }}>
             <div className="sec-tag">Client Testimonials</div>
             <h2 className="sec-h2">हमारे <span>Clients</span> क्या कहते हैं</h2>
             <div style={{ width: 60, height: 3, background: C.blue, borderRadius: 2, margin: "12px auto 0" }} />
@@ -678,7 +698,7 @@ export default function App() {
               { site: "Site 1", addr: "Vill. - Basai, Sector - 70, Noida (U.P.)", phone: "+91 - 9811036674", tel: "+919811036674", map: "https://maps.google.com/maps?q=28.5967826,77.3868494&z=16&output=embed", link: "https://www.google.com/maps/place/Vikku+DM+Water+(Demineralized)+%26+Distilled+Water+Supplier/@28.596783,77.386849,15z/data=!4m6!3m5!1s0x390cefb4bc828fdb:0x7216d30d4a5d356f!8m2!3d28.5967826!4d77.3868494!16s%2Fg%2F11rn23ryd3" },
               { site: "Site 2", addr: "Udyog Kendra 1, Ecotech III, Near Habibpur, Greater Noida (U.P.)", phone: "+91 - 9911096674", tel: "+919911096674", map: "https://maps.google.com/maps?q=28.5463183,77.4566963&z=16&output=embed", link: "https://maps.app.goo.gl/UXcwxxdQN7gRmTng8" },
             ].map(o => (
-              <div key={o.site} style={{ background: "white", borderRadius: 14, border: `1.5px solid ${C.border}`, padding: 20, marginBottom: 20 }}>
+              <div key={o.site} className="map-card" style={{ background: "white", borderRadius: 14, border: `1.5px solid ${C.border}`, padding: 20, marginBottom: 20 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
                   <div style={{ width: 40, height: 40, borderRadius: "50%", background: C.blueLight, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, color: C.blue, flexShrink: 0 }}>📍</div>
                   <div>
@@ -692,7 +712,7 @@ export default function App() {
                   <div><strong style={{ color: C.text }}>Email :</strong> <a href="mailto:vikkuwatersupplier@gmail.com" style={{ color: C.blue, textDecoration: "none" }}>vikkuwatersupplier@gmail.com</a></div>
                   <div><strong style={{ color: C.text }}>Website :</strong> www.vikkuwatersupplier.com</div>
                 </div>
-                <iframe src={o.map} title={`${o.site} Map`} style={{ width: "100%", height: 220, border: 0, borderRadius: 10 }} loading="lazy" />
+                <iframe src={o.map} title={`${o.site} Map`} className="map-frame" style={{ width: "100%", height: 220, border: 0, borderRadius: 10 }} loading="lazy" />
                 <a href={o.link} target="_blank" rel="noreferrer" style={{ display: "inline-block", marginTop: 10, fontSize: 13, fontWeight: 600, color: C.blue, textDecoration: "none" }}>📍 View on Google Maps →</a>
               </div>
             ))}
