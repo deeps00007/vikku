@@ -332,14 +332,39 @@ export default function App() {
           .hero p { font-size: 13px !important; line-height: 1.6 !important; margin-bottom: 16px !important; }
           .hero-img { width: 150px !important; height: 150px !important; }
           .hero-img-wrap { max-width: 100%; margin: 0 auto; }
-          .hero-collage { max-width: 280px !important; margin-bottom: 14px !important; }
-          .hero-collage-main { height: 170px !important; border-radius: 14px !important; border-width: 4px !important; }
-          .hero-collage-float1 { width: 78px !important; height: 78px !important; top: -10px !important; left: -6px !important; border-radius: 10px !important; border-width: 3px !important; }
-          .hero-collage-float2 { width: 72px !important; height: 72px !important; bottom: -8px !important; right: -6px !important; border-width: 3px !important; }
-          .hero-collage-badge { padding: 5px 9px !important; border-radius: 8px !important; }
-          .hero-collage-badge div:first-child { font-size: 13px !important; }
-          .hero-collage-badge div:last-child { font-size: 8px !important; }
-          .hero-collage-ring { width: 80px !important; height: 80px !important; top: -14px !important; right: -10px !important; }
+          .hero-collage {
+            max-width: 100% !important;
+            width: 100% !important;
+            margin-bottom: 12px !important;
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 8px !important;
+          }
+          .hero-collage-main {
+            grid-column: 1 / -1 !important;
+            height: 170px !important;
+            width: 100% !important;
+            border-radius: 14px !important;
+            border: 4px solid white !important;
+            box-shadow: 0 12px 28px rgba(26,111,196,0.22) !important;
+          }
+          .hero-collage-float1, .hero-collage-float2 {
+            position: static !important;
+            transform: none !important;
+            top: auto !important;
+            left: auto !important;
+            right: auto !important;
+            bottom: auto !important;
+            width: 100% !important;
+            height: 108px !important;
+            border-radius: 12px !important;
+            border: 3px solid white !important;
+            box-shadow: 0 8px 18px rgba(26,111,196,0.18) !important;
+          }
+          .hero-collage-float1 { grid-column: 1 !important; }
+          .hero-collage-float2 { grid-column: 2 !important; }
+          .hero-collage-badge { display: none !important; }
+          .hero-collage-ring { display: none !important; }
           .video-banner { height: 180px !important; border-radius: 12px !important; }
           .page-hero { padding: 78px 4% 26px !important; }
           .page-hero h1 { font-size: 22px !important; margin-bottom: 8px !important; }
